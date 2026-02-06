@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MegaHitsBrasil - Pacote Premium de Músicas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF0080;
+            --secondary: #7C3AED;
+            --accent: #00D9FF;
+            --dark: #0A0A0F;
+            --dark-2: #151520;
+            --dark-3: #1F1F2E;
+            --light: #FFFFFF;
+            --success: #00FF88;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(0, 217, 255, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            text-align: center;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #A8A8B3;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Price Card */
+        .price-card {
+            background: var(--dark-2);
+            border: 2px solid var(--dark-3);
+            border-radius: 24px;
+            padding: 50px;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .scarcity {
+            background: rgba(255, 0, 128, 0.1);
+            border: 1px solid var(--primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .scarcity::before {
+            content: '🔥';
+            font-size: 1.2rem;
+        }
+
+        .price {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin: 20px 0;
+        }
+
+        .price small {
+            font-size: 1.5rem;
+            color: #A8A8B3;
+        }
+
+        .features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--dark-3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .features li::before {
+            content: '✓';
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 0, 128, 0.4);
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: var(--dark-3);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            animation: slideIn 1s ease;
+        }
+
+        .social-proof .icon {
+            font-size: 2rem;
+        }
+
+        .social-proof .count {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--success);
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 80px 20px;
+            background: var(--dark-2);
+            margin-top: 80px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .news-card {
+            background: var(--dark-3);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-tag {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .news-desc {
+            color: #A8A8B3;
+            font-size: 0.95rem;
+        }
+
+        /* Checkout Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--dark-2);
+            border-radius: 24px;
+            padding: 50px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: var(--dark-3);
+        }
+
+        .checkout-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .payment-method {
+            background: var(--dark-3);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover,
+        .payment-method.active {
+            border-color: var(--primary);
+            background: rgba(255, 0, 128, 0.1);
+        }
+
+        .pix-details {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--dark);
+            border-radius: 12px;
+        }
+
+        .pix-details.active {
+            display: block;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background: var(--light);
+            margin: 20px auto;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .pix-key {
+            background: var(--dark-3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            margin: 15px 0;
+        }
+
+        .copy-button {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .copy-button:hover {
+            transform: scale(1.05);
+        }
+
+        .delivery-info {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--success);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Referral Section */
+        .referral-section {
+            background: var(--dark-3);
+            padding: 50px;
+            border-radius: 24px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .referral-input {
+            background: var(--dark);
+            border: 2px solid var(--dark-3);
+            color: var(--light);
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--dark);
+            border: 2px solid var(--dark-3);
+            color: var(--light);
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-input::placeholder {
+            color: #666;
+        }
+
+        .checkout-form {
+            background: var(--dark-3);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .submit-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 0, 128, 0.4);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--dark-3);
+        }
+
+        .divider span {
+            background: var(--dark-2);
+            padding: 0 15px;
+            position: relative;
+            color: #A8A8B3;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-2);
+            padding: 60px 20px 30px;
+            margin-top: 100px;
+            border-top: 1px solid var(--dark-3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #A8A8B3;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: var(--dark-3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--dark-3);
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .price {
+                font-size: 3rem;
+            }
+
+            .price-card,
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+
+    <header>
+        <div class="container">
+            <div class="logo">MegaHitsBrasil</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="badge">🎵 Oferta Exclusiva</div>
+                <h1>Milhares de Hits na<br>Palma da Sua Mão</h1>
+                <p class="subtitle">O maior pacote de músicas do Brasil por um preço imbatível</p>
+
+                <div class="social-proof">
+                    <span class="icon">🎉</span>
+                    <div>
+                        <div class="count" id="customerCount">1,247</div>
+                        <div>pessoas já estão curtindo!</div>
+                    </div>
+                </div>
+
+                <div class="price-card">
+                    <div class="scarcity">
+                        <strong>Últimas unidades com este preço!</strong>
+                    </div>
+
+                    <div class="price">
+                        R$ <span>9</span>,90
+                        <small>/único pagamento</small>
+                    </div>
+
+                    <ul class="features">
+                        <li>✨ Acesso imediato ao pacote completo</li>
+                        <li>🎵 Milhares de músicas dos maiores hits</li>
+                        <li>📱 Download direto pelo MEGA</li>
+                        <li>🎧 Qualidade de áudio premium</li>
+                        <li>💯 Satisfação garantida</li>
+                        <li>📲 Suporte via WhatsApp</li>
+                    </ul>
+
+                    <button class="cta-button" onclick="openCheckout()">
+                        Quero Meu Pacote Agora! 🚀
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="news-section">
+            <div class="container">
+                <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px;">Novidades da Música</h2>
+                <p style="text-align: center; color: #A8A8B3; margin-bottom: 40px;">Fique por dentro dos últimos lançamentos e tendências</p>
+
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-image">🎤</div>
+                        <div class="news-content">
+                            <div class="news-tag">Lançamento</div>
+                            <h3 class="news-title">Novos Hits do Sertanejo</h3>
+                            <p class="news-desc">As músicas mais tocadas do momento já disponíveis no nosso pacote!</p>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div class="news-image">🎸</div>
+                        <div class="news-content">
+                            <div class="news-tag">Tendência</div>
+                            <h3 class="news-title">Rock Nacional em Alta</h3>
+                            <p class="news-desc">Clássicos e novidades do rock brasileiro que você não pode perder.</p>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div class="news-image">🎹</div>
+                        <div class="news-content">
+                            <div class="news-tag">Playlist</div>
+                            <h3 class="news-title">Eletrônica e Funk</h3>
+                            <p class="news-desc">Os beats mais contagiantes para suas festas e treinos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="referral-section">
+            <div class="container">
+                <h2 style="font-size: 2rem; margin-bottom: 15px;">📢 Compartilhe e Ganhe!</h2>
+                <p style="color: #A8A8B3; margin-bottom: 25px;">Indique para amigos e ganhe benefícios exclusivos</p>
+                <input 
+                    type="text" 
+                    class="referral-input" 
+                    value="https://megahitsbrasil.com/ref=SEU_CODIGO" 
+                    readonly 
+                    id="referralLink"
+                >
+                <button class="copy-button" onclick="copyReferral()">Copiar Link de Indicação</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">MegaHitsBrasil</div>
+                    <p>O maior acervo de músicas do Brasil em um único lugar. Qualidade premium por um preço imbatível.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📸</a>
+                        <a href="#" class="social-link">▶️</a>
+                        <a href="#" class="social-link">💬</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <a href="#hero">Início</a>
+                    <a href="#news">Novidades</a>
+                    <a href="#referral">Programa de Indicação</a>
+                    <a href="#checkout">Comprar Agora</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Suporte</h3>
+                    <a href="#">Perguntas Frequentes</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Contato</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Atendimento</h3>
+                    <p>📧 Email: felipe.pessoall2026@gmail.com</p>
+                    <p>📲 WhatsApp: (16) 99218-9862</p>
+                    <p>🕐 Horário: Seg-Sex 9h-18h</p>
+                    <p style="margin-top: 15px; font-size: 0.85rem;">Resposta em até 2 horas</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 MegaHitsBrasil. Todos os direitos reservados.</p>
+                <p style="margin-top: 10px; font-size: 0.85rem;">Desenvolvido com 💜 para os amantes da música brasileira</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeCheckout()">&times;</button>
+            
+            <h2 class="checkout-title">Finalizar Pedido</h2>
+            
+            <div class="checkout-form">
+                <h3 style="margin-bottom: 20px; text-align: center;">📝 Seus Dados</h3>
+                
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            class="form-input" 
+                            placeholder="seu@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp (com DDD) *</label>
+                        <input 
+                            type="tel" 
+                            id="whatsapp" 
+                            class="form-input" 
+                            placeholder="(11) 99999-9999"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        Continuar para Pagamento 💳
+                    </button>
+                </form>
+            </div>
+
+            <div class="divider">
+                <span>Após preencher seus dados</span>
+            </div>
+            
+            <div class="payment-method">
+                <h3 style="margin-bottom: 10px;">💳 Pagamento via PIX</h3>
+                <p style="color: #A8A8B3; font-size: 0.9rem; margin-bottom: 20px;">Aprovação instantânea</p>
+                
+                <div class="pix-details" id="pixDetails">
+                    <div class="qr-code">
+                        <!-- SUBSTITUA 'seu-qrcode.png' pelo nome do seu arquivo de imagem QR Code -->
+                        <img src="qrcode-pix.png" alt="QR Code PIX" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
+                    </div>
+
+                    <p style="text-align: center; margin: 20px 0; font-weight: 600;">ou copie a chave PIX:</p>
+
+                    <div class="pix-key" id="pixKey">
+                        00020126360014BR.GOV.BCB.PIX0114+551699218986252040000530398654049.905802BR5920Felipe Silva Andrade6007Dobrada62210517PAGAMENTOMEGAHITS6304C4E8
+                    </div>
+
+                    <button class="copy-button" onclick="copyPixKey()">Copiar Chave PIX</button>
+
+                    <div class="divider" style="margin: 30px 0;">
+                        <span>Após realizar o pagamento</span>
+                    </div>
+
+                    <button class="whatsapp-button" onclick="sendToWhatsApp()">
+                        <span>📲</span> Enviar Comprovante via WhatsApp
+                    </button>
+
+                    <div class="delivery-info">
+                        <strong>✅ Processo de Entrega</strong><br>
+                        <p style="margin-top: 10px; color: #A8A8B3; font-size: 0.95rem;">
+                            1. Realize o pagamento via PIX<br>
+                            2. Envie o comprovante no WhatsApp<br>
+                            3. Receba o link do MEGA em até 2 horas
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--dark-3);">
+                <p style="color: #A8A8B3; font-size: 0.9rem;">🔒 Pagamento 100% seguro e protegido</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURE AQUI SEU WHATSAPP (apenas números, com DDI)
+        const WHATSAPP_OWNER = '5516992189862'; // Substitua pelo seu número
+        
+        let userEmail = '';
+        let userWhatsApp = '';
+
+        // Counter Animation
+        function animateCounter() {
+            const counter = document.getElementById('customerCount');
+            const target = 1247;
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 1000;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target.toLocaleString('pt-BR');
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current).toLocaleString('pt-BR');
+                }
+            }, 16);
+        }
+
+        // Open/Close Checkout
+        function openCheckout() {
+            document.getElementById('checkoutModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Form Validation and Submit
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+
+            // Validação básica
+            if (!email || !whatsapp) {
+                alert('❌ Por favor, preencha todos os campos!');
+                return;
+            }
+
+            // Validação de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('❌ Por favor, insira um email válido!');
+                return;
+            }
+
+            // Salvar dados
+            userEmail = email;
+            userWhatsApp = whatsapp.replace(/\D/g, ''); // Remove formatação
+
+            // Mostrar área de pagamento
+            document.getElementById('pixDetails').classList.add('active');
+            document.getElementById('pixDetails').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Feedback visual
+            alert('✅ Dados salvos! Agora realize o pagamento via PIX abaixo.');
+        });
+
+        // Máscara de telefone
+        document.getElementById('whatsapp').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+            }
+            e.target.value = value;
+        });
+
+        // Copy PIX Key
+        function copyPixKey() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            navigator.clipboard.writeText(pixKey).then(() => {
+                alert('✅ Chave PIX copiada! Cole no seu aplicativo de pagamento.');
+            });
+        }
+
+        // Send to WhatsApp
+        function sendToWhatsApp() {
+            if (!userEmail || !userWhatsApp) {
+                alert('❌ Por favor, preencha seus dados no formulário acima primeiro!');
+                document.getElementById('checkoutForm').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            const message = `🎵 *NOVO PEDIDO - MegaHitsBrasil*%0A%0A` +
+                          `📧 *Email:* ${userEmail}%0A` +
+                          `📲 *WhatsApp:* ${userWhatsApp}%0A` +
+                          `💰 *Valor:* R$ 9,90%0A%0A` +
+                          `_Aguardando envio do comprovante de pagamento..._`;
+
+            const whatsappURL = `https://wa.me/${WHATSAPP_OWNER}?text=${message}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Copy Referral Link
+        function copyReferral() {
+            const referralLink = document.getElementById('referralLink');
+            referralLink.select();
+            document.execCommand('copy');
+            alert('✅ Link de indicação copiado!');
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('checkoutModal');
+            if (event.target === modal) {
+                closeCheckout();
+            }
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            animateCounter();
+        });
+    </script>
+</body>
+</html>
