@@ -1,7 +1,12 @@
-MegaHitsBrasil V3
+MEGAHITSBRASIL V5
 
-Melhorias: página comercial com destaque para mais de 15 GB, checkout PIX, WhatsApp, FAQ, responsividade e CTA.
-Pagamento: PIX atual configurado com a chave 47443655827 e valor de R$ 9,90.
-Entrega: manual via WhatsApp, conforme solicitado.
+Mensagens WhatsApp configuradas:
+1) Botão flutuante: mensagem de interesse na compra.
+2) Checkout: mensagem completa de pedido, com código do pedido, e-mail, WhatsApp, valor, data e aviso de comprovante.
+3) Entrega: você confirma o pagamento e envia manualmente o link do MEGA.
 
-Antes de publicar, confira se o conteúdo comercializado e os direitos de distribuição estão regulares.
+Link de entrega configurado para referência:
+https://mega.nz/folder/ryZghTYA#vwf3oT_zjy8hJXiFLRQ3hw
+
+Número WhatsApp configurado: 5516992189862
+PIX: 47443655827
