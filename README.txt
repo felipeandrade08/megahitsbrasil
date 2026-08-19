@@ -1,12 +1,10 @@
-MEGAHITSBRASIL V5
+MEGAHITSBRASIL V8 - RADIO HUNTER.FM
 
-Mensagens WhatsApp configuradas:
-1) Botão flutuante: mensagem de interesse na compra.
-2) Checkout: mensagem completa de pedido, com código do pedido, e-mail, WhatsApp, valor, data e aviso de comprovante.
-3) Entrega: você confirma o pagamento e envia manualmente o link do MEGA.
+Player integrado: Hunter.FM - O Canal Sertanejo.
 
-Link de entrega configurado para referência:
-https://mega.nz/folder/ryZghTYA#vwf3oT_zjy8hJXiFLRQ3hw
+A rádio NÃO inicia automaticamente. O visitante precisa clicar em "Ouvir agora", porque navegadores modernos normalmente bloqueiam reprodução automática com som.
 
-Número WhatsApp configurado: 5516992189862
-PIX: 47443655827
+Stream usado: https://live.hunter.fm/sertanejo_normal
+Canal oficial: https://hunter.fm/sertanejo/
+
+Os demais recursos do site foram mantidos: logo, favicon, imagem real do conteúdo, PIX, checkout e WhatsApp.
