@@ -1,297 +1,38 @@
 <!doctype html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="utf-8">
-
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
-
-<meta
-name="theme-color"
-content="#07040d">
-
-<title>
-Pagamento realizado — MegaHitsBrasil
-</title>
-
-<link
-rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link
-rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-rel="stylesheet">
-
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07060b"><title>Pedido confirmado — MegaHitsBrasil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
-
-body{
-
-min-height:100vh;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-padding:20px;
-
-font-family:Inter,Arial,sans-serif;
-
-background:
-
-radial-gradient(
-600px 400px at 50% 0%,
-rgba(122,60,255,.25),
-transparent 70%
-),
-
-#07040d;
-
-color:#fff;
-
-}
-
-.card{
-
-width:min(560px,100%);
-
-padding:42px 30px;
-
-border-radius:28px;
-
-text-align:center;
-
-border:1px solid
-rgba(255,255,255,.1);
-
-background:
-rgba(16,11,27,.92);
-
-box-shadow:
-0 30px 90px
-rgba(0,0,0,.5);
-
-}
-
-.icon{
-
-width:78px;
-height:78px;
-
-margin:0 auto 24px;
-
-display:grid;
-
-place-items:center;
-
-border-radius:50%;
-
-background:
-linear-gradient(
-135deg,
-#25d366,
-#159447
-);
-
-font-size:2rem;
-
-box-shadow:
-0 15px 35px
-rgba(37,211,102,.2);
-
-}
-
-h1{
-
-font-size:
-clamp(1.8rem,6vw,2.6rem);
-
-letter-spacing:-.04em;
-
-margin-bottom:12px;
-
-}
-
-p{
-
-color:#aaa3b6;
-
-line-height:1.6;
-
-font-size:.92rem;
-
-}
-
-.info{
-
-margin-top:25px;
-
-padding:18px;
-
-border-radius:16px;
-
-background:
-rgba(255,255,255,.03);
-
-border:
-1px solid
-rgba(255,255,255,.08);
-
-}
-
-.info strong{
-
-display:block;
-
-margin-bottom:6px;
-
-}
-
-.btn{
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-min-height:52px;
-
-margin-top:20px;
-
-border-radius:13px;
-
-background:
-linear-gradient(
-135deg,
-#ff1593,
-#7a3cff
-);
-
-color:#fff;
-
-font-weight:800;
-
-text-decoration:none;
-
-}
-
-.whatsapp{
-
-background:#25d366;
-
-}
-
-small{
-
-display:block;
-
-margin-top:20px;
-
-color:#71697b;
-
-font-size:.7rem;
-
-}
-
+*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;display:grid;place-items:center;padding:20px;font-family:Inter,Arial;background:radial-gradient(600px 400px at 50% 0%,rgba(124,67,255,.2),transparent 70%),#07060b;color:#fff}.card{width:min(560px,100%);padding:42px 30px;border:1px solid rgba(255,255,255,.1);border-radius:26px;text-align:center;background:#111019;box-shadow:0 30px 90px rgba(0,0,0,.5)}.logo{width:185px;height:66px;object-fit:contain;margin:0 auto 20px}.icon{width:70px;height:70px;margin:0 auto 20px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#25d366,#159447);font-size:1.9rem;box-shadow:0 14px 35px rgba(37,211,102,.2)}h1{font-size:clamp(1.8rem,6vw,2.5rem);letter-spacing:-.045em;margin-bottom:10px}p{color:#aaa6b4;line-height:1.6;font-size:.87rem}.info{margin-top:22px;padding:17px;border-radius:15px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}.info strong{display:block;margin-bottom:6px}.btn{display:flex;align-items:center;justify-content:center;min-height:51px;margin-top:17px;border-radius:12px;text-decoration:none;font-weight:800;color:#fff;background:linear-gradient(135deg,#ff1b9b,#7c43ff)}.btn.secondary{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}.btn.whatsapp{background:#25d366}.hidden{display:none!important}.loading{color:#8d8794;font-size:.72rem;margin-top:12px}small{display:block;margin-top:18px;color:#6e6876;font-size:.65rem}
 </style>
-
 </head>
-
-
 <body>
-
-
 <div class="card">
-
-
-<div class="icon">
-
-✓
-
+<img class="logo" src="/logo-megahitsbrasil.png" alt="MegaHitsBrasil">
+<div class="icon">✓</div>
+<h1>Pagamento confirmado</h1>
+<p>Obrigado pela compra. Estamos verificando a confirmação do pagamento e preparando seu acesso.</p>
+<div class="info"><strong id="statusTitle">Confirmando seu pagamento...</strong><p id="statusText">Aguarde alguns segundos. Você não precisa fazer outro pagamento.</p></div>
+<a id="downloadBtn" class="btn hidden" href="#">Liberar meu acesso</a>
+<a class="btn whatsapp" href="https://wa.me/5516997434009?text=Ol%C3%A1!%20Fiz%20uma%20compra%20no%20MegaHitsBrasil%20e%20preciso%20de%20ajuda." target="_blank" rel="noopener">Falar com suporte</a>
+<a class="btn secondary" href="/">Voltar ao site</a>
+<div id="loading" class="loading">Verificando...</div>
+<small>MegaHitsBrasil © 2026 • Pagamento processado pelo Stripe</small>
 </div>
-
-
-<h1>
-Pagamento recebido!
-</h1>
-
-
-<p>
-
-Obrigado pela sua compra.
-
-Seu pagamento com cartão foi
-processado pelo Stripe.
-
-</p>
-
-
-<div class="info">
-
-<strong>
-Próximo passo
-</strong>
-
-<p>
-
-O acesso ao pacote será liberado
-após a confirmação do pagamento.
-
-Caso precise de atendimento,
-fale conosco pelo WhatsApp.
-
-</p>
-
-</div>
-
-
-<a
-class="btn whatsapp"
-href="https://wa.me/5516997434009?text=Ol%C3%A1!%20Acabei%20de%20realizar%20o%20pagamento%20do%20MegaHitsBrasil%20e%20preciso%20de%20ajuda."
-target="_blank"
-rel="noopener">
-
-📲 Falar com suporte
-
-</a>
-
-
-<a
-class="btn"
-href="/">
-
-Voltar para o site
-
-</a>
-
-
-<small>
-
-MegaHitsBrasil © 2026
-
-</small>
-
-
-</div>
-
-
+<script>
+const params=new URLSearchParams(location.search),sessionId=params.get('session_id');
+const title=document.getElementById('statusTitle'),text=document.getElementById('statusText'),btn=document.getElementById('downloadBtn'),loading=document.getElementById('loading');
+let attempts=0;
+async function check(){if(!sessionId){title.textContent='Sessão não encontrada';text.textContent='Volte ao site e tente iniciar o pagamento novamente.';loading.classList.add('hidden');return}
+try{const r=await fetch('/api/session-status?session_id='+encodeURIComponent(sessionId),{cache:'no-store'});const d=await r.json();
+ if(r.ok&&d.paid){title.textContent='Seu acesso está liberado';text.textContent='Pagamento confirmado. Clique abaixo para acessar o conteúdo.';btn.href='/api/download?session_id='+encodeURIComponent(sessionId);btn.classList.remove('hidden');loading.classList.add('hidden');return}
+ title.textContent='Pagamento ainda sendo confirmado';text.textContent='O Stripe ainda não retornou a confirmação. Estamos verificando automaticamente.';loading.textContent='Tentativa '+(attempts+1)+' de 10...';
+}catch(e){text.textContent='Não foi possível consultar a confirmação agora. Tentaremos novamente.'}
+attempts++;if(attempts<10)setTimeout(check,2000);else{loading.textContent='Se o pagamento já foi aprovado, aguarde um pouco e atualize esta página.'}}
+check();
+</script>
 </body>
-
 </html>
