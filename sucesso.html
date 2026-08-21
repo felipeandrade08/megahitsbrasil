@@ -1,1 +1,297 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pagamento confirmado — MegaHitsBrasil</title><link rel="icon" href="favicon.png"><style>body{margin:0;background:#080511;color:#fff;font-family:Inter,Arial,sans-serif;display:grid;place-items:center;min-height:100vh}.box{width:min(560px,calc(100% - 36px));padding:36px;border:1px solid #27202f;border-radius:24px;background:#100b1b;text-align:center;box-shadow:0 30px 90px #0008}img{width:180px;max-width:70%;height:auto}.ok{font-size:3rem;margin:12px 0}.muted{color:#aaa3b6}.link{display:block;margin:24px 0;padding:16px;border-radius:12px;background:linear-gradient(135deg,#ff1593,#7a3cff);color:#fff;text-decoration:none;font-weight:800}.small{font-size:.78rem;color:#8f8799}</style></head><body><main class="box"><img src="logo-megahitsbrasil.png" alt="MegaHitsBrasil"><div class="ok">✓</div><h1 id="title">Confirmando pagamento...</h1><p class="muted" id="msg">Aguarde enquanto verificamos seu pagamento.</p><a class="link" id="access" href="https://mega.nz/folder/ryZghTYA#vwf3oT_zjy8hJXiFLRQ3hw" target="_blank" rel="noopener" style="display:none">🎵 Acessar meu pacote no MEGA</a><p class="small">Guarde este link em um local seguro.</p></main><script>const id=new URLSearchParams(location.search).get('session_id');async function check(){if(!id){title.textContent='Pagamento não identificado';msg.textContent='Abra novamente o link de pagamento ou fale conosco pelo WhatsApp.';return}try{const r=await fetch('/api/session-status?session_id='+encodeURIComponent(id));const d=await r.json();if(d.paid){title.textContent='Pagamento confirmado!';msg.textContent='Seu acesso já está liberado.';access.style.display='block'}else{title.textContent='Pagamento em processamento';msg.textContent='Assim que o Stripe confirmar o pagamento, o acesso será liberado. Atualize esta página em alguns instantes.'}}catch(e){title.textContent='Não foi possível verificar agora';msg.textContent='Tente atualizar a página em alguns segundos.'}}check();</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
+
+<meta
+name="theme-color"
+content="#07040d">
+
+<title>
+Pagamento realizado — MegaHitsBrasil
+</title>
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:20px;
+
+font-family:Inter,Arial,sans-serif;
+
+background:
+
+radial-gradient(
+600px 400px at 50% 0%,
+rgba(122,60,255,.25),
+transparent 70%
+),
+
+#07040d;
+
+color:#fff;
+
+}
+
+.card{
+
+width:min(560px,100%);
+
+padding:42px 30px;
+
+border-radius:28px;
+
+text-align:center;
+
+border:1px solid
+rgba(255,255,255,.1);
+
+background:
+rgba(16,11,27,.92);
+
+box-shadow:
+0 30px 90px
+rgba(0,0,0,.5);
+
+}
+
+.icon{
+
+width:78px;
+height:78px;
+
+margin:0 auto 24px;
+
+display:grid;
+
+place-items:center;
+
+border-radius:50%;
+
+background:
+linear-gradient(
+135deg,
+#25d366,
+#159447
+);
+
+font-size:2rem;
+
+box-shadow:
+0 15px 35px
+rgba(37,211,102,.2);
+
+}
+
+h1{
+
+font-size:
+clamp(1.8rem,6vw,2.6rem);
+
+letter-spacing:-.04em;
+
+margin-bottom:12px;
+
+}
+
+p{
+
+color:#aaa3b6;
+
+line-height:1.6;
+
+font-size:.92rem;
+
+}
+
+.info{
+
+margin-top:25px;
+
+padding:18px;
+
+border-radius:16px;
+
+background:
+rgba(255,255,255,.03);
+
+border:
+1px solid
+rgba(255,255,255,.08);
+
+}
+
+.info strong{
+
+display:block;
+
+margin-bottom:6px;
+
+}
+
+.btn{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+min-height:52px;
+
+margin-top:20px;
+
+border-radius:13px;
+
+background:
+linear-gradient(
+135deg,
+#ff1593,
+#7a3cff
+);
+
+color:#fff;
+
+font-weight:800;
+
+text-decoration:none;
+
+}
+
+.whatsapp{
+
+background:#25d366;
+
+}
+
+small{
+
+display:block;
+
+margin-top:20px;
+
+color:#71697b;
+
+font-size:.7rem;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+
+<div class="icon">
+
+✓
+
+</div>
+
+
+<h1>
+Pagamento recebido!
+</h1>
+
+
+<p>
+
+Obrigado pela sua compra.
+
+Seu pagamento com cartão foi
+processado pelo Stripe.
+
+</p>
+
+
+<div class="info">
+
+<strong>
+Próximo passo
+</strong>
+
+<p>
+
+O acesso ao pacote será liberado
+após a confirmação do pagamento.
+
+Caso precise de atendimento,
+fale conosco pelo WhatsApp.
+
+</p>
+
+</div>
+
+
+<a
+class="btn whatsapp"
+href="https://wa.me/5516997434009?text=Ol%C3%A1!%20Acabei%20de%20realizar%20o%20pagamento%20do%20MegaHitsBrasil%20e%20preciso%20de%20ajuda."
+target="_blank"
+rel="noopener">
+
+📲 Falar com suporte
+
+</a>
+
+
+<a
+class="btn"
+href="/">
+
+Voltar para o site
+
+</a>
+
+
+<small>
+
+MegaHitsBrasil © 2026
+
+</small>
+
+
+</div>
+
+
+</body>
+
+</html>
