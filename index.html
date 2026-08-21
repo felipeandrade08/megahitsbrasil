@@ -1,1928 +1,2503 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="MegaHitsBrasil — mais de 15 GB de músicas por R$ 9,90. Escolha pagamento automático ou PIX manual.">
-<meta name="theme-color" content="#080511">
-
-<meta property="og:title" content="MegaHitsBrasil — +15 GB de músicas por R$ 9,90">
-<meta property="og:description" content="Pacote digital com mais de 15 GB de músicas. Pagamento automático ou PIX manual.">
-<meta property="og:image" content="logo-megahitsbrasil.png">
-
-<link rel="icon" href="favicon.png" type="image/png">
-
-<title>MegaHitsBrasil — +15 GB de músicas</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg:#07040d;
-  --bg2:#0b0714;
-  --card:#100b1b;
-  --card2:#140e21;
-  --line:rgba(255,255,255,.09);
-  --text:#f8f7fb;
-  --muted:#aaa3b6;
-  --pink:#ff1593;
-  --purple:#7a3cff;
-  --cyan:#20d8ff;
-  --green:#25d366;
-  --max:1180px;
-  --shadow:0 30px 90px rgba(0,0,0,.45)
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0
-}
-
-html{
-  scroll-behavior:smooth
-}
-
-body{
-  font-family:Inter,Arial,sans-serif;
-  background:
-    radial-gradient(700px 450px at 12% -5%,rgba(122,60,255,.22),transparent 65%),
-    radial-gradient(700px 450px at 92% 8%,rgba(255,21,147,.15),transparent 65%),
-    var(--bg);
-  color:var(--text);
-  line-height:1.55
-}
-
-a{
-  text-decoration:none;
-  color:inherit
-}
-
-button,
-input{
-  font-family:inherit
-}
-
-.wrap{
-  width:min(var(--max),calc(100% - 36px));
-  margin:auto
-}
-
-.header{
-  position:sticky;
-  top:0;
-  z-index:30;
-  background:rgba(7,4,13,.78);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.06)
-}
-
-.nav{
-  height:78px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between
-}
-
-.brand{
-  display:flex;
-  align-items:center
-}
-
-.brand img{
-  width:184px;
-  height:58px;
-  object-fit:contain;
-  object-position:center
-}
-
-.navlinks{
-  display:flex;
-  gap:30px;
-  color:#bcb5c7;
-  font-size:.9rem
-}
-
-.navlinks a:hover{
-  color:#fff
-}
-
-.navcta{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:11px 17px;
-  border:0;
-  border-radius:11px;
-  background:#fff;
-  color:#09060f;
-  font-weight:800;
-  font-size:.86rem;
-  cursor:pointer
-}
-
-.hero{
-  padding:72px 0 80px
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.02fr .98fr;
-  gap:62px;
-  align-items:center
-}
-
-.kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:7px 11px;
-  border:1px solid rgba(255,21,147,.25);
-  background:rgba(255,21,147,.07);
-  border-radius:999px;
-  color:#ff9bce;
-  font-size:.76rem;
-  font-weight:800;
-  letter-spacing:.5px
-}
-
-.kicker i{
-  width:7px;
-  height:7px;
-  background:var(--pink);
-  border-radius:50%;
-  box-shadow:0 0 15px var(--pink)
-}
-
-h1{
-  font-size:clamp(2.55rem,5.5vw,5.1rem);
-  letter-spacing:-.055em;
-  line-height:.98;
-  margin:22px 0 22px;
-  max-width:720px
-}
-
-h1 em{
-  font-style:normal;
-  background:linear-gradient(100deg,#fff,var(--cyan),#b7a3ff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent
-}
-
-.hero-copy{
-  font-size:1.08rem;
-  color:var(--muted);
-  max-width:650px
-}
-
-.hero-actions{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  margin:30px 0 18px;
-  flex-wrap:wrap
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:54px;
-  padding:0 22px;
-  border:0;
-  border-radius:13px;
-  font:800 .95rem Inter;
-  cursor:pointer;
-  transition:transform .2s,box-shadow .2s
-}
-
-.btn:hover{
-  transform:translateY(-2px)
-}
-
-.btn:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-  transform:none
-}
-
-.primary{
-  background:linear-gradient(135deg,var(--pink),#8d3cff);
-  color:#fff;
-  box-shadow:0 15px 35px rgba(255,21,147,.22)
-}
-
-.secondary{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.03);
-  color:#fff
-}
-
-.hero-note{
-  color:#7f778b;
-  font-size:.76rem
-}
-
-.mini-points{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:24px
-}
-
-.mini-points span{
-  font-size:.78rem;
-  color:#d2ccd9;
-  padding:8px 10px;
-  border:1px solid var(--line);
-  border-radius:9px;
-  background:rgba(255,255,255,.025)
-}
-
-.visual{
-  position:relative
-}
-
-.visual-card{
-  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
-  border:1px solid var(--line);
-  border-radius:28px;
-  padding:13px;
-  box-shadow:var(--shadow);
-  transform:rotate(1deg)
-}
-
-.visual-card img{
-  display:block;
-  width:100%;
-  height:auto;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.08)
-}
-
-.visual-caption{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:15px 7px 5px;
-  color:#a9a0b4;
-  font-size:.75rem
-}
-
-.visual-caption strong{
-  color:#fff
-}
-
-.float-price{
-  position:absolute;
-  left:-24px;
-  bottom:34px;
-  background:#0d0916;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:18px;
-  padding:13px 15px;
-  box-shadow:0 18px 50px rgba(0,0,0,.4)
-}
-
-.float-price small{
-  display:block;
-  color:#8f8799;
-  font-size:.68rem
-}
-
-.float-price b{
-  display:block;
-  font-size:1.35rem;
-  margin-top:2px;
-  background:linear-gradient(90deg,var(--pink),var(--cyan));
-  -webkit-background-clip:text;
-  color:transparent
-}
-
-.section{
-  padding:92px 0
-}
-
-.section.alt{
-  background:rgba(255,255,255,.018);
-  border-top:1px solid rgba(255,255,255,.04);
-  border-bottom:1px solid rgba(255,255,255,.04)
-}
-
-.section-head{
-  max-width:730px;
-  margin-bottom:38px
-}
-
-.center{
-  text-align:center;
-  margin-left:auto;
-  margin-right:auto
-}
-
-.eyebrow{
-  color:#ff78b8;
-  font-size:.72rem;
-  font-weight:900;
-  letter-spacing:1.5px
-}
-
-.section h2{
-  font-size:clamp(2rem,4vw,3.2rem);
-  line-height:1.05;
-  letter-spacing:-.04em;
-  margin:10px 0 13px
-}
-
-.section-head p{
-  color:var(--muted)
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px
-}
-
-.stat{
-  padding:24px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:rgba(255,255,255,.025)
-}
-
-.stat b{
-  font-size:1.5rem;
-  display:block
-}
-
-.stat span{
-  color:#92899c;
-  font-size:.8rem
-}
-
-.content-grid{
-  display:grid;
-  grid-template-columns:.85fr 1.15fr;
-  gap:46px;
-  align-items:center
-}
-
-.content-image{
-  padding:10px;
-  border:1px solid var(--line);
-  border-radius:24px;
-  background:#0c0813;
-  box-shadow:var(--shadow)
-}
-
-.content-image img{
-  display:block;
-  width:100%;
-  border-radius:16px
-}
-
-.content-copy ul{
-  list-style:none;
-  margin-top:22px
-}
-
-.content-copy li{
-  display:flex;
-  gap:11px;
-  margin:13px 0;
-  color:#d6d0dc
-}
-
-.content-copy li::before{
-  content:'✓';
-  display:grid;
-  place-items:center;
-  flex:0 0 22px;
-  height:22px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  font-size:.7rem;
-  font-weight:900
-}
-
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:25px
-}
-
-.chips span{
-  padding:8px 10px;
-  border-radius:9px;
-  background:rgba(255,255,255,.035);
-  border:1px solid var(--line);
-  font-size:.75rem;
-  color:#c9c1d1
-}
-
-.offer{
-  display:grid;
-  grid-template-columns:1fr .82fr;
-  gap:22px;
-  align-items:stretch
-}
-
-.offer-card{
-  padding:34px;
-  border-radius:24px;
-  border:1px solid rgba(255,21,147,.22);
-  background:
-    linear-gradient(145deg,rgba(255,21,147,.09),rgba(122,60,255,.07)),
-    var(--card);
-  box-shadow:var(--shadow)
-}
-
-.offer-card h3{
-  font-size:1.5rem
-}
-
-.price{
-  font-size:4.4rem;
-  line-height:1;
-  font-weight:900;
-  letter-spacing:-.06em;
-  margin:16px 0 5px
-}
-
-.price span{
-  font-size:1rem;
-  color:#8f8799;
-  font-weight:600;
-  letter-spacing:0
-}
-
-.offer-card p{
-  color:var(--muted);
-  font-size:.88rem
-}
-
-.checklist{
-  list-style:none;
-  margin:24px 0
-}
-
-.checklist li{
-  padding:11px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  color:#ddd7e3;
-  font-size:.88rem
-}
-
-.checklist li::before{
-  content:'✓';
-  color:#8df0ff;
-  font-weight:900;
-  margin-right:10px
-}
-
-.offer-side{
-  border:1px solid var(--line);
-  border-radius:24px;
-  background:var(--card);
-  padding:28px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between
-}
-
-.offer-side h4{
-  font-size:1.05rem
-}
-
-.offer-side p{
-  color:var(--muted);
-  font-size:.84rem;
-  margin:8px 0 20px
-}
-
-.steps{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px
-}
-
-.step{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.025);
-  border-radius:20px;
-  padding:26px
-}
-
-.step-no{
-  width:38px;
-  height:38px;
-  border-radius:11px;
-  display:grid;
-  place-items:center;
-  background:#fff;
-  color:#0a0610;
-  font-weight:900;
-  margin-bottom:18px
-}
-
-.step h3{
-  margin-bottom:7px;
-  font-size:1rem
-}
-
-.step p{
-  color:var(--muted);
-  font-size:.84rem
-}
-
-.faq{
-  max-width:820px;
-  margin:auto
-}
-
-.faq-item{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.025);
-  border-radius:14px;
-  margin-bottom:10px;
-  overflow:hidden
-}
-
-.faq-q{
-  width:100%;
-  padding:18px 20px;
-  border:0;
-  background:none;
-  color:#fff;
-  text-align:left;
-  font:700 .9rem Inter;
-  display:flex;
-  justify-content:space-between;
-  cursor:pointer
-}
-
-.faq-q span{
-  color:var(--cyan);
-  font-size:1.1rem
-}
-
-.faq-a{
-  max-height:0;
-  overflow:hidden;
-  color:var(--muted);
-  font-size:.83rem;
-  transition:max-height .25s;
-  padding:0 20px
-}
-
-.faq-item.open .faq-a{
-  max-height:180px;
-  padding:0 20px 18px
-}
-
-.footer{
-  padding:42px 0 100px;
-  border-top:1px solid var(--line);
-  color:#81798b
-}
-
-.footer-row{
-  display:flex;
-  justify-content:space-between;
-  gap:30px;
-  flex-wrap:wrap;
-  align-items:center
-}
-
-.footer-brand img{
-  width:160px;
-  height:54px;
-  object-fit:contain
-}
-
-.footer small{
-  font-size:.72rem
-}
-
-.whatsapp{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  width:57px;
-  height:57px;
-  border-radius:50%;
-  background:var(--green);
-  display:grid;
-  place-items:center;
-  z-index:40;
-  box-shadow:0 12px 35px rgba(37,211,102,.28)
-}
-
-.whatsapp svg{
-  width:30px;
-  height:30px;
-  display:block
-}
-
-.mobile-cta{
-  display:none
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(12px);
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px
-}
-
-.modal.show{
-  display:flex
-}
-
-.modal-box{
-  width:min(560px,100%);
-  max-height:92vh;
-  overflow:auto;
-  border:1px solid rgba(255,255,255,.11);
-  background:#0d0916;
-  border-radius:24px;
-  padding:28px;
-  position:relative;
-  box-shadow:var(--shadow)
-}
-
-.close{
-  position:absolute;
-  right:14px;
-  top:10px;
-  border:0;
-  background:none;
-  color:#8e8698;
-  font-size:2rem;
-  cursor:pointer
-}
-
-.modal h2{
-  font-size:1.6rem
-}
-
-.modal-sub{
-  color:var(--muted);
-  font-size:.86rem;
-  margin:6px 0 22px
-}
-
-.field{
-  margin-bottom:14px
-}
-
-.field label{
-  display:block;
-  font-size:.8rem;
-  font-weight:800;
-  margin-bottom:7px
-}
-
-.field input{
-  width:100%;
-  height:49px;
-  border-radius:11px;
-  border:1px solid var(--line);
-  background:#08050d;
-  color:#fff;
-  padding:0 13px;
-  font:500 .9rem Inter
-}
-
-.field input:focus{
-  outline:none;
-  border-color:var(--cyan);
-  box-shadow:0 0 0 3px rgba(32,216,255,.08)
-}
-
-/* ESCOLHA DE PAGAMENTO */
-
-.payment-choice{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:20px
-}
-
-.payment-option{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.025);
-  border-radius:17px;
-  padding:18px;
-  text-align:left;
-  cursor:pointer;
-  transition:.2s
-}
-
-.payment-option:hover{
-  transform:translateY(-2px);
-  border-color:rgba(255,255,255,.2)
-}
-
-.payment-option.auto:hover{
-  border-color:rgba(255,21,147,.5);
-  box-shadow:0 12px 30px rgba(255,21,147,.08)
-}
-
-.payment-option.manual:hover{
-  border-color:rgba(37,211,102,.5);
-  box-shadow:0 12px 30px rgba(37,211,102,.08)
-}
-
-.payment-option .option-icon{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  margin-bottom:12px;
-  font-size:1.2rem
-}
-
-.payment-option.auto .option-icon{
-  background:linear-gradient(135deg,var(--pink),var(--purple))
-}
-
-.payment-option.manual .option-icon{
-  background:rgba(37,211,102,.14);
-  border:1px solid rgba(37,211,102,.2)
-}
-
-.payment-option strong{
-  display:block;
-  font-size:.9rem;
-  margin-bottom:5px
-}
-
-.payment-option small{
-  display:block;
-  color:#8f8799;
-  font-size:.7rem;
-  line-height:1.45
-}
-
-.payment-option .option-price{
-  display:block;
-  color:#fff;
-  font-weight:900;
-  margin-top:12px;
-  font-size:.95rem
-}
-
-.stripe-note{
-  margin-top:18px;
-  padding:12px 14px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  color:#a9a0b4;
-  font-size:.76rem;
-  text-align:center;
-  background:rgba(255,255,255,.02)
-}
-
-/* PIX MANUAL */
-
-.payment{
-  display:none;
-  margin-top:20px
-}
-
-.payment.show{
-  display:block
-}
-
-.pix{
-  border:1px solid rgba(37,211,102,.18);
-  border-radius:18px;
-  padding:18px;
-  text-align:center;
-  background:
-    linear-gradient(145deg,rgba(37,211,102,.05),rgba(255,255,255,.015)),
-    #08050d
-}
-
-.pix-header{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  color:#b8ffd0;
-  font-size:.78rem;
-  font-weight:800;
-  margin-bottom:5px
-}
-
-.pix-title{
-  font-size:1.15rem;
-  font-weight:900;
-  margin-top:5px
-}
-
-.qr{
-  width:210px;
-  height:210px;
-  background:#fff;
-  padding:8px;
-  border-radius:13px;
-  margin:15px auto
-}
-
-.qr img{
-  width:100%;
-  height:100%;
-  object-fit:contain
-}
-
-.pix-code{
-  margin:12px 0;
-  padding:11px;
-  border-radius:10px;
-  background:#130d1e;
-  color:#cfc7d8;
-  font-size:.7rem;
-  word-break:break-all;
-  text-align:left;
-  border:1px solid rgba(255,255,255,.05)
-}
-
-.copy{
-  width:100%;
-  background:var(--cyan);
-  color:#041015
-}
-
-.wa{
-  width:100%;
-  background:var(--green);
-  color:#fff;
-  margin-top:9px
-}
-
-.back-payment{
-  width:100%;
-  margin-top:9px;
-  background:rgba(255,255,255,.04);
-  color:#fff;
-  border:1px solid var(--line)
-}
-
-.status{
-  display:none;
-  margin-top:10px;
-  border:1px solid rgba(37,211,102,.25);
-  background:rgba(37,211,102,.06);
-  padding:10px;
-  border-radius:10px;
-  color:#b8ffd0;
-  font-size:.76rem;
-  text-align:center
-}
-
-.status.show{
-  display:block
-}
-
-.manual-info{
-  margin-top:13px;
-  color:#8f8799;
-  font-size:.7rem;
-  text-align:center;
-  line-height:1.5
-}
-
-.fine{
-  font-size:.68rem;
-  color:#71697b;
-  text-align:center;
-  margin-top:14px
-}
-
-.hidden{
-  display:none!important
-}
-
-/* RADIO */
-
-.radio-player{
-  position:fixed;
-  left:20px;
-  bottom:20px;
-  z-index:45;
-  width:min(360px,calc(100vw - 40px));
-  background:rgba(13,9,22,.94);
-  border:1px solid rgba(255,255,255,.11);
-  border-radius:18px;
-  padding:13px 14px;
-  box-shadow:0 18px 50px rgba(0,0,0,.42);
-  backdrop-filter:blur(16px)
-}
-
-.radio-top{
-  display:flex;
-  align-items:center;
-  gap:11px
-}
-
-.radio-icon{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#ff1593,#7a3cff);
-  font-size:1.2rem;
-  box-shadow:0 8px 22px rgba(255,21,147,.22)
-}
-
-.radio-info{
-  min-width:0;
-  flex:1
-}
-
-.radio-label{
-  font-size:.64rem;
-  color:#8f8799;
-  letter-spacing:1px;
-  font-weight:900
-}
-
-.radio-title{
-  font-size:.88rem;
-  font-weight:800;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis
-}
-
-.radio-state{
-  font-size:.68rem;
-  color:#8df0ff;
-  margin-top:2px
-}
-
-.radio-controls{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:10px
-}
-
-.radio-btn{
-  border:0;
-  cursor:pointer;
-  border-radius:10px;
-  height:38px;
-  padding:0 13px;
-  background:#fff;
-  color:#09060f;
-  font:800 .76rem Inter
-}
-
-.radio-btn.secondary{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.04);
-  color:#fff
-}
-
-.radio-volume{
-  flex:1;
-  accent-color:#20d8ff
-}
-
-.radio-credit{
-  font-size:.58rem;
-  color:#655d70;
-  margin-top:8px
-}
-
-.radio-credit a{
-  color:#8f8799;
-  text-decoration:underline
-}
-
-.radio-min{
-  display:none;
-  border:0;
-  background:none;
-  color:#aaa0b3;
-  cursor:pointer;
-  font-size:1.1rem
-}
-
-@media(max-width:900px){
-
-  .hero-grid,
-  .content-grid,
-  .offer{
-    grid-template-columns:1fr
-  }
-
-  .hero-grid{
-    gap:40px
-  }
-
-  .visual{
-    max-width:700px;
-    margin:auto
-  }
-
-  .stats{
-    grid-template-columns:repeat(2,1fr)
-  }
-
-  .offer-side{
-    min-height:220px
-  }
-
-  .navlinks{
-    display:none
-  }
-
-  .steps{
-    grid-template-columns:1fr
-  }
-
-  .section{
-    padding:70px 0
-  }
-
-  .mobile-cta{
-    display:flex;
-    position:fixed;
-    left:12px;
-    right:12px;
-    bottom:12px;
-    z-index:35;
-    padding:8px;
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:15px;
-    background:rgba(12,8,19,.9);
-    backdrop-filter:blur(14px);
-    box-shadow:0 15px 45px rgba(0,0,0,.4);
-    gap:8px
-  }
-
-  .mobile-cta .btn{
-    flex:1;
-    min-height:46px
-  }
-
-  .whatsapp{
-    bottom:78px;
-    right:18px
-  }
-}
-
-@media(max-width:560px){
-
-  .wrap{
-    width:min(var(--max),calc(100% - 24px))
-  }
-
-  .nav{
-    height:68px
-  }
-
-  .brand img{
-    width:150px;
-    height:52px
-  }
-
-  .hero{
-    padding:48px 0 58px
-  }
-
-  h1{
-    font-size:clamp(2.35rem,13vw,3.5rem)
-  }
-
-  .hero-copy{
-    font-size:.95rem
-  }
-
-  .hero-actions .btn{
-    width:100%
-  }
-
-  .float-price{
-    left:10px;
-    bottom:18px
-  }
-
-  .stats{
-    grid-template-columns:1fr 1fr
-  }
-
-  .stat{
-    padding:18px
-  }
-
-  .stat b{
-    font-size:1.2rem
-  }
-
-  .section{
-    padding:58px 0
-  }
-
-  .section h2{
-    font-size:2rem
-  }
-
-  .offer-card,
-  .offer-side{
-    padding:24px
-  }
-
-  .price{
-    font-size:3.6rem
-  }
-
-  .modal-box{
-    padding:22px
-  }
-
-  .qr{
-    width:185px;
-    height:185px
-  }
-
-  .footer{
-    padding-bottom:95px
-  }
-
-  .payment-choice{
-    grid-template-columns:1fr
-  }
-
-  .radio-player{
-    left:12px;
-    bottom:74px;
-    width:calc(100vw - 24px);
-    padding:11px 12px
-  }
-
-  .radio-player.minimized{
-    width:58px;
-    height:58px;
-    padding:0;
-    border-radius:50%;
-    display:grid;
-    place-items:center
-  }
-
-  .radio-player.minimized .radio-top{
-    display:none
-  }
-
-  .radio-player.minimized .radio-controls,
-  .radio-player.minimized .radio-credit{
-    display:none
-  }
-
-  .radio-player.minimized .radio-min{
-    display:block
-  }
-
-  .radio-min{
-    display:block;
-    position:absolute;
-    right:8px;
-    top:6px
-  }
-
-  .radio-player:not(.minimized) .radio-min{
-    display:block
-  }
-
-  .mobile-cta{
-    bottom:12px
-  }
-}
-
-@media(max-width:700px){
-
-  .whatsapp{
-    right:16px;
-    bottom:86px;
-    width:54px;
-    height:54px
-  }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta
+    name="description"
+    content="MegaHitsBrasil — mais de 15 GB de músicas por R$ 9,90. Escolha pagamento automático pelo Stripe ou PIX manual."
+  >
+
+  <meta name="theme-color" content="#07040d">
+
+  <meta
+    property="og:title"
+    content="MegaHitsBrasil — +15 GB de músicas por R$ 9,90"
+  >
+
+  <meta
+    property="og:description"
+    content="Pacote digital com mais de 15 GB de músicas. Pagamento automático ou PIX manual."
+  >
+
+  <meta property="og:image" content="logo-megahitsbrasil.png">
+
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <title>MegaHitsBrasil — +15 GB de músicas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #07040d;
+      --bg2: #0b0714;
+      --card: #100b1b;
+      --card2: #140e21;
+
+      --line: rgba(255,255,255,.08);
+
+      --text: #f8f7fb;
+      --muted: #aaa3b6;
+
+      --pink: #ff1593;
+      --purple: #7a3cff;
+      --cyan: #20d8ff;
+
+      --green: #25d366;
+
+      --max: 1180px;
+
+      --shadow:
+        0 30px 90px rgba(0,0,0,.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(
+          700px 450px at 12% -5%,
+          rgba(122,60,255,.20),
+          transparent 65%
+        ),
+        radial-gradient(
+          700px 450px at 92% 8%,
+          rgba(255,21,147,.13),
+          transparent 65%
+        ),
+        var(--bg);
+
+      color: var(--text);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    .wrap {
+      width: min(
+        var(--max),
+        calc(100% - 36px)
+      );
+
+      margin: auto;
+    }
+
+    /* ==============================
+       HEADER
+    ============================== */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+
+      background: rgba(7,4,13,.82);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      border-bottom:
+        1px solid rgba(255,255,255,.06);
+    }
+
+    .nav {
+      min-height: 78px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+
+      min-width: 0;
+    }
+
+    /*
+      A logo fica sem uma caixa própria.
+      O fundo dela precisa ser transparente no PNG.
+    */
+
+    .brand img {
+      width: 184px;
+      height: 58px;
+
+      object-fit: contain;
+      object-position: center;
+
+      display: block;
+
+      mix-blend-mode: normal;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      color: #bcb5c7;
+
+      font-size: .9rem;
+      font-weight: 500;
+    }
+
+    .navlinks a {
+      transition: color .2s ease;
+    }
+
+    .navlinks a:hover {
+      color: #fff;
+    }
+
+    .navcta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+
+      padding: 11px 17px;
+
+      border-radius: 11px;
+
+      background: #fff;
+      color: #09060f;
+
+      font-weight: 800;
+      font-size: .86rem;
+
+      cursor: pointer;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .navcta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255,255,255,.12);
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
+
+    .hero {
+      padding: 82px 0 90px;
+    }
+
+    .hero-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.02fr
+        .98fr;
+
+      gap: 62px;
+
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 7px 11px;
+
+      border:
+        1px solid rgba(255,21,147,.25);
+
+      background:
+        rgba(255,21,147,.07);
+
+      border-radius: 999px;
+
+      color: #ff9bce;
+
+      font-size: .76rem;
+      font-weight: 800;
+
+      letter-spacing: .5px;
+    }
+
+    .kicker i {
+      width: 7px;
+      height: 7px;
+
+      background: var(--pink);
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 15px var(--pink);
+    }
+
+    h1 {
+      font-size:
+        clamp(
+          2.55rem,
+          5.5vw,
+          5.1rem
+        );
+
+      letter-spacing: -.055em;
+
+      line-height: .98;
+
+      margin: 22px 0;
+
+      max-width: 720px;
+    }
+
+    h1 em {
+      font-style: normal;
+
+      background:
+        linear-gradient(
+          100deg,
+          #fff,
+          var(--cyan),
+          #b7a3ff
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+    }
+
+    .hero-copy {
+      font-size: 1.08rem;
+
+      color: var(--muted);
+
+      max-width: 650px;
+    }
+
+    .hero-copy strong {
+      color: #fff;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+
+      align-items: center;
+
+      margin: 30px 0 18px;
+
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      min-height: 54px;
+
+      padding: 0 22px;
+
+      border: 0;
+      border-radius: 13px;
+
+      font:
+        800 .95rem Inter;
+
+      cursor: pointer;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        opacity .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:disabled {
+      opacity: .6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .primary {
+      background:
+        linear-gradient(
+          135deg,
+          var(--pink),
+          #8d3cff
+        );
+
+      color: #fff;
+
+      box-shadow:
+        0 15px 35px rgba(255,21,147,.22);
+    }
+
+    .primary:hover {
+      box-shadow:
+        0 18px 40px rgba(255,21,147,.32);
+    }
+
+    .secondary {
+      border:
+        1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.03);
+
+      color: #fff;
+    }
+
+    .hero-note {
+      color: #7f778b;
+
+      font-size: .76rem;
+    }
+
+    .mini-points {
+      display: flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+
+      margin-top: 24px;
+    }
+
+    .mini-points span {
+      font-size: .78rem;
+
+      color: #d2ccd9;
+
+      padding: 8px 10px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 9px;
+
+      background:
+        rgba(255,255,255,.025);
+    }
+
+    /* ==============================
+       HERO VISUAL
+    ============================== */
+
+    .visual {
+      position: relative;
+    }
+
+    .visual-card {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.05),
+          rgba(255,255,255,.015)
+        );
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 28px;
+
+      padding: 13px;
+
+      box-shadow: var(--shadow);
+
+      transform: rotate(1deg);
+    }
+
+    .visual-card img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      border-radius: 18px;
+
+      border:
+        1px solid rgba(255,255,255,.08);
+    }
+
+    .visual-caption {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 15px 7px 5px;
+
+      color: #a9a0b4;
+
+      font-size: .75rem;
+    }
+
+    .visual-caption strong {
+      color: #fff;
+    }
+
+    .float-price {
+      position: absolute;
+
+      left: -24px;
+      bottom: 34px;
+
+      background: #0d0916;
+
+      border:
+        1px solid rgba(255,255,255,.12);
+
+      border-radius: 18px;
+
+      padding: 13px 15px;
+
+      box-shadow:
+        0 18px 50px rgba(0,0,0,.4);
+    }
+
+    .float-price small {
+      display: block;
+
+      color: #8f8799;
+
+      font-size: .68rem;
+    }
+
+    .float-price b {
+      display: block;
+
+      font-size: 1.35rem;
+
+      margin-top: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--pink),
+          var(--cyan)
+        );
+
+      -webkit-background-clip: text;
+
+      color: transparent;
+    }
+
+    /* ==============================
+       SECTIONS
+    ============================== */
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section.alt {
+      background:
+        rgba(255,255,255,.018);
+
+      border-top:
+        1px solid rgba(255,255,255,.04);
+
+      border-bottom:
+        1px solid rgba(255,255,255,.04);
+    }
+
+    .section-head {
+      max-width: 730px;
+
+      margin-bottom: 38px;
+    }
+
+    .center {
+      text-align: center;
+
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .eyebrow {
+      color: #ff78b8;
+
+      font-size: .72rem;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+    }
+
+    .section h2 {
+      font-size:
+        clamp(
+          2rem,
+          4vw,
+          3.2rem
+        );
+
+      line-height: 1.05;
+
+      letter-spacing: -.04em;
+
+      margin: 10px 0 13px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+    }
+
+    /* ==============================
+       STATS
+    ============================== */
+
+    .stats {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 24px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 18px;
+
+      background:
+        rgba(255,255,255,.025);
+
+      transition:
+        transform .2s ease,
+        border-color .2s ease;
+    }
+
+    .stat:hover {
+      transform: translateY(-3px);
+
+      border-color:
+        rgba(255,255,255,.14);
+    }
+
+    .stat b {
+      font-size: 1.5rem;
+
+      display: block;
+    }
+
+    .stat span {
+      color: #92899c;
+
+      font-size: .8rem;
+    }
+
+    /* ==============================
+       CONTENT
+    ============================== */
+
+    .content-grid {
+      display: grid;
+
+      grid-template-columns:
+        .85fr
+        1.15fr;
+
+      gap: 46px;
+
+      align-items: center;
+    }
+
+    .content-image {
+      padding: 10px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 24px;
+
+      background: #0c0813;
+
+      box-shadow: var(--shadow);
+    }
+
+    .content-image img {
+      display: block;
+
+      width: 100%;
+
+      border-radius: 16px;
+    }
+
+    .content-copy ul {
+      list-style: none;
+
+      margin-top: 22px;
+    }
+
+    .content-copy li {
+      display: flex;
+
+      gap: 11px;
+
+      margin: 13px 0;
+
+      color: #d6d0dc;
+    }
+
+    .content-copy li::before {
+      content: '✓';
+
+      display: grid;
+
+      place-items: center;
+
+      flex:
+        0 0 22px;
+
+      height: 22px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--pink),
+          var(--purple)
+        );
+
+      font-size: .7rem;
+
+      font-weight: 900;
+    }
+
+    .chips {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: 25px;
+    }
+
+    .chips span {
+      padding: 8px 10px;
+
+      border-radius: 9px;
+
+      background:
+        rgba(255,255,255,.035);
+
+      border:
+        1px solid var(--line);
+
+      font-size: .75rem;
+
+      color: #c9c1d1;
+    }
+
+    /* ==============================
+       OFFER
+    ============================== */
+
+    .offer {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        .82fr;
+
+      gap: 22px;
+
+      align-items: stretch;
+    }
+
+    .offer-card {
+      padding: 34px;
+
+      border-radius: 24px;
+
+      border:
+        1px solid rgba(255,21,147,.22);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,21,147,.09),
+          rgba(122,60,255,.07)
+        ),
+        var(--card);
+
+      box-shadow: var(--shadow);
+    }
+
+    .offer-card h3 {
+      font-size: 1.5rem;
+    }
+
+    .price {
+      font-size: 4.4rem;
+
+      line-height: 1;
+
+      font-weight: 900;
+
+      letter-spacing: -.06em;
+
+      margin: 16px 0 5px;
+    }
+
+    .price span {
+      font-size: 1rem;
+
+      color: #8f8799;
+
+      font-weight: 600;
+
+      letter-spacing: 0;
+    }
+
+    .offer-card p {
+      color: var(--muted);
+
+      font-size: .88rem;
+    }
+
+    .checklist {
+      list-style: none;
+
+      margin: 24px 0;
+    }
+
+    .checklist li {
+      padding: 11px 0;
+
+      border-bottom:
+        1px solid rgba(255,255,255,.06);
+
+      color: #ddd7e3;
+
+      font-size: .88rem;
+    }
+
+    .checklist li::before {
+      content: '✓';
+
+      color: #8df0ff;
+
+      font-weight: 900;
+
+      margin-right: 10px;
+    }
+
+    .offer-side {
+      border:
+        1px solid var(--line);
+
+      border-radius: 24px;
+
+      background: var(--card);
+
+      padding: 28px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: space-between;
+    }
+
+    .offer-side h4 {
+      font-size: 1.05rem;
+    }
+
+    .offer-side p {
+      color: var(--muted);
+
+      font-size: .84rem;
+
+      margin: 8px 0 20px;
+    }
+
+    /* ==============================
+       PAYMENT OPTIONS
+    ============================== */
+
+    .payment-options {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap: 14px;
+
+      margin-top: 22px;
+    }
+
+    .payment-option {
+      position: relative;
+
+      border:
+        1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.025);
+
+      border-radius: 18px;
+
+      padding: 20px;
+
+      cursor: pointer;
+
+      transition:
+        border-color .2s ease,
+        transform .2s ease,
+        background .2s ease;
+    }
+
+    .payment-option:hover {
+      transform: translateY(-2px);
+
+      border-color:
+        rgba(255,255,255,.18);
+    }
+
+    .payment-option.auto {
+      border-color:
+        rgba(122,60,255,.35);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(122,60,255,.12),
+          rgba(255,21,147,.05)
+        );
+    }
+
+    .payment-option.manual {
+      border-color:
+        rgba(37,211,102,.25);
+
+      background:
+        rgba(37,211,102,.035);
+    }
+
+    .payment-option-icon {
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 12px;
+
+      background:
+        rgba(255,255,255,.07);
+
+      margin-bottom: 13px;
+
+      font-size: 1.2rem;
+    }
+
+    .payment-option h3 {
+      font-size: 1rem;
+
+      margin-bottom: 6px;
+    }
+
+    .payment-option p {
+      color: var(--muted);
+
+      font-size: .78rem;
+
+      margin: 0;
+    }
+
+    .payment-option .tag {
+      display: inline-block;
+
+      margin-top: 12px;
+
+      padding: 5px 8px;
+
+      border-radius: 7px;
+
+      font-size: .64rem;
+
+      font-weight: 800;
+
+      background:
+        rgba(255,255,255,.06);
+
+      color: #cfc8d6;
+    }
+
+    /* ==============================
+       STEPS
+    ============================== */
+
+    .steps {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 16px;
+    }
+
+    .step {
+      border:
+        1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.025);
+
+      border-radius: 20px;
+
+      padding: 26px;
+    }
+
+    .step-no {
+      width: 38px;
+      height: 38px;
+
+      border-radius: 11px;
+
+      display: grid;
+
+      place-items: center;
+
+      background: #fff;
+
+      color: #0a0610;
+
+      font-weight: 900;
+
+      margin-bottom: 18px;
+    }
+
+    .step h3 {
+      margin-bottom: 7px;
+
+      font-size: 1rem;
+    }
+
+    .step p {
+      color: var(--muted);
+
+      font-size: .84rem;
+    }
+
+    /* ==============================
+       FAQ
+    ============================== */
+
+    .faq {
+      max-width: 820px;
+
+      margin: auto;
+    }
+
+    .faq-item {
+      border:
+        1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.025);
+
+      border-radius: 14px;
+
+      margin-bottom: 10px;
+
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+
+      padding: 18px 20px;
+
+      border: 0;
+
+      background: none;
+
+      color: #fff;
+
+      text-align: left;
+
+      font:
+        700 .9rem Inter;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      cursor: pointer;
+    }
+
+    .faq-q span {
+      color: var(--cyan);
+
+      font-size: 1.1rem;
+    }
+
+    .faq-a {
+      max-height: 0;
+
+      overflow: hidden;
+
+      color: var(--muted);
+
+      font-size: .83rem;
+
+      transition:
+        max-height .25s ease;
+
+      padding:
+        0 20px;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 180px;
+
+      padding:
+        0 20px 18px;
+    }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+
+    .footer {
+      padding: 42px 0 100px;
+
+      border-top:
+        1px solid var(--line);
+
+      color: #81798b;
+    }
+
+    .footer-row {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 30px;
+
+      flex-wrap: wrap;
+
+      align-items: center;
+    }
+
+    .footer-brand img {
+      width: 160px;
+      height: 54px;
+
+      object-fit: contain;
+
+      display: block;
+    }
+
+    .footer small {
+      font-size: .72rem;
+    }
+
+    /* ==============================
+       WHATSAPP
+    ============================== */
+
+    .whatsapp {
+      position: fixed;
+
+      right: 20px;
+      bottom: 20px;
+
+      width: 57px;
+      height: 57px;
+
+      border-radius: 50%;
+
+      background:
+        var(--green);
+
+      display: grid;
+
+      place-items: center;
+
+      z-index: 80;
+
+      box-shadow:
+        0 12px 35px rgba(37,211,102,.28);
+
+      transition:
+        transform .2s ease;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.06);
+    }
+
+    .whatsapp svg {
+      width: 30px;
+      height: 30px;
+
+      display: block;
+    }
+
+    /* ==============================
+       MOBILE CTA
+    ============================== */
+
+    .mobile-cta {
+      display: none;
+    }
+
+    /* ==============================
+       MODAL
+    ============================== */
+
+    .modal {
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(0,0,0,.80);
+
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+
+      z-index: 100;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 18px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width:
+        min(600px,100%);
+
+      max-height: 92vh;
+
+      overflow-y: auto;
+
+      border:
+        1px solid rgba(255,255,255,.11);
+
+      background:
+        #0d0916;
+
+      border-radius: 24px;
+
+      padding: 28px;
+
+      position: relative;
+
+      box-shadow: var(--shadow);
+    }
+
+    .close {
+      position: absolute;
+
+      right: 14px;
+      top: 10px;
+
+      border: 0;
+
+      background: none;
+
+      color: #8e8698;
+
+      font-size: 2rem;
+
+      cursor: pointer;
+    }
+
+    .modal h2 {
+      font-size: 1.6rem;
+
+      padding-right: 30px;
+    }
+
+    .modal-sub {
+      color: var(--muted);
+
+      font-size: .86rem;
+
+      margin: 6px 0 22px;
+    }
+
+    /* ==============================
+       FORM
+    ============================== */
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+
+      font-size: .8rem;
+
+      font-weight: 800;
+
+      margin-bottom: 7px;
+    }
+
+    .field input {
+      width: 100%;
+
+      height: 49px;
+
+      border-radius: 11px;
+
+      border:
+        1px solid var(--line);
+
+      background:
+        #08050d;
+
+      color: #fff;
+
+      padding: 0 13px;
+
+      font:
+        500 .9rem Inter;
+    }
+
+    .field input:focus {
+      outline: none;
+
+      border-color:
+        var(--cyan);
+
+      box-shadow:
+        0 0 0 3px rgba(32,216,255,.08);
+    }
+
+    /* ==============================
+       PAYMENT MODAL
+    ============================== */
+
+    .payment-methods-title {
+      margin-top: 8px;
+
+      font-size: .78rem;
+
+      color: #8f8799;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1px;
+    }
+
+    .payment-panel {
+      display: none;
+
+      margin-top: 20px;
+    }
+
+    .payment-panel.show {
+      display: block;
+    }
+
+    .pix {
+      border:
+        1px solid var(--line);
+
+      border-radius: 18px;
+
+      padding: 18px;
+
+      text-align: center;
+
+      background:
+        #08050d;
+    }
+
+    .qr {
+      width: 210px;
+      height: 210px;
+
+      background: #fff;
+
+      padding: 8px;
+
+      border-radius: 13px;
+
+      margin: 15px auto;
+    }
+
+    .qr img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+    }
+
+    .pix-code {
+      margin: 12px 0;
+
+      padding: 11px;
+
+      border-radius: 10px;
+
+      background:
+        #130d1e;
+
+      color: #cfc7d8;
+
+      font-size: .7rem;
+
+      word-break: break-all;
+
+      text-align: left;
+    }
+
+    .copy {
+      width: 100%;
+
+      background:
+        var(--cyan);
+
+      color: #041015;
+
+      margin-top: 10px;
+    }
+
+    .wa {
+      width: 100%;
+
+      background:
+        var(--green);
+
+      color: #fff;
+
+      margin-top: 9px;
+    }
+
+    .status {
+      display: none;
+
+      margin-top: 10px;
+
+      border:
+        1px solid rgba(37,211,102,.25);
+
+      background:
+        rgba(37,211,102,.06);
+
+      padding: 10px;
+
+      border-radius: 10px;
+
+      color: #b8ffd0;
+
+      font-size: .76rem;
+
+      text-align: center;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .stripe-note {
+      margin-top: 18px;
+
+      padding: 12px 14px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 12px;
+
+      color: #a9a0b4;
+
+      font-size: .76rem;
+
+      text-align: center;
+
+      background:
+        rgba(255,255,255,.02);
+    }
+
+    .manual-note {
+      margin-top: 12px;
+
+      padding: 12px;
+
+      border-radius: 12px;
+
+      border:
+        1px solid rgba(37,211,102,.18);
+
+      background:
+        rgba(37,211,102,.04);
+
+      color: #aaa3b6;
+
+      font-size: .74rem;
+
+      text-align: center;
+    }
+
+    .fine {
+      font-size: .68rem;
+
+      color: #71697b;
+
+      text-align: center;
+
+      margin-top: 14px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==============================
+       RESPONSIVE
+    ============================== */
+
+    @media(max-width:900px) {
+
+      .hero-grid,
+      .content-grid,
+      .offer {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 40px;
+      }
+
+      .visual {
+        max-width: 700px;
+
+        margin: auto;
+      }
+
+      .stats {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .offer-side {
+        min-height: 220px;
+      }
+
+      .navlinks {
+        display: none;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .mobile-cta {
+        display: flex;
+
+        position: fixed;
+
+        left: 12px;
+        right: 12px;
+
+        bottom: 12px;
+
+        z-index: 75;
+
+        padding: 8px;
+
+        border:
+          1px solid rgba(255,255,255,.1);
+
+        border-radius: 15px;
+
+        background:
+          rgba(12,8,19,.92);
+
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+
+        box-shadow:
+          0 15px 45px rgba(0,0,0,.4);
+
+        gap: 8px;
+      }
+
+      .mobile-cta .btn {
+        flex: 1;
+
+        min-height: 46px;
+      }
+
+      .whatsapp {
+        bottom: 78px;
+
+        right: 18px;
+      }
+    }
+
+    @media(max-width:700px) {
+
+      .payment-options {
+        grid-template-columns: 1fr;
+      }
+
+      .whatsapp {
+        right: 16px;
+
+        bottom: 86px;
+
+        width: 54px;
+        height: 54px;
+      }
+    }
+
+    @media(max-width:560px) {
+
+      .wrap {
+        width:
+          min(
+            var(--max),
+            calc(100% - 24px)
+          );
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .brand img {
+        width: 150px;
+
+        height: 52px;
+      }
+
+      .navcta {
+        padding: 9px 11px;
+
+        font-size: .72rem;
+      }
+
+      .hero {
+        padding:
+          48px 0 58px;
+      }
+
+      h1 {
+        font-size:
+          clamp(
+            2.35rem,
+            13vw,
+            3.5rem
+          );
+      }
+
+      .hero-copy {
+        font-size: .95rem;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .float-price {
+        left: 10px;
+
+        bottom: 18px;
+      }
+
+      .stats {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+      .stat {
+        padding: 18px;
+      }
+
+      .stat b {
+        font-size: 1.2rem;
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+      }
+
+      .offer-card,
+      .offer-side {
+        padding: 24px;
+      }
+
+      .price {
+        font-size: 3.6rem;
+      }
+
+      .modal-box {
+        padding: 22px;
+      }
+
+      .qr {
+        width: 185px;
+        height: 185px;
+      }
+
+      .footer {
+        padding-bottom: 95px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="header">
-  <div class="wrap nav">
+  <!-- =========================================
+       HEADER
+  ========================================== -->
 
-    <a class="brand" href="#top" aria-label="MegaHitsBrasil">
-      <img src="logo-megahitsbrasil.png" alt="MegaHitsBrasil">
-    </a>
+  <header class="header">
 
-    <nav class="navlinks">
-      <a href="#conteudo">Conteúdo</a>
-      <a href="#como">Como funciona</a>
-      <a href="#duvidas">Dúvidas</a>
-    </nav>
+    <div class="wrap nav">
 
-    <button class="navcta" onclick="openCheckout()">
-      Comprar por R$ 9,90
-    </button>
-
-  </div>
-</header>
-
-<main id="top">
-
-<section class="hero">
-  <div class="wrap hero-grid">
-
-    <div>
-
-      <span class="kicker">
-        <i></i>
-        PACOTE DIGITAL • +15 GB
-      </span>
-
-      <h1>
-        Seu próximo acervo de música começa com
-        <em>15+ GB.</em>
-      </h1>
-
-      <p class="hero-copy">
-        Um pacote grande, organizado em categorias, por apenas
-        <strong>R$ 9,90</strong>.
-        Escolha entre pagamento automático pelo Stripe ou PIX manual.
-      </p>
-
-      <div class="hero-actions">
-
-        <button class="btn primary" onclick="openCheckout()">
-          Quero os +15 GB agora
-        </button>
-
-        <a class="btn secondary" href="#conteudo">
-          Ver o conteúdo
-        </a>
-
-      </div>
-
-      <div class="hero-note">
-        Pagamento único • sem mensalidade • duas formas de pagamento
-      </div>
-
-      <div class="mini-points">
-        <span>🎵 +15 GB</span>
-        <span>📁 Pastas organizadas</span>
-        <span>💳 Stripe / PIX</span>
-        <span>📲 WhatsApp</span>
-      </div>
-
-    </div>
-
-    <div class="visual">
-
-      <div class="visual-card">
-        <img
-          src="conteudo-megahitsbrasil.png"
-          alt="Exemplo das pastas do pacote MegaHitsBrasil"
-        >
-      </div>
-
-      <div class="visual-caption">
-        <span>
-          <strong>Veja o conteúdo real</strong><br>
-          Exemplo das pastas disponíveis
-        </span>
-
-        <span>MEGA</span>
-      </div>
-
-      <div class="float-price">
-        <small>ACESSO AO PACOTE</small>
-        <b>R$ 9,90</b>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<section class="section alt">
-
-  <div class="wrap">
-
-    <div class="stats">
-
-      <div class="stat">
-        <b>15+ GB</b>
-        <span>de músicas</span>
-      </div>
-
-      <div class="stat">
-        <b>R$ 9,90</b>
-        <span>pagamento único</span>
-      </div>
-
-      <div class="stat">
-        <b>2 opções</b>
-        <span>Stripe ou PIX manual</span>
-      </div>
-
-      <div class="stat">
-        <b>WhatsApp</b>
-        <span>suporte e comprovante</span>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="section" id="conteudo">
-
-  <div class="wrap content-grid">
-
-    <div class="content-image">
-
-      <img
-        src="conteudo-megahitsbrasil.png"
-        alt="Lista de categorias do MegaHitsBrasil"
+      <a
+        class="brand"
+        href="#top"
+        aria-label="MegaHitsBrasil"
       >
-
-    </div>
-
-    <div class="content-copy">
-
-      <span class="eyebrow">
-        CONTEÚDO DO PACOTE
-      </span>
-
-      <h2>
-        Não é só “15 GB”. É um pacote organizado.
-      </h2>
-
-      <p class="hero-copy">
-        A imagem acima mostra um exemplo real da estrutura do conteúdo.
-        As pastas são separadas por estilos e coleções para facilitar a navegação.
-      </p>
-
-      <ul>
-
-        <li>
-          Mais de 15 GB de conteúdo musical.
-        </li>
-
-        <li>
-          Pastas separadas por categorias.
-        </li>
-
-        <li>
-          Acesso através do link de entrega.
-        </li>
-
-        <li>
-          Pagamento único de R$ 9,90.
-        </li>
-
-      </ul>
-
-      <div class="chips">
-
-        <span>As Top de Agosto</span>
-        <span>Sertanejo</span>
-        <span>Arrocha</span>
-        <span>Forró</span>
-        <span>Funk</span>
-        <span>Piseiro & Pisadinha</span>
-        <span>Serestas & Bregas</span>
-        <span>TikToks</span>
-        <span>Modão</span>
-        <span>Gospel</span>
-        <span>Pagode & Samba</span>
-        <span>Flashback</span>
-        <span>Hip Hop / Trap / Rap</span>
-        <span>+ outras</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="section alt">
-
-  <div class="wrap">
-
-    <div class="section-head center">
-
-      <span class="eyebrow">
-        OFERTA
-      </span>
-
-      <h2>
-        Mais conteúdo. Menos complicação.
-      </h2>
-
-      <p>
-        Escolha entre pagamento automático ou PIX manual.
-      </p>
-
-    </div>
-
-    <div class="offer">
-
-      <div class="offer-card">
-
-        <span class="eyebrow">
-          MEGAHITSBRASIL
-        </span>
-
-        <h3>
-          Pacote completo
-        </h3>
-
-        <div class="price">
-          R$ 9,90
-          <span>pagamento único</span>
-        </div>
-
-        <p>
-          Escolha a forma de pagamento que preferir.
-        </p>
-
-        <ul class="checklist">
-
-          <li>
-            +15 GB de músicas
-          </li>
-
-          <li>
-            Conteúdo organizado em pastas
-          </li>
-
-          <li>
-            Pagamento automático ou PIX manual
-          </li>
-
-          <li>
-            Entrega do link de acesso
-          </li>
-
-        </ul>
-
-        <button
-          class="btn primary"
-          style="width:100%"
-          onclick="openCheckout()"
+        <img
+          src="logo-megahitsbrasil.png"
+          alt="MegaHitsBrasil"
         >
-          Comprar agora por R$ 9,90
-        </button>
+      </a>
 
-      </div>
+      <nav class="navlinks">
+        <a href="#conteudo">Conteúdo</a>
+        <a href="#pagamento">Pagamento</a>
+        <a href="#como">Como funciona</a>
+        <a href="#duvidas">Dúvidas</a>
+      </nav>
+
+      <button
+        class="navcta"
+        onclick="openCheckout()"
+      >
+        Comprar por R$ 9,90
+      </button>
+
+    </div>
+
+  </header>
 
 
-      <div class="offer-side">
+  <main id="top">
+
+    <!-- =========================================
+         HERO
+    ========================================== -->
+
+    <section class="hero">
+
+      <div class="wrap hero-grid">
 
         <div>
 
-          <h4>
-            Duas formas de pagar
-          </h4>
+          <span class="kicker">
+            <i></i>
+            PACOTE DIGITAL • +15 GB
+          </span>
+
+          <h1>
+            Seu próximo acervo de música começa com
+            <em>15+ GB.</em>
+          </h1>
+
+          <p class="hero-copy">
+            Um pacote grande, organizado em categorias,
+            por apenas <strong>R$ 9,90</strong>.
+            Escolha entre pagamento automático ou PIX manual.
+          </p>
+
+          <div class="hero-actions">
+
+            <button
+              class="btn primary"
+              onclick="openCheckout()"
+            >
+              Quero os +15 GB agora
+            </button>
+
+            <a
+              class="btn secondary"
+              href="#conteudo"
+            >
+              Ver o conteúdo
+            </a>
+
+          </div>
+
+          <div class="hero-note">
+            Pagamento único • sem mensalidade • acesso digital
+          </div>
+
+          <div class="mini-points">
+
+            <span>🎵 +15 GB</span>
+            <span>📁 Pastas organizadas</span>
+            <span>🔒 Pagamento seguro</span>
+            <span>📲 Suporte WhatsApp</span>
+
+          </div>
+
+        </div>
+
+
+        <div class="visual">
+
+          <div class="visual-card">
+
+            <img
+              src="conteudo-megahitsbrasil.png"
+              alt="Exemplo das pastas do pacote MegaHitsBrasil"
+            >
+
+          </div>
+
+          <div class="visual-caption">
+
+            <span>
+              <strong>Veja o conteúdo real</strong>
+              <br>
+              Exemplo das pastas disponíveis
+            </span>
+
+            <span>MEGA</span>
+
+          </div>
+
+          <div class="float-price">
+
+            <small>
+              ACESSO AO PACOTE
+            </small>
+
+            <b>
+              R$ 9,90
+            </b>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         STATS
+    ========================================== -->
+
+    <section class="section alt">
+
+      <div class="wrap">
+
+        <div class="stats">
+
+          <div class="stat">
+            <b>15+ GB</b>
+            <span>de músicas</span>
+          </div>
+
+          <div class="stat">
+            <b>R$ 9,90</b>
+            <span>pagamento único</span>
+          </div>
+
+          <div class="stat">
+            <b>2 opções</b>
+            <span>automático ou manual</span>
+          </div>
+
+          <div class="stat">
+            <b>WhatsApp</b>
+            <span>suporte ao cliente</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
+    <section
+      class="section"
+      id="conteudo"
+    >
+
+      <div class="wrap content-grid">
+
+        <div class="content-image">
+
+          <img
+            src="conteudo-megahitsbrasil.png"
+            alt="Lista de categorias do MegaHitsBrasil"
+          >
+
+        </div>
+
+
+        <div class="content-copy">
+
+          <span class="eyebrow">
+            CONTEÚDO DO PACOTE
+          </span>
+
+          <h2>
+            Não é só “15 GB”.
+            É um pacote organizado.
+          </h2>
+
+          <p class="hero-copy">
+            A imagem acima mostra um exemplo real da estrutura
+            do conteúdo. As pastas são separadas por estilos
+            e coleções para facilitar a navegação.
+          </p>
+
+          <ul>
+
+            <li>
+              Mais de 15 GB de conteúdo musical.
+            </li>
+
+            <li>
+              Pastas separadas por categorias.
+            </li>
+
+            <li>
+              Acesso através do link de entrega.
+            </li>
+
+            <li>
+              Pagamento único de R$ 9,90.
+            </li>
+
+          </ul>
+
+          <div class="chips">
+
+            <span>As Top de Agosto</span>
+            <span>Sertanejo</span>
+            <span>Arrocha</span>
+            <span>Forró</span>
+            <span>Funk</span>
+            <span>Piseiro & Pisadinha</span>
+            <span>Serestas & Bregas</span>
+            <span>TikToks</span>
+            <span>Modão</span>
+            <span>Gospel</span>
+            <span>Pagode & Samba</span>
+            <span>Flashback</span>
+            <span>Hip Hop / Trap / Rap</span>
+            <span>+ outras</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         OFERTA
+    ========================================== -->
+
+    <section
+      class="section alt"
+      id="pagamento"
+    >
+
+      <div class="wrap">
+
+        <div class="section-head center">
+
+          <span class="eyebrow">
+            OFERTA
+          </span>
+
+          <h2>
+            Mais conteúdo.
+            Menos complicação.
+          </h2>
 
           <p>
-            Prefere praticidade? Use o Stripe e tenha confirmação automática.
-            Prefere PIX? Faça o pagamento manual e envie o comprovante pelo WhatsApp.
+            Escolha a forma de pagamento que preferir.
           </p>
 
         </div>
 
-        <a class="btn secondary" href="#como">
-          Entender como funciona
-        </a>
 
-      </div>
+        <div class="offer">
 
-    </div>
+          <div class="offer-card">
 
-  </div>
+            <span class="eyebrow">
+              MEGAHITSBRASIL
+            </span>
 
-</section>
+            <h3>
+              Pacote completo
+            </h3>
 
+            <div class="price">
+              R$ 9,90
+              <span>
+                pagamento único
+              </span>
+            </div>
 
-<section class="section" id="como">
+            <p>
+              Você escolhe entre pagamento automático
+              pelo Stripe ou PIX manual.
+            </p>
 
-  <div class="wrap">
+            <ul class="checklist">
 
-    <div class="section-head center">
+              <li>
+                +15 GB de músicas
+              </li>
 
-      <span class="eyebrow">
-        COMO FUNCIONA
-      </span>
+              <li>
+                Conteúdo organizado em pastas
+              </li>
 
-      <h2>
-        Escolha como deseja receber.
-      </h2>
+              <li>
+                Pagamento único
+              </li>
 
-      <p>
-        Você pode utilizar o pagamento automático ou o PIX manual.
-      </p>
+              <li>
+                Acesso digital
+              </li>
 
-    </div>
-
-    <div class="steps">
-
-      <div class="step">
-
-        <div class="step-no">
-          1
-        </div>
-
-        <h3>
-          Preencha seus dados
-        </h3>
-
-        <p>
-          Informe seu e-mail e WhatsApp no checkout para identificar o pedido.
-        </p>
-
-      </div>
+            </ul>
 
 
-      <div class="step">
+            <button
+              class="btn primary"
+              style="width:100%"
+              onclick="openCheckout()"
+            >
+              Comprar agora por R$ 9,90
+            </button>
 
-        <div class="step-no">
-          2
-        </div>
-
-        <h3>
-          Escolha o pagamento
-        </h3>
-
-        <p>
-          Use o pagamento automático pelo Stripe ou escolha o PIX manual.
-        </p>
-
-      </div>
+          </div>
 
 
-      <div class="step">
+          <div class="offer-side">
 
-        <div class="step-no">
-          3
-        </div>
+            <div>
 
-        <h3>
-          Receba seu acesso
-        </h3>
+              <h4>
+                Escolha como quer pagar
+              </h4>
 
-        <p>
-          No pagamento automático, a confirmação e liberação são automáticas.
-          No PIX manual, envie o comprovante pelo WhatsApp.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+              <p>
+                Temos duas opções para facilitar sua compra.
+                Você pode usar o pagamento automático ou fazer
+                o PIX diretamente.
+              </p>
 
 
-<section class="section alt" id="duvidas">
+              <div class="payment-options">
 
-  <div class="wrap">
+                <div
+                  class="payment-option auto"
+                  onclick="openCheckout()"
+                >
 
-    <div class="section-head center">
+                  <div class="payment-option-icon">
+                    ⚡
+                  </div>
 
-      <span class="eyebrow">
-        DÚVIDAS
-      </span>
+                  <h3>
+                    Pagamento automático
+                  </h3>
 
-      <h2>
-        Perguntas frequentes
-      </h2>
+                  <p>
+                    Stripe com confirmação automática
+                    e liberação do acesso.
+                  </p>
 
-    </div>
+                  <span class="tag">
+                    RECOMENDADO
+                  </span>
 
-    <div class="faq">
-
-      <div class="faq-item">
-
-        <button class="faq-q">
-          O que eu recebo?
-          <span>+</span>
-        </button>
-
-        <div class="faq-a">
-          Você recebe o acesso ao pacote digital anunciado, com mais de 15 GB de músicas.
-        </div>
-
-      </div>
+                </div>
 
 
-      <div class="faq-item">
+                <div
+                  class="payment-option manual"
+                  onclick="openCheckout('manual')"
+                >
 
-        <button class="faq-q">
-          O pagamento é mensal?
-          <span>+</span>
-        </button>
+                  <div class="payment-option-icon">
+                    PIX
+                  </div>
 
-        <div class="faq-a">
-          Não. O valor é R$ 9,90 em pagamento único.
-        </div>
+                  <h3>
+                    PIX manual
+                  </h3>
 
-      </div>
+                  <p>
+                    Faça o PIX e envie o comprovante
+                    pelo WhatsApp.
+                  </p>
+
+                  <span class="tag">
+                    LIBERAÇÃO MANUAL
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
 
 
-      <div class="faq-item">
+            <a
+              class="btn secondary"
+              href="#como"
+            >
+              Entender como funciona
+            </a>
 
-        <button class="faq-q">
-          Quais formas de pagamento estão disponíveis?
-          <span>+</span>
-        </button>
+          </div>
 
-        <div class="faq-a">
-          Você pode pagar pelo Stripe para utilizar o fluxo automático ou fazer o PIX manual e enviar o comprovante pelo WhatsApp.
         </div>
 
       </div>
 
-
-      <div class="faq-item">
-
-        <button class="faq-q">
-          Como funciona o pagamento automático?
-          <span>+</span>
-        </button>
-
-        <div class="faq-a">
-          O pagamento é processado pelo Stripe. Depois que o pagamento for confirmado pelo sistema, o acesso pode ser liberado automaticamente através do webhook.
-        </div>
-
-      </div>
+    </section>
 
 
-      <div class="faq-item">
+    <!-- =========================================
+         COMO FUNCIONA
+    ========================================== -->
 
-        <button class="faq-q">
-          Como funciona o PIX manual?
-          <span>+</span>
-        </button>
-
-        <div class="faq-a">
-          Você escaneia o QR Code ou copia o código PIX, realiza o pagamento e depois envia o comprovante pelo WhatsApp para conferência e liberação manual.
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-q">
-          Posso baixar pelo celular?
-          <span>+</span>
-        </button>
-
-        <div class="faq-a">
-          O acesso pode ser feito pelo celular ou computador, desde que haja espaço disponível para os arquivos que você deseja baixar.
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<footer class="footer">
-
-  <div class="wrap footer-row">
-
-    <div class="footer-brand">
-
-      <img
-        src="logo-megahitsbrasil.png"
-        alt="MegaHitsBrasil"
-      >
-
-      <br>
-
-      <small>
-        O som que conecta você.
-      </small>
-
-    </div>
-
-    <div>
-
-      <small>
-        Atendimento pelo WhatsApp<br>
-        (16) 99218-9862
-      </small>
-
-    </div>
-
-    <div>
-
-      <small>
-        © 2026 MegaHitsBrasil
-      </small>
-
-    </div>
-
-  </div>
-
-</footer>
-
-
-<!-- RÁDIO -->
-
-<div class="radio-player" id="radioPlayer">
-
-  <button
-    class="radio-min"
-    id="radioMin"
-    aria-label="Minimizar rádio"
-  >
-    −
-  </button>
-
-  <div class="radio-top">
-
-    <div class="radio-icon">
-      🎵
-    </div>
-
-    <div class="radio-info">
-
-      <div class="radio-label">
-        RÁDIO AO VIVO
-      </div>
-
-      <div class="radio-title">
-        Hunter.FM — O Canal Sertanejo
-      </div>
-
-      <div class="radio-state" id="radioState">
-        Pronto para tocar
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="radio-controls">
-
-    <button class="radio-btn" id="radioPlay">
-      ▶ Ouvir agora
-    </button>
-
-    <button class="radio-btn secondary" id="radioMute">
-      🔊
-    </button>
-
-    <input
-      class="radio-volume"
-      id="radioVolume"
-      type="range"
-      min="0"
-      max="1"
-      step="0.01"
-      value="0.75"
-      aria-label="Volume"
+    <section
+      class="section"
+      id="como"
     >
 
-  </div>
+      <div class="wrap">
 
-  <div class="radio-credit">
-    Rádio: Hunter.FM •
-    <a
-      href="https://hunter.fm/sertanejo/"
-      target="_blank"
-      rel="noopener"
+        <div class="section-head center">
+
+          <span class="eyebrow">
+            COMO FUNCIONA
+          </span>
+
+          <h2>
+            Do pagamento ao acesso.
+          </h2>
+
+          <p>
+            Escolha entre o processo automático ou manual.
+          </p>
+
+        </div>
+
+
+        <div class="steps">
+
+          <div class="step">
+
+            <div class="step-no">
+              1
+            </div>
+
+            <h3>
+              Preencha seus dados
+            </h3>
+
+            <p>
+              Informe seu e-mail e WhatsApp
+              para identificar o pedido.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-no">
+              2
+            </div>
+
+            <h3>
+              Escolha o pagamento
+            </h3>
+
+            <p>
+              Use o Stripe para confirmação automática
+              ou escolha o PIX manual.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-no">
+              3
+            </div>
+
+            <h3>
+              Receba o acesso
+            </h3>
+
+            <p>
+              No pagamento automático, o acesso é liberado
+              após a confirmação. No PIX manual, envie o
+              comprovante pelo WhatsApp.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FAQ
+    ========================================== -->
+
+    <section
+      class="section alt"
+      id="duvidas"
     >
-      ver canal oficial
-    </a>
-  </div>
 
-  <audio
-    id="radioAudio"
-    preload="none"
-    crossorigin="anonymous"
+      <div class="wrap">
+
+        <div class="section-head center">
+
+          <span class="eyebrow">
+            DÚVIDAS
+          </span>
+
+          <h2>
+            Perguntas frequentes
+          </h2>
+
+        </div>
+
+
+        <div class="faq">
+
+          <div class="faq-item">
+
+            <button class="faq-q">
+              O que eu recebo?
+              <span>+</span>
+            </button>
+
+            <div class="faq-a">
+              Você recebe o acesso ao pacote digital anunciado,
+              com mais de 15 GB de músicas e conteúdo organizado
+              em pastas.
+            </div>
+
+          </div>
+
+
+          <div class="faq-item">
+
+            <button class="faq-q">
+              O pagamento é mensal?
+              <span>+</span>
+            </button>
+
+            <div class="faq-a">
+              Não. O valor é R$ 9,90 em pagamento único.
+            </div>
+
+          </div>
+
+
+          <div class="faq-item">
+
+            <button class="faq-q">
+              Como funciona o pagamento automático?
+              <span>+</span>
+            </button>
+
+            <div class="faq-a">
+              Você informa seus dados e é direcionado para
+              o checkout seguro do Stripe. Após a confirmação
+              do pagamento, o sistema poderá liberar o acesso
+              automaticamente.
+            </div>
+
+          </div>
+
+
+          <div class="faq-item">
+
+            <button class="faq-q">
+              Como funciona o PIX manual?
+              <span>+</span>
+            </button>
+
+            <div class="faq-a">
+              Você recebe o QR Code e o código PIX copia e cola.
+              Depois de realizar o pagamento, envie o comprovante
+              pelo WhatsApp de suporte. A liberação será feita
+              manualmente após a conferência.
+            </div>
+
+          </div>
+
+
+          <div class="faq-item">
+
+            <button class="faq-q">
+              Como recebo o link?
+              <span>+</span>
+            </button>
+
+            <div class="faq-a">
+              No pagamento automático, o sistema poderá liberar
+              o acesso após a confirmação. No PIX manual, o link
+              será enviado após a conferência do comprovante.
+            </div>
+
+          </div>
+
+
+          <div class="faq-item">
+
+            <button class="faq-q">
+              Posso baixar pelo celular?
+              <span>+</span>
+            </button>
+
+            <div class="faq-a">
+              O acesso pode ser feito pelo celular ou computador,
+              desde que haja espaço disponível para os arquivos
+              que você deseja baixar.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+
+  <footer class="footer">
+
+    <div class="wrap footer-row">
+
+      <div class="footer-brand">
+
+        <img
+          src="logo-megahitsbrasil.png"
+          alt="MegaHitsBrasil"
+        >
+
+        <small>
+          O som que conecta você.
+        </small>
+
+      </div>
+
+
+      <div>
+
+        <small>
+          Atendimento pelo WhatsApp
+          <br>
+          <strong style="color:#fff">
+            (16) 99743-4009
+          </strong>
+        </small>
+
+      </div>
+
+
+      <div>
+
+        <small>
+          © 2026 MegaHitsBrasil
+        </small>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================
+       WHATSAPP SUPORTE
+       NOVO NÚMERO:
+       16 99743-4009
+  ========================================== -->
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/5516997434009?text=Ol%C3%A1!%20Preciso%20de%20suporte%20sobre%20o%20MegaHitsBrasil."
+    target="_blank"
+    rel="noopener"
+    aria-label="Falar com suporte pelo WhatsApp"
+    title="Suporte pelo WhatsApp"
   >
-    <source
-      src="https://live.hunter.fm/sertanejo_normal"
-      type="audio/aac"
+
+    <svg
+      viewBox="0 0 32 32"
+      aria-hidden="true"
     >
-  </audio>
 
-</div>
+      <path
+        fill="white"
+        d="M19.11 17.07c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.58-1.5-1.85-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29s.98 2.66 1.12 2.84c.14.18 1.92 2.94 4.65 4.12.65.28 1.16.45 1.56.57.65.21 1.24.18 1.71.11.52-.08 1.58-.65 1.8-1.27.23-.62.23-1.15.16-1.27-.07-.11-.25-.18-.52-.32z"
+      />
 
+      <path
+        fill="white"
+        d="M16.03 3.2c-7.08 0-12.83 5.74-12.83 12.82 0 2.26.59 4.38 1.62 6.22L3.1 28.8l6.73-1.77a12.8 12.8 0 0 0 6.2 1.58h.01c7.07 0 12.82-5.75 12.82-12.82S23.1 3.2 16.03 3.2zm0 23.3h-.01a10.47 10.47 0 0 1-5.34-1.46l-.38-.23-3.99 1.05 1.06-3.89-.25-.4a10.46 10.46 0 1 1 8.91 4.93z"
+      />
 
-<!-- WHATSAPP SUPORTE -->
+    </svg>
 
-<a
-  class="whatsapp"
-  href="https://wa.me/5516992189862?text=Ol%C3%A1!%20Preciso%20de%20suporte%20sobre%20o%20MegaHitsBrasil."
-  target="_blank"
-  rel="noopener"
-  aria-label="Falar com suporte pelo WhatsApp"
-  title="Suporte pelo WhatsApp"
->
-
-  <svg viewBox="0 0 32 32" aria-hidden="true">
-
-    <path
-      fill="white"
-      d="M19.11 17.07c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.58-1.5-1.85-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29s.98 2.66 1.12 2.84c.14.18 1.92 2.94 4.65 4.12.65.28 1.16.45 1.56.57.65.21 1.24.18 1.71.11.52-.08 1.58-.65 1.8-1.27.23-.62.23-1.15.16-1.27-.07-.11-.25-.18-.52-.32z"
-    />
-
-    <path
-      fill="white"
-      d="M16.03 3.2c-7.08 0-12.83 5.74-12.83 12.82 0 2.26.59 4.38 1.62 6.22L3.1 28.8l6.73-1.77a12.8 12.8 0 0 0 6.2 1.58h.01c7.07 0 12.82-5.75 12.82-12.82S23.1 3.2 16.03 3.2zm0 23.3h-.01a10.47 10.47 0 0 1-5.34-1.46l-.38-.23-3.99 1.05 1.06-3.89-.25-.4a10.46 10.46 0 1 1 8.91 4.93z"
-    />
-
-  </svg>
-
-</a>
+  </a>
 
 
-<!-- BOTÃO MOBILE -->
+  <!-- =========================================
+       MOBILE CTA
+  ========================================== -->
 
-<div class="mobile-cta">
-
-  <button
-    class="btn primary"
-    onclick="openCheckout()"
-  >
-    Quero os +15 GB — R$ 9,90
-  </button>
-
-</div>
-
-
-<!-- CHECKOUT -->
-
-<div
-  class="modal"
-  id="checkoutModal"
-  aria-hidden="true"
->
-
-  <div class="modal-box">
+  <div class="mobile-cta">
 
     <button
-      class="close"
-      onclick="closeCheckout()"
-      aria-label="Fechar"
+      class="btn primary"
+      onclick="openCheckout()"
     >
-      ×
+      Quero os +15 GB — R$ 9,90
     </button>
 
+  </div>
 
-    <!-- ETAPA 1 -->
 
-    <div id="customerStep">
+  <!-- =========================================
+       CHECKOUT MODAL
+  ========================================== -->
+
+  <div
+    class="modal"
+    id="checkoutModal"
+    aria-hidden="true"
+  >
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeCheckout()"
+        aria-label="Fechar"
+      >
+        ×
+      </button>
+
 
       <h2>
         Finalizar pedido
       </h2>
 
       <p class="modal-sub">
-        Informe seus dados para continuar.
+        Informe seus dados e escolha como deseja pagar.
       </p>
 
+
+      <!-- DADOS DO CLIENTE -->
 
       <form id="checkoutForm">
 
@@ -1945,14 +2520,14 @@ h1 em{
 
         <div class="field">
 
-          <label for="whatsapp">
+          <label for="whatsappInput">
             WhatsApp com DDD
           </label>
 
           <input
-            id="whatsapp"
+            id="whatsappInput"
             type="tel"
-            placeholder="(16) 99999-9999"
+            placeholder="(16) 99743-4009"
             autocomplete="tel"
             required
           >
@@ -1960,911 +2535,967 @@ h1 em{
         </div>
 
 
+        <div class="payment-methods-title">
+          Escolha a forma de pagamento
+        </div>
+
+
+        <div class="payment-options">
+
+          <!-- STRIPE -->
+
+          <div
+            class="payment-option auto"
+            id="stripeOption"
+            onclick="selectPayment('stripe')"
+          >
+
+            <div class="payment-option-icon">
+              ⚡
+            </div>
+
+            <h3>
+              Pagamento automático
+            </h3>
+
+            <p>
+              Checkout seguro pelo Stripe.
+              Após a confirmação, o acesso pode ser
+              liberado automaticamente.
+            </p>
+
+            <span class="tag">
+              RECOMENDADO
+            </span>
+
+          </div>
+
+
+          <!-- PIX MANUAL -->
+
+          <div
+            class="payment-option manual"
+            id="manualOption"
+            onclick="selectPayment('manual')"
+          >
+
+            <div class="payment-option-icon">
+              PIX
+            </div>
+
+            <h3>
+              PIX manual
+            </h3>
+
+            <p>
+              Faça o PIX diretamente e envie o
+              comprovante pelo WhatsApp.
+            </p>
+
+            <span class="tag">
+              LIBERAÇÃO MANUAL
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- STRIPE BUTTON -->
+
         <button
           class="btn primary"
-          style="width:100%"
+          id="stripeBtn"
           type="submit"
+          style="width:100%;margin-top:18px"
         >
-          Continuar
+          Ir para pagamento seguro
         </button>
+
+
+        <!-- PIX MANUAL BUTTON -->
+
+        <button
+          class="btn wa"
+          id="manualBtn"
+          type="button"
+          style="display:none"
+          onclick="showManualPix()"
+        >
+          Continuar com PIX manual
+        </button>
+
+
+        <div class="stripe-note">
+          🔒 Pagamento automático processado com segurança pelo Stripe.
+        </div>
 
       </form>
 
 
-      <div class="stripe-note">
-        🔒 Seus dados são utilizados apenas para identificar o pedido e realizar a entrega do acesso.
-      </div>
-
-    </div>
-
-
-    <!-- ETAPA 2 -->
-
-    <div
-      id="paymentSelection"
-      class="hidden"
-    >
-
-      <h2>
-        Escolha como pagar
-      </h2>
-
-      <p class="modal-sub">
-        Selecione uma das opções abaixo.
-      </p>
-
-
-      <div class="payment-choice">
-
-
-        <!-- STRIPE -->
-
-        <button
-          type="button"
-          class="payment-option auto"
-          id="automaticPaymentBtn"
-        >
-
-          <span class="option-icon">
-            💳
-          </span>
-
-          <strong>
-            Pagamento automático
-          </strong>
-
-          <small>
-            Pague pelo Stripe e utilize o fluxo de confirmação automática.
-          </small>
-
-          <span class="option-price">
-            R$ 9,90
-          </span>
-
-        </button>
-
-
-        <!-- PIX MANUAL -->
-
-        <button
-          type="button"
-          class="payment-option manual"
-          id="manualPixBtn"
-        >
-
-          <span class="option-icon">
-            💚
-          </span>
-
-          <strong>
-            PIX manual
-          </strong>
-
-          <small>
-            Faça o PIX, envie o comprovante pelo WhatsApp e aguarde a conferência.
-          </small>
-
-          <span class="option-price">
-            R$ 9,90
-          </span>
-
-        </button>
-
-      </div>
-
-
-      <button
-        class="btn secondary"
-        style="width:100%;margin-top:12px"
-        id="changeDataBtn"
-        type="button"
-      >
-        ← Voltar e alterar dados
-      </button>
-
-    </div>
-
-
-    <!-- PIX MANUAL -->
-
-    <div
-      class="payment"
-      id="manualPayment"
-    >
-
-      <div class="pix">
-
-        <div class="pix-header">
-          🟢 PIX MANUAL
-        </div>
-
-        <div class="pix-title">
-          Pague R$ 9,90
-        </div>
-
-        <div
-          style="font-size:.72rem;color:#8f8799;margin-top:5px"
-        >
-          Escaneie o QR Code ou copie o código PIX.
-        </div>
-
-
-        <div class="qr">
-
-          <img
-            src="qrcode-pix.png"
-            alt="QR Code PIX MegaHitsBrasil"
-          >
-
-        </div>
-
-
-        <div
-          style="font-size:.76rem;color:#9d95a8"
-        >
-          PIX copia e cola
-        </div>
-
-
-        <div
-          class="pix-code"
-          id="pixCode"
-        >
-          00020126330014br.gov.bcb.pix01114744365582752040000530398654049.905802BR5914MegaHitsBrasil6009SAO PAULO62070503***63042A0B
-        </div>
-
-      </div>
-
-
-      <button
-        class="btn copy"
-        id="copyBtn"
-        type="button"
-      >
-        📋 Copiar código PIX
-      </button>
-
-
-      <button
-        class="btn wa"
-        id="waBtn"
-        type="button"
-      >
-        📲 Enviar comprovante pelo WhatsApp
-      </button>
-
-
-      <button
-        class="btn back-payment"
-        id="backPaymentBtn"
-        type="button"
-      >
-        ← Escolher outra forma de pagamento
-      </button>
-
+      <!-- =====================================
+           PIX MANUAL
+      ====================================== -->
 
       <div
-        class="status"
-        id="status"
+        class="payment-panel"
+        id="manualPayment"
       >
-        Código PIX copiado. Agora faça o pagamento e envie o comprovante.
+
+        <div class="pix">
+
+          <strong>
+            PIX manual — R$ 9,90
+          </strong>
+
+
+          <div class="qr">
+
+            <img
+              src="qrcode-pix.png"
+              alt="QR Code PIX MegaHitsBrasil"
+            >
+
+          </div>
+
+
+          <div
+            style="
+              font-size:.76rem;
+              color:#9d95a8
+            "
+          >
+            Aponte a câmera do seu banco
+            para o QR Code
+          </div>
+
+
+          <div
+            style="
+              font-size:.76rem;
+              color:#9d95a8;
+              margin-top:10px
+            "
+          >
+            Ou copie o código PIX abaixo
+          </div>
+
+
+          <div
+            class="pix-code"
+            id="pixCode"
+          >
+            00020126330014br.gov.bcb.pix01114744365582752040000530398654049.905802BR5914MegaHitsBrasil6009SAO PAULO62070503***63042A0B
+          </div>
+
+        </div>
+
+
+        <button
+          class="btn copy"
+          id="copyBtn"
+          type="button"
+        >
+          Copiar código PIX
+        </button>
+
+
+        <button
+          class="btn wa"
+          id="waBtn"
+          type="button"
+        >
+          📲 Enviar comprovante pelo WhatsApp
+        </button>
+
+
+        <div
+          class="status"
+          id="status"
+        >
+          Código PIX copiado.
+          Agora faça o pagamento e envie o comprovante.
+        </div>
+
+
+        <div class="manual-note">
+
+          Após realizar o PIX, envie o comprovante pelo
+          WhatsApp de suporte. A liberação do acesso será
+          feita manualmente após a conferência.
+
+        </div>
+
+
+        <button
+          class="btn secondary"
+          type="button"
+          onclick="backToPaymentChoice()"
+          style="width:100%;margin-top:10px"
+        >
+          Voltar para opções de pagamento
+        </button>
+
       </div>
 
 
-      <div class="manual-info">
-        Após realizar o PIX, envie o comprovante pelo WhatsApp.
-        A liberação será feita manualmente após a conferência do pagamento.
+      <div class="fine">
+
+        Pagamento único de R$ 9,90 •
+        Suporte pelo WhatsApp:
+        (16) 99743-4009
+
       </div>
 
-    </div>
-
-
-    <div class="fine">
-      MegaHitsBrasil • pagamento único de R$ 9,90
     </div>
 
   </div>
 
-</div>
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+  <script>
+
+    /*
+     * ==========================================
+     * CONFIGURAÇÕES
+     * ==========================================
+     */
+
+    const PIX =
+      '00020126330014br.gov.bcb.pix01114744365582752040000530398654049.905802BR5914MegaHitsBrasil6009SAO PAULO62070503***63042A0B';
+
+    const OWNER =
+      '5516997434009';
+
+    const PRICE =
+      'R$ 9,90';
 
 
-<script>
-
-/* =========================================================
-   CONFIGURAÇÕES
-========================================================= */
-
-const PIX =
-'00020126330014br.gov.bcb.pix01114744365582752040000530398654049.905802BR5914MegaHitsBrasil6009SAO PAULO62070503***63042A0B';
-
-const OWNER =
-'5516992189862';
-
-const PRICE =
-'R$ 9,90';
+    let selectedPayment =
+      'stripe';
 
 
-/* =========================================================
-   ESTADO DO PEDIDO
-========================================================= */
-
-let order = {
-  email:'',
-  whatsapp:''
-};
+    let order = {
+      email: '',
+      whatsapp: ''
+    };
 
 
-/* =========================================================
-   HELPERS
-========================================================= */
-
-const $ = id =>
-  document.getElementById(id);
+    const $ = id =>
+      document.getElementById(id);
 
 
-/* =========================================================
-   ABRIR / FECHAR CHECKOUT
-========================================================= */
+    /*
+     * ==========================================
+     * ABRIR CHECKOUT
+     * ==========================================
+     */
 
-function openCheckout(){
+    function openCheckout(method = 'stripe') {
 
-  $('checkoutModal').classList.add('show');
+      $('checkoutModal')
+        .classList
+        .add('show');
 
-  $('checkoutModal').setAttribute(
-    'aria-hidden',
-    'false'
-  );
+      $('checkoutModal')
+        .setAttribute(
+          'aria-hidden',
+          'false'
+        );
 
-  document.body.style.overflow='hidden';
-
-  resetCheckout();
-
-  setTimeout(()=>{
-    $('email').focus();
-  },100);
-
-}
-
-
-function closeCheckout(){
-
-  $('checkoutModal').classList.remove('show');
-
-  $('checkoutModal').setAttribute(
-    'aria-hidden',
-    'true'
-  );
-
-  document.body.style.overflow='';
-
-}
-
-
-/* =========================================================
-   RESET CHECKOUT
-========================================================= */
-
-function resetCheckout(){
-
-  $('customerStep').classList.remove('hidden');
-
-  $('paymentSelection').classList.add('hidden');
-
-  $('manualPayment').classList.remove('show');
-
-  $('checkoutForm').reset();
-
-  order = {
-    email:'',
-    whatsapp:''
-  };
-
-  $('status').classList.remove('show');
-
-}
-
-
-/* =========================================================
-   MÁSCARA WHATSAPP
-========================================================= */
-
-$('whatsapp').addEventListener(
-  'input',
-  e => {
-
-    let n =
-      e.target.value
-      .replace(/\D/g,'')
-      .slice(0,11);
-
-    if(n.length <= 2){
-
-      e.target.value =
-        n ? '(' + n : '';
-
-    }else if(n.length <= 7){
-
-      e.target.value =
-        `(${n.slice(0,2)}) ${n.slice(2)}`;
-
-    }else{
-
-      e.target.value =
-        `(${n.slice(0,2)}) ${n.slice(2,7)}-${n.slice(7)}`;
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   FORMULÁRIO
-========================================================= */
-
-$('checkoutForm').addEventListener(
-  'submit',
-  e => {
-
-    e.preventDefault();
-
-    const email =
-      $('email').value.trim();
-
-    const whatsapp =
-      $('whatsapp').value
-      .replace(/\D/g,'');
-
-    if(!email){
-
-      alert(
-        'Informe seu e-mail.'
+      document.body.classList.add(
+        'modal-open'
       );
 
-      return;
+
+      selectPayment(method);
+
+
+      setTimeout(() => {
+
+        $('email').focus();
+
+      }, 100);
 
     }
 
-    if(whatsapp.length < 10){
 
-      alert(
-        'Informe um WhatsApp válido com DDD.'
+    /*
+     * ==========================================
+     * FECHAR CHECKOUT
+     * ==========================================
+     */
+
+    function closeCheckout() {
+
+      $('checkoutModal')
+        .classList
+        .remove('show');
+
+      $('checkoutModal')
+        .setAttribute(
+          'aria-hidden',
+          'true'
+        );
+
+      document.body.classList.remove(
+        'modal-open'
       );
 
-      return;
+    }
+
+
+    /*
+     * ==========================================
+     * SELECIONAR PAGAMENTO
+     * ==========================================
+     */
+
+    function selectPayment(method) {
+
+      selectedPayment =
+        method;
+
+
+      const stripeOption =
+        $('stripeOption');
+
+      const manualOption =
+        $('manualOption');
+
+      const stripeBtn =
+        $('stripeBtn');
+
+      const manualBtn =
+        $('manualBtn');
+
+      const manualPayment =
+        $('manualPayment');
+
+
+      /*
+       * Sempre esconder o PIX
+       * quando trocar a opção.
+       */
+
+      manualPayment
+        .classList
+        .remove('show');
+
+
+      if (method === 'manual') {
+
+        stripeOption.style.opacity =
+          '.55';
+
+        manualOption.style.opacity =
+          '1';
+
+        stripeBtn.style.display =
+          'none';
+
+        manualBtn.style.display =
+          'flex';
+
+      } else {
+
+        stripeOption.style.opacity =
+          '1';
+
+        manualOption.style.opacity =
+          '.55';
+
+        stripeBtn.style.display =
+          'flex';
+
+        manualBtn.style.display =
+          'none';
+
+      }
 
     }
 
 
-    order.email =
-      email;
+    /*
+     * ==========================================
+     * FORMATAR WHATSAPP
+     * ==========================================
+     */
 
-    order.whatsapp =
-      whatsapp;
+    $('whatsappInput')
+      .addEventListener(
+        'input',
+        e => {
 
-
-    $('customerStep')
-      .classList.add('hidden');
-
-    $('paymentSelection')
-      .classList.remove('hidden');
-
-  }
-);
-
-
-/* =========================================================
-   PAGAMENTO AUTOMÁTICO STRIPE
-========================================================= */
-
-$('automaticPaymentBtn').addEventListener(
-  'click',
-  async () => {
-
-    const btn =
-      $('automaticPaymentBtn');
-
-    btn.disabled =
-      true;
-
-    btn.innerHTML = `
-      <span class="option-icon">⏳</span>
-      <strong>Abrindo pagamento...</strong>
-      <small>Aguarde um momento.</small>
-    `;
+          let n =
+            e.target.value
+              .replace(/\D/g,'')
+              .slice(0,11);
 
 
-    try{
+          if (n.length <= 2) {
 
-      const response =
-        await fetch(
-          '/api/create-checkout',
-          {
-            method:'POST',
+            e.target.value =
+              n
+                ? '(' + n
+                : '';
 
-            headers:{
-              'Content-Type':
-                'application/json'
-            },
-
-            body:JSON.stringify({
-
-              email:
-                order.email,
-
-              whatsapp:
-                order.whatsapp,
-
-              tipo_pagamento:
-                'automatico',
-
-              produto:
-                'MegaHitsBrasil +15GB',
-
-              valor:
-                9.90
-
-            })
           }
-        );
 
+          else if (n.length <= 7) {
 
-      const data =
-        await response.json();
+            e.target.value =
+              `(${n.slice(0,2)}) ${n.slice(2)}`;
 
+          }
 
-      if(!response.ok){
+          else {
 
-        throw new Error(
-          data.error ||
-          'Não foi possível iniciar o pagamento.'
-        );
+            e.target.value =
+              `(${n.slice(0,2)}) ${n.slice(2,7)}-${n.slice(7)}`;
 
-      }
-
-
-      if(!data.url){
-
-        throw new Error(
-          'O servidor não retornou o link de pagamento.'
-        );
-
-      }
-
-
-      window.location.href =
-        data.url;
-
-
-    }catch(error){
-
-      console.error(
-        'Erro Stripe:',
-        error
-      );
-
-      alert(
-        error.message ||
-        'Erro ao iniciar o pagamento.'
-      );
-
-
-      btn.disabled =
-        false;
-
-      btn.innerHTML = `
-        <span class="option-icon">💳</span>
-        <strong>Pagamento automático</strong>
-        <small>Pague pelo Stripe e utilize o fluxo de confirmação automática.</small>
-        <span class="option-price">R$ 9,90</span>
-      `;
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   PIX MANUAL
-========================================================= */
-
-$('manualPixBtn').addEventListener(
-  'click',
-  () => {
-
-    $('paymentSelection')
-      .classList.add('hidden');
-
-    $('manualPayment')
-      .classList.add('show');
-
-  }
-);
-
-
-/* =========================================================
-   VOLTAR PARA ESCOLHA
-========================================================= */
-
-$('backPaymentBtn').addEventListener(
-  'click',
-  () => {
-
-    $('manualPayment')
-      .classList.remove('show');
-
-    $('paymentSelection')
-      .classList.remove('hidden');
-
-  }
-);
-
-
-/* =========================================================
-   VOLTAR PARA DADOS
-========================================================= */
-
-$('changeDataBtn').addEventListener(
-  'click',
-  () => {
-
-    $('paymentSelection')
-      .classList.add('hidden');
-
-    $('customerStep')
-      .classList.remove('hidden');
-
-  }
-);
-
-
-/* =========================================================
-   COPIAR PIX
-========================================================= */
-
-$('copyBtn').addEventListener(
-  'click',
-  async () => {
-
-    try{
-
-      await navigator.clipboard.writeText(
-        PIX
-      );
-
-      $('status').textContent =
-        'Código PIX copiado. Agora faça o pagamento e envie o comprovante.';
-
-      $('status')
-        .classList.add('show');
-
-
-      const btn =
-        $('copyBtn');
-
-      const original =
-        btn.textContent;
-
-      btn.textContent =
-        '✓ PIX copiado!';
-
-
-      setTimeout(
-        () => {
-          btn.textContent =
-            original;
-        },
-        2200
-      );
-
-
-    }catch(error){
-
-      console.error(
-        'Erro ao copiar PIX:',
-        error
-      );
-
-      alert(
-        'Não foi possível copiar automaticamente. Selecione e copie o código PIX manualmente.'
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   WHATSAPP PIX MANUAL
-========================================================= */
-
-$('waBtn').addEventListener(
-  'click',
-  () => {
-
-    const message =
-`Olá! Fiz o pagamento do MegaHitsBrasil.
-
-💰 Valor: R$ 9,90
-📧 E-mail: ${order.email}
-📱 WhatsApp: ${order.whatsapp}
-
-Estou enviando o comprovante para conferência e liberação do meu acesso.`;
-
-    const url =
-      `https://wa.me/${OWNER}?text=${encodeURIComponent(message)}`;
-
-
-    window.open(
-      url,
-      '_blank',
-      'noopener'
-    );
-
-  }
-);
-
-
-/* =========================================================
-   FECHAR MODAL
-========================================================= */
-
-$('checkoutModal').addEventListener(
-  'click',
-  e => {
-
-    if(
-      e.target.id ===
-      'checkoutModal'
-    ){
-
-      closeCheckout();
-
-    }
-
-  }
-);
-
-
-document.addEventListener(
-  'keydown',
-  e => {
-
-    if(e.key === 'Escape'){
-
-      closeCheckout();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   FAQ
-========================================================= */
-
-document
-  .querySelectorAll('.faq-q')
-  .forEach(
-    btn => {
-
-      btn.addEventListener(
-        'click',
-        () => {
-
-          const item =
-            btn.parentElement;
-
-          const open =
-            item.classList.toggle(
-              'open'
-            );
-
-          btn.querySelector(
-            'span'
-          ).textContent =
-            open ? '−' : '+';
-
-
-          document
-            .querySelectorAll('.faq-item')
-            .forEach(
-              other => {
-
-                if(other !== item){
-
-                  other
-                    .classList
-                    .remove('open');
-
-                  other
-                    .querySelector('span')
-                    .textContent = '+';
-
-                }
-
-              }
-            );
+          }
 
         }
       );
 
-    }
-  );
+
+    /*
+     * ==========================================
+     * CHECKOUT STRIPE
+     * ==========================================
+     */
+
+    $('checkoutForm')
+      .addEventListener(
+        'submit',
+        async e => {
+
+          e.preventDefault();
 
 
-/* =========================================================
-   RÁDIO HUNTER.FM
-========================================================= */
+          /*
+           * Se selecionou PIX manual,
+           * não chama o Stripe.
+           */
 
-const radioAudio =
-  $('radioAudio');
+          if (
+            selectedPayment ===
+            'manual'
+          ) {
 
-const radioPlay =
-  $('radioPlay');
+            showManualPix();
 
-const radioMute =
-  $('radioMute');
+            return;
 
-const radioVolume =
-  $('radioVolume');
-
-const radioState =
-  $('radioState');
-
-const radioPlayer =
-  $('radioPlayer');
-
-const radioMin =
-  $('radioMin');
+          }
 
 
-radioAudio.volume =
-  .75;
+          order.email =
+            $('email')
+              .value
+              .trim();
 
 
-radioPlay.addEventListener(
-  'click',
-  async () => {
+          order.whatsapp =
+            $('whatsappInput')
+              .value
+              .replace(/\D/g,'');
 
-    try{
 
-      if(
-        radioAudio.paused
-      ){
+          if (
+            !order.email
+          ) {
 
-        await radioAudio.play();
+            alert(
+              'Informe seu e-mail.'
+            );
 
-        radioPlay.textContent =
-          '⏸ Pausar';
+            return;
 
-        radioState.textContent =
-          'Ao vivo • Hunter.FM Sertanejo';
+          }
 
-      }else{
 
-        radioAudio.pause();
+          if (
+            order.whatsapp.length < 10
+          ) {
 
-        radioPlay.textContent =
-          '▶ Ouvir agora';
+            alert(
+              'Informe um WhatsApp válido com DDD.'
+            );
 
-        radioState.textContent =
-          'Pausado';
+            return;
+
+          }
+
+
+          const btn =
+            $('stripeBtn');
+
+
+          btn.disabled =
+            true;
+
+
+          btn.textContent =
+            'Abrindo pagamento seguro...';
+
+
+          try {
+
+            const response =
+              await fetch(
+                '/api/create-checkout',
+                {
+                  method: 'POST',
+
+                  headers: {
+                    'Content-Type':
+                      'application/json'
+                  },
+
+                  body:
+                    JSON.stringify({
+                      email:
+                        order.email,
+
+                      whatsapp:
+                        order.whatsapp,
+
+                      tipo_pagamento:
+                        'stripe_automatico'
+                    })
+                }
+              );
+
+
+            const data =
+              await response.json();
+
+
+            if (!response.ok) {
+
+              throw new Error(
+                data.error ||
+                'Não foi possível iniciar o pagamento.'
+              );
+
+            }
+
+
+            if (!data.url) {
+
+              throw new Error(
+                'O Stripe não retornou o endereço do pagamento.'
+              );
+
+            }
+
+
+            window.location.href =
+              data.url;
+
+
+          }
+
+          catch (error) {
+
+            console.error(
+              'Erro no checkout:',
+              error
+            );
+
+
+            alert(
+              error.message ||
+              'Erro ao iniciar o pagamento.'
+            );
+
+
+            btn.disabled =
+              false;
+
+
+            btn.textContent =
+              'Ir para pagamento seguro';
+
+          }
+
+        }
+      );
+
+
+    /*
+     * ==========================================
+     * MOSTRAR PIX MANUAL
+     * ==========================================
+     */
+
+    function showManualPix() {
+
+      order.email =
+        $('email')
+          .value
+          .trim();
+
+
+      order.whatsapp =
+        $('whatsappInput')
+          .value
+          .replace(/\D/g,'');
+
+
+      if (!order.email) {
+
+        alert(
+          'Informe seu e-mail.'
+        );
+
+        $('email').focus();
+
+        return;
 
       }
 
-    }catch(err){
 
-      radioState.textContent =
-        'Não foi possível iniciar. Tente novamente.';
+      if (
+        order.whatsapp.length < 10
+      ) {
 
-      console.error(
-        err
+        alert(
+          'Informe um WhatsApp válido com DDD.'
+        );
+
+        $('whatsappInput').focus();
+
+        return;
+
+      }
+
+
+      $('checkoutForm')
+        .classList
+        .add('hidden');
+
+
+      $('manualPayment')
+        .classList
+        .add('show');
+
+    }
+
+
+    /*
+     * ==========================================
+     * VOLTAR PARA ESCOLHA
+     * ==========================================
+     */
+
+    function backToPaymentChoice() {
+
+      $('manualPayment')
+        .classList
+        .remove('show');
+
+
+      $('checkoutForm')
+        .classList
+        .remove('hidden');
+
+
+      selectPayment(
+        'manual'
       );
 
     }
 
-  }
-);
+
+    /*
+     * ==========================================
+     * COPIAR PIX
+     * ==========================================
+     */
+
+    $('copyBtn')
+      .addEventListener(
+        'click',
+        async () => {
+
+          try {
+
+            await navigator.clipboard.writeText(
+              PIX
+            );
 
 
-radioAudio.addEventListener(
-  'playing',
-  () => {
-
-    radioPlay.textContent =
-      '⏸ Pausar';
-
-    radioState.textContent =
-      'Ao vivo • Hunter.FM Sertanejo';
-
-  }
-);
+            $('status')
+              .classList
+              .add('show');
 
 
-radioAudio.addEventListener(
-  'pause',
-  () => {
-
-    radioPlay.textContent =
-      '▶ Ouvir agora';
-
-    if(
-      radioAudio.currentTime > 0
-    ){
-
-      radioState.textContent =
-        'Pausado';
-
-    }
-
-  }
-);
+            $('copyBtn')
+              .textContent =
+              '✓ Código PIX copiado';
 
 
-radioAudio.addEventListener(
-  'error',
-  () => {
+            setTimeout(() => {
 
-    radioState.textContent =
-      'Stream indisponível no momento';
+              $('copyBtn')
+                .textContent =
+                'Copiar código PIX';
 
-  }
-);
+            }, 2500);
 
 
-radioMute.addEventListener(
-  'click',
-  () => {
+          }
 
-    radioAudio.muted =
-      !radioAudio.muted;
+          catch (error) {
 
-    radioMute.textContent =
-      radioAudio.muted
-        ? '🔇'
-        : '🔊';
+            /*
+             * Fallback para navegadores
+             * que não suportam clipboard.
+             */
 
-  }
-);
+            const textarea =
+              document.createElement(
+                'textarea'
+              );
 
 
-radioVolume.addEventListener(
-  'input',
-  e => {
+            textarea.value =
+              PIX;
 
-    radioAudio.volume =
-      Number(
-        e.target.value
+
+            textarea.style.position =
+              'fixed';
+
+            textarea.style.opacity =
+              '0';
+
+
+            document.body
+              .appendChild(
+                textarea
+              );
+
+
+            textarea.select();
+
+
+            document.execCommand(
+              'copy'
+            );
+
+
+            textarea.remove();
+
+
+            $('status')
+              .classList
+              .add('show');
+
+          }
+
+        }
       );
 
-    radioAudio.muted =
-      radioAudio.volume === 0;
 
-    radioMute.textContent =
-      radioAudio.muted
-        ? '🔇'
-        : '🔊';
+    /*
+     * ==========================================
+     * ENVIAR COMPROVANTE
+     * ==========================================
+     */
 
-  }
-);
+    $('waBtn')
+      .addEventListener(
+        'click',
+        () => {
+
+          const name =
+            $('email')
+              .value
+              .trim();
 
 
-radioMin.addEventListener(
-  'click',
-  () => {
+          const phone =
+            $('whatsappInput')
+              .value
+              .replace(/\D/g,'');
 
-    radioPlayer.classList.toggle(
-      'minimized'
+
+          const message =
+            `Olá! Fiz o pagamento PIX do MegaHitsBrasil.
+
+E-mail: ${name}
+
+WhatsApp para entrega: ${phone}
+
+Valor: R$ 9,90
+
+Estou enviando o comprovante do pagamento para liberação do acesso.`;
+
+
+          const url =
+            `https://wa.me/${OWNER}?text=${encodeURIComponent(message)}`;
+
+
+          window.open(
+            url,
+            '_blank',
+            'noopener'
+          );
+
+        }
+      );
+
+
+    /*
+     * ==========================================
+     * FECHAR AO CLICAR FORA
+     * ==========================================
+     */
+
+    $('checkoutModal')
+      .addEventListener(
+        'click',
+        e => {
+
+          if (
+            e.target.id ===
+            'checkoutModal'
+          ) {
+
+            closeCheckout();
+
+          }
+
+        }
+      );
+
+
+    /*
+     * ==========================================
+     * ESC
+     * ==========================================
+     */
+
+    document.addEventListener(
+      'keydown',
+      e => {
+
+        if (
+          e.key === 'Escape'
+        ) {
+
+          closeCheckout();
+
+        }
+
+      }
     );
 
-  }
-);
 
-</script>
+    /*
+     * ==========================================
+     * FAQ
+     * ==========================================
+     */
+
+    document
+      .querySelectorAll('.faq-q')
+      .forEach(
+        btn => {
+
+          btn.addEventListener(
+            'click',
+            () => {
+
+              const item =
+                btn.parentElement;
+
+
+              const isOpen =
+                item
+                  .classList
+                  .toggle('open');
+
+
+              btn.querySelector(
+                'span'
+              ).textContent =
+                isOpen
+                  ? '−'
+                  : '+';
+
+
+              document
+                .querySelectorAll(
+                  '.faq-item'
+                )
+                .forEach(
+                  other => {
+
+                    if (
+                      other !== item
+                    ) {
+
+                      other
+                        .classList
+                        .remove(
+                          'open'
+                        );
+
+
+                      other
+                        .querySelector(
+                          'span'
+                        )
+                        .textContent =
+                        '+';
+
+                    }
+
+                  }
+                );
+
+            }
+          );
+
+        }
+      );
+
+
+    /*
+     * ==========================================
+     * CANCELAMENTO DO STRIPE
+     * ==========================================
+     */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    if (
+      params.get('checkout') ===
+      'cancelado'
+    ) {
+
+      setTimeout(() => {
+
+        alert(
+          'O pagamento foi cancelado. Você pode tentar novamente quando quiser.'
+        );
+
+      }, 500);
+
+    }
+
+  </script>
 
 </body>
 </html>
