@@ -51,8 +51,8 @@
     <input class="radio-volume" id="radioVolume" type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Volume">
   </div>
   <div class="radio-credit">Rádio: Hunter.FM • <a href="https://hunter.fm/sertanejo/" target="_blank" rel="noopener">ver canal oficial</a></div>
-  <audio id="radioAudio" preload="none" crossorigin="anonymous">
-    <source src="https://live.hunter.fm/sertanejo_normal" type="audio/aac">
+  <audio id="radioAudio" preload="none" >
+    <source src="https://live.hunter.fm/sertanejo_high" type="audio/aac">
   </audio>
 </div>
 <a class="whatsapp" href="https://wa.me/5516992189862?text=Ol%C3%A1!%20Tenho%20interesse%20no%20MegaHitsBrasil%20%2B15%20GB%20por%20R%24%209%2C90." target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
@@ -72,7 +72,11 @@ radioAudio.volume=.75;
 radioPlay.addEventListener('click',async()=>{try{if(radioAudio.paused){await radioAudio.play();radioPlay.textContent='⏸ Pausar';radioState.textContent='Ao vivo • Hunter.FM Sertanejo'}else{radioAudio.pause();radioPlay.textContent='▶ Ouvir agora';radioState.textContent='Pausado'}}catch(err){radioState.textContent='Não foi possível iniciar. Tente novamente.';console.error(err)}});
 radioAudio.addEventListener('playing',()=>{radioPlay.textContent='⏸ Pausar';radioState.textContent='Ao vivo • Hunter.FM Sertanejo'});
 radioAudio.addEventListener('pause',()=>{radioPlay.textContent='▶ Ouvir agora';if(radioAudio.currentTime>0)radioState.textContent='Pausado'});
-radioAudio.addEventListener('error',()=>{radioState.textContent='Stream indisponível no momento'});
+let radioFallbackUsed=false;
+radioAudio.addEventListener('error',()=>{
+  if(!radioFallbackUsed){ radioFallbackUsed=true; radioState.textContent='Tentando conexão alternativa…'; radioAudio.src='https://live.hunter.fm/sertanejo_normal'; radioAudio.load(); radioAudio.play().then(()=>{radioPlay.textContent='⏸ Pausar';radioState.textContent='Ao vivo • Hunter.FM Sertanejo'}).catch(()=>{radioState.textContent='Não foi possível iniciar. Clique novamente.'}); }
+  else { radioState.textContent='Stream indisponível no momento'; }
+});
 radioMute.addEventListener('click',()=>{radioAudio.muted=!radioAudio.muted;radioMute.textContent=radioAudio.muted?'🔇':'🔊'});
 radioVolume.addEventListener('input',e=>{radioAudio.volume=Number(e.target.value);radioAudio.muted=radioAudio.volume===0;radioMute.textContent=radioAudio.muted?'🔇':'🔊'});
 radioMin.addEventListener('click',()=>radioPlayer.classList.toggle('minimized'));
