@@ -1,6 +1,4 @@
 // Single Vercel Serverless Function for the entire /api/* surface.
-// This keeps the project below the Vercel Hobby 12-function limit.
-module.exports.config = { api: { bodyParser: false, sizeLimit: '5mb' } };
 
 const handlers = {
   admin: require('../lib/handlers/admin'),
@@ -14,51 +12,97 @@ const handlers = {
   'upload-proof': require('../lib/handlers/upload-proof'),
   webhook: require('../lib/handlers/webhook')
 };
+
 function getRoute(req) {
   const raw = String(req.url || '').split('?')[0];
   const m = raw.match(/^\/api\/(.*)$/);
+
   if (!m) return '';
-  return m[1].replace(/^\/+|\/+$/g, '').split('/')[0].toLowerCase();
+
+  return m[1]
+    .replace(/^\/+|\/+$/g, '')
+    .split('/')[0]
+    .toLowerCase();
 }
 
 function parseQuery(req) {
   const base = 'https://megahitsbrasil.vercel.app';
   const u = new URL(req.url || '/', base);
+
   const query = {};
-  for (const [k, v] of u.searchParams.entries()) query[k] = v;
+
+  for (const [k, v] of u.searchParams.entries()) {
+    query[k] = v;
+  }
+
   req.query = query;
 }
 
-function parseJsonBody(req, raw) {
-  if (!raw.length) return {};
-  const type = String(req.headers['content-type'] || '').toLowerCase();
-  if (type.includes('application/json') || type.includes('+json')) {
-    try { return JSON.parse(raw.toString('utf8')); }
-    catch { return {}; }
-  }
-  return {};
-}
+function parseJsonBody(req) {
+  return new Promise((resolve) => {
+    const chunks = [];
 
-async function readRaw(req) {
-  const chunks = [];
-  for await (const chunk of req) chunks.push(Buffer.from(chunk));
-  return Buffer.concat(chunks);
+    req.on('data', chunk => {
+      chunks.push(Buffer.from(chunk));
+    });
+
+    req.on('end', () => {
+      const raw = Buffer.concat(chunks);
+
+      if (!raw.length) {
+        return resolve({});
+      }
+
+      const type = String(
+        req.headers['content-type'] || ''
+      ).toLowerCase();
+
+      if (
+        type.includes('application/json') ||
+        type.includes('+json')
+      ) {
+        try {
+          return resolve(JSON.parse(raw.toString('utf8')));
+        } catch (error) {
+          console.error('[API] JSON inválido:', error);
+          return resolve({});
+        }
+      }
+
+      return resolve({});
+    });
+
+    req.on('error', error => {
+      console.error('[API] Erro lendo body:', error);
+      resolve({});
+    });
+  });
 }
 
 module.exports = async (req, res) => {
   const route = getRoute(req);
+
+  console.log('[API] Método:', req.method);
+  console.log('[API] Rota:', route);
+
   const handler = handlers[route];
-  if (!handler) return res.status(404).json({ error: 'API route não encontrada.' });
+
+  if (!handler) {
+    return res.status(404).json({
+      error: 'API route não encontrada.'
+    });
+  }
 
   parseQuery(req);
 
-  // Stripe webhook MUST receive the exact raw request body for signature verification.
+  // Stripe webhook precisa do body original.
   if (route === 'webhook') {
     return handler(req, res);
   }
 
-  // All other JSON endpoints use the same parsed body.
-  const raw = await readRaw(req);
-  req.body = parseJsonBody(req, raw);
+  req.body = await parseJsonBody(req);
+
+  console.log('[API] Body recebido:', req.body);
+
   return handler(req, res);
 };
