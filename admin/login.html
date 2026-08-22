@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — MegaHitsBrasil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;font-family:Inter,Arial;background:radial-gradient(600px 420px at 50% 0%,rgba(124,67,255,.2),transparent 70%),#07060b;color:#fff}.card{width:min(430px,100%);padding:32px;border:1px solid rgba(255,255,255,.09);border-radius:24px;background:#111019;box-shadow:0 30px 90px rgba(0,0,0,.5)}.logo{width:190px;height:64px;object-fit:contain;display:block;margin:0 auto 20px}.badge{display:block;text-align:center;color:#aaa6b4;font-size:.65rem;font-weight:900;letter-spacing:1.5px;margin-bottom:8px}.card h1{text-align:center;font-size:1.65rem;margin:0 0 8px}.sub{text-align:center;color:#8e8996;font-size:.75rem;line-height:1.6;margin:0 0 24px}.field{margin-bottom:14px}.field label{display:block;font-size:.7rem;font-weight:800;margin:0 0 7px 2px}.field input{width:100%;height:50px;padding:0 14px;border-radius:11px;border:1px solid rgba(255,255,255,.09);background:#08070c;color:#fff;outline:none}.field input:focus{border-color:#7c43ff;box-shadow:0 0 0 3px rgba(124,67,255,.1)}button{width:100%;height:51px;border:0;border-radius:12px;background:linear-gradient(135deg,#ff1b9b,#7c43ff);color:#fff;font-weight:900;cursor:pointer}.msg{text-align:center;min-height:20px;color:#ff9d9d;font-size:.7rem;margin-top:12px}.back{display:block;text-align:center;color:#77717f;font-size:.65rem;text-decoration:none;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="card">
+<img class="logo" src="/logo-megahitsbrasil.png" alt="MegaHitsBrasil">
+<span class="badge">ÁREA RESTRITA</span>
+<h1>Painel Administrativo</h1>
+<p class="sub">Entre com as credenciais do administrador para gerenciar os pagamentos PIX.</p>
+<form id="form">
+<div class="field"><label>E-mail</label><input id="email" type="email" autocomplete="username" required></div>
+<div class="field"><label>Senha</label><input id="password" type="password" autocomplete="current-password" required></div>
+<button id="btn">Entrar no painel</button>
+<div class="msg" id="msg"></div>
+</form>
+<a class="back" href="/">← Voltar ao site</a>
+</div>
+<script>
+const form=document.getElementById('form'),msg=document.getElementById('msg'),btn=document.getElementById('btn');
+form.addEventListener('submit',async e=>{
+ e.preventDefault(); msg.textContent=''; btn.disabled=true; btn.textContent='Entrando...';
+ try{
+  const r=await fetch('/api/admin-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email.value,password:password.value})});
+  const d=await r.json();
+  if(!r.ok) throw new Error(d.error||'Falha no login.');
+  location.href='/admin/dashboard.html';
+ }catch(err){msg.textContent=err.message;btn.disabled=false;btn.textContent='Entrar no painel';}
+});
+</script>
+</body></html>
