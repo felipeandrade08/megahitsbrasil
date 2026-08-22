@@ -1,0 +1,1 @@
+﻿{"name":"megahitsbrasil-stripe","version":"3.0.0","private":true,"dependencies":{"stripe":"^18.5.0","pg":"^8.16.3"}}

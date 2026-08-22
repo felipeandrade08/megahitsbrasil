@@ -14,7 +14,6 @@ const handlers = {
   'upload-proof': require('../lib/handlers/upload-proof'),
   webhook: require('../lib/handlers/webhook')
 };
-
 function getRoute(req) {
   const raw = String(req.url || '').split('?')[0];
   const m = raw.match(/^\/api\/(.*)$/);
