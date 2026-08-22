@@ -3,16 +3,16 @@
 module.exports.config = { api: { bodyParser: false, sizeLimit: '5mb' } };
 
 const handlers = {
-  admin: require('./lib/handlers/admin'),
-  'create-checkout': require('./lib/handlers/create-checkout'),
-  'create-pix-order': require('./lib/handlers/create-pix-order'),
-  download: require('./lib/handlers/download'),
-  login: require('./lib/handlers/login'),
-  logout: require('./lib/handlers/logout'),
-  'my-purchase': require('./lib/handlers/my-purchase'),
-  'session-status': require('./lib/handlers/session-status'),
-  'upload-proof': require('./lib/handlers/upload-proof'),
-  webhook: require('./lib/handlers/webhook')
+  admin: require('../lib/handlers/admin'),
+  'create-checkout': require('../lib/handlers/create-checkout'),
+  'create-pix-order': require('../lib/handlers/create-pix-order'),
+  download: require('../lib/handlers/download'),
+  login: require('../lib/handlers/login'),
+  logout: require('../lib/handlers/logout'),
+  'my-purchase': require('../lib/handlers/my-purchase'),
+  'session-status': require('../lib/handlers/session-status'),
+  'upload-proof': require('../lib/handlers/upload-proof'),
+  webhook: require('../lib/handlers/webhook')
 };
 
 function getRoute(req) {
