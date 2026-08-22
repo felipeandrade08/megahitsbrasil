@@ -2349,13 +2349,10 @@ h1 em{
       </button>
 
 
-      <button
-        class="btn wa"
-        id="waBtn"
-      >
-        Enviar comprovante pelo WhatsApp
-      </button>
-
+      <label class="btn wa" for="proofFile" style="display:block;text-align:center;cursor:pointer">Enviar comprovante aqui</label>
+      <input id="proofFile" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" style="display:none">
+      <button class="btn wa" id="waBtn" type="button">Enviar comprovante pelo WhatsApp</button>
+      <div id="proofStatus" style="font-size:.72rem;color:#9d97a5;margin-top:8px"></div>
 
       <div
         class="status"
@@ -2560,19 +2557,51 @@ $('stripeOption').addEventListener(
 
 $('pixOption').addEventListener(
  'click',
- ()=>{
+ async ()=>{
 
   const customer=getCustomerData();
 
   if(!customer)
    return;
 
-  $('manualPix').classList.add('show');
+  const btn=$('pixOption');
+  const original=btn.innerHTML;
+  btn.disabled=true;
+  btn.innerHTML=`
+   <strong>Registrando pedido PIX...</strong>
+   <span>Aguarde um momento.</span>
+  `;
 
-  $('manualPix').scrollIntoView({
-   behavior:'smooth',
-   block:'center'
-  });
+  try{
+   const response=await fetch('/api/create-pix-order',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(customer)
+   });
+
+   const data=await response.json();
+
+   if(!response.ok)
+    throw new Error(data.error || 'Não foi possível registrar o pedido PIX.');
+
+   order.id=data.orderId;
+
+   $('manualPix').classList.add('show');
+   $('manualPix').scrollIntoView({
+    behavior:'smooth',
+    block:'center'
+   });
+
+   const status=$('status');
+   status.textContent=`Pedido #${data.orderId} registrado. Faça o PIX de R$ 9,90 e envie o comprovante pelo WhatsApp.`;
+   status.classList.add('show');
+
+  }catch(error){
+   alert(error.message);
+  }finally{
+   btn.disabled=false;
+   btn.innerHTML=original;
+  }
 
  }
 );
@@ -2609,6 +2638,22 @@ $('copyBtn').addEventListener(
 );
 
 
+$('proofFile').addEventListener('change', async e=>{
+ const file=e.target.files?.[0]; if(!file) return;
+ if(!order.id){ alert('Primeiro registre o pedido PIX.'); return; }
+ if(file.size>2*1024*1024){ alert('O comprovante deve ter até 2 MB.'); e.target.value=''; return; }
+ const ps=$('proofStatus'); ps.textContent='Enviando comprovante...';
+ const reader=new FileReader();
+ reader.onload=async()=>{
+  try{
+   const r=await fetch('/api/upload-proof',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:order.id,mime:file.type,name:file.name,data:reader.result})});
+   const d=await r.json(); if(!r.ok) throw Error(d.error||'Falha ao enviar.');
+   ps.textContent='✓ Comprovante enviado. Agora aguarde a confirmação do pagamento.';
+  }catch(err){ps.textContent=err.message;}
+ };
+ reader.readAsDataURL(file);
+});
+
 $('waBtn').addEventListener(
  'click',
  ()=>{
@@ -2619,7 +2664,7 @@ $('waBtn').addEventListener(
    return;
 
   const message=
-   `Olá! Quero comprar o pacote MegaHitsBrasil de +15 GB por R$ 9,90.%0A%0AE-mail: ${encodeURIComponent(customer.email)}%0AWhatsApp: ${encodeURIComponent(customer.whatsapp)}%0A%0ARealizei o pagamento via PIX e estou enviando o comprovante.`;
+   `Olá! Quero comprar o pacote MegaHitsBrasil de +15 GB por R$ 9,90.%0A%0APedido: #${encodeURIComponent(order.id || 'não registrado')}%0AE-mail: ${encodeURIComponent(customer.email)}%0AWhatsApp: ${encodeURIComponent(customer.whatsapp)}%0A%0ARealizei o pagamento via PIX e estou enviando o comprovante.`;
 
   window.open(
    `https://wa.me/${OWNER}?text=${message}`,

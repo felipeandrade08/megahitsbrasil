@@ -66,3 +66,33 @@ TESTE OBRIGATÓRIO
 - Feche o site, abra novamente e repita o acesso.
 
 VERSÃO: 3.0.0
+
+
+=== PAINEL ADMINISTRATIVO + PIX MANUAL ===
+
+Nova área administrativa:
+  /admin/login.html
+  /admin/dashboard.html
+
+Variáveis de ambiente obrigatórias no Vercel:
+  DATABASE_URL
+  STRIPE_SECRET_KEY
+  STRIPE_WEBHOOK_SECRET
+  ACCESS_TOKEN_SECRET
+  PRODUCT_DOWNLOAD_URL
+  ADMIN_EMAIL
+  ADMIN_PASSWORD
+  ADMIN_SESSION_SECRET (opcional; se ausente usa ACCESS_TOKEN_SECRET)
+
+Fluxo PIX:
+  1. Cliente informa e-mail + WhatsApp e escolhe PIX.
+  2. O site registra o pedido como pending_pix.
+  3. Cliente paga e envia comprovante pelo WhatsApp.
+  4. Administrador entra em /admin/login.html.
+  5. Em Pedidos, clica em Aprovar.
+  6. O pedido passa para paid e o login da Área do Cliente é liberado.
+
+Importante:
+  - Nunca coloque ADMIN_EMAIL/ADMIN_PASSWORD no HTML ou JavaScript.
+  - Configure essas variáveis somente no ambiente do backend/Vercel.
+  - Use uma senha forte e exclusiva.
