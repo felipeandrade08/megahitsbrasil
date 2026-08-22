@@ -34,12 +34,22 @@ async function ensureSchema() {
         amount INTEGER NOT NULL DEFAULT 990,
         currency TEXT NOT NULL DEFAULT 'brl',
         status TEXT NOT NULL DEFAULT 'pending',
+        payment_method TEXT NOT NULL DEFAULT 'card',
+        admin_note TEXT,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         paid_at TIMESTAMPTZ,
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       );
       CREATE INDEX IF NOT EXISTS purchases_email_idx ON purchases (LOWER(email));
       CREATE INDEX IF NOT EXISTS purchases_email_whatsapp_idx ON purchases (LOWER(email), whatsapp);
+      ALTER TABLE purchases ADD COLUMN IF NOT EXISTS payment_method TEXT NOT NULL DEFAULT 'card';
+      ALTER TABLE purchases ADD COLUMN IF NOT EXISTS admin_note TEXT;
+      ALTER TABLE purchases ADD COLUMN IF NOT EXISTS proof_data BYTEA;
+      ALTER TABLE purchases ADD COLUMN IF NOT EXISTS proof_mime TEXT;
+      ALTER TABLE purchases ADD COLUMN IF NOT EXISTS proof_name TEXT;
+      ALTER TABLE purchases ADD COLUMN IF NOT EXISTS proof_uploaded_at TIMESTAMPTZ;
+      ALTER TABLE purchases ADD COLUMN IF NOT EXISTS access_blocked BOOLEAN NOT NULL DEFAULT FALSE;
+      ALTER TABLE purchases ADD COLUMN IF NOT EXISTS blocked_at TIMESTAMPTZ;
     `);
     initialized = true;
   })();
