@@ -1,0 +1,21 @@
+MEGAHITSBRASIL - DEPLOY VERCEL HOBBY
+
+IMPORTANTE:
+1. Antes de copiar esta versão, APAGUE o conteúdo antigo da pasta api/ no GitHub/repositório local.
+2. Esta versão deve ter SOMENTE este arquivo dentro de api/:
+   api/[...path].js
+3. Os handlers ficam em lib/handlers/ e NÃO são Serverless Functions.
+4. Faça git add -A para registrar as exclusões dos arquivos antigos.
+5. Faça commit e push para main.
+6. A Vercel deve informar apenas 1 Serverless Function para a API catch-all.
+
+Variáveis necessárias:
+ADMIN_EMAIL
+ADMIN_PASSWORD
+ADMIN_SESSION_SECRET
+DATABASE_URL
+STRIPE_SECRET_KEY
+STRIPE_WEBHOOK_SECRET
+ACCESS_TOKEN_SECRET
+PRODUCT_DOWNLOAD_URL
+SITE_URL (opcional; padrão é https://megahitsbrasil.vercel.app)
