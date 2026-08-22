@@ -1,6 +1,6 @@
 const Stripe = require('stripe');
 const crypto = require('crypto');
-const { ensureSchema, getPool } = require('./db');
+const { ensureSchema, getPool } = require('../lib/db');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 function verifyToken(req) {

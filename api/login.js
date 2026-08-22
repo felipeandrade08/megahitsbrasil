@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const { ensureSchema, getPool } = require('./db');
+const { ensureSchema, getPool } = require('../lib/db');
 
 function sign(payload) {
   const secret = process.env.ACCESS_TOKEN_SECRET;
