@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07060b"><title>Minha compra — MegaHitsBrasil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;display:grid;place-items:center;padding:20px;font-family:Inter,Arial;background:radial-gradient(650px 420px at 50% 0%,rgba(124,67,255,.2),transparent 70%),#07060b;color:#fff}.card{width:min(560px,100%);padding:38px 28px;border:1px solid rgba(255,255,255,.1);border-radius:26px;background:#111019;box-shadow:0 30px 90px rgba(0,0,0,.5)}.logo{width:180px;height:62px;object-fit:contain;display:block;margin:0 auto 18px}.icon{width:62px;height:62px;margin:0 auto 18px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#7c43ff,#ff1b9b);font-size:1.5rem}h1{text-align:center;font-size:2rem;letter-spacing:-.04em;margin-bottom:8px}p{text-align:center;color:#aaa6b4;line-height:1.6;font-size:.86rem}.form{margin-top:24px}.field{margin-bottom:13px}.field label{display:block;font-size:.74rem;color:#aaa6b4;margin:0 0 7px 2px}.field input{width:100%;height:50px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:#0b0a10;color:#fff;padding:0 14px;outline:none}.field input:focus{border-color:#7c43ff}.btn{width:100%;min-height:50px;border:0;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#ff1b9b,#7c43ff)}.secondary{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);margin-top:10px}.message{margin-top:14px;text-align:center;font-size:.78rem;color:#ff9f9f;min-height:20px}.purchase{display:none;margin-top:24px;padding:20px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}.purchase.show{display:block}.row{display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.78rem}.row:last-child{border-bottom:0}.label{color:#8d8794}.value{font-weight:700;text-align:right}.download{display:flex;align-items:center;justify-content:center;min-height:52px;margin-top:16px;border-radius:12px;text-decoration:none;color:#fff;font-weight:900;background:linear-gradient(135deg,#25d366,#159447)}.note{font-size:.68rem;color:#77717f;margin-top:14px;text-align:center}
+</style>
+</head>
+<body>
+<div class="card">
+<img class="logo" src="/logo-megahitsbrasil.png" alt="MegaHitsBrasil">
+<div class="icon">🔐</div>
+<h1>Minha compra</h1>
+<p id="intro">Acesse sua compra usando o mesmo e-mail e WhatsApp informados no pagamento.</p>
+<form id="loginForm" class="form">
+  <div class="field"><label for="email">E-mail da compra</label><input id="email" type="email" autocomplete="email" placeholder="seu@email.com" required></div>
+  <div class="field"><label for="whatsapp">WhatsApp da compra</label><input id="whatsapp" type="tel" autocomplete="tel" placeholder="(16) 99999-9999" required></div>
+  <button class="btn" id="loginBtn" type="submit">Acessar minha compra</button>
+</form>
+<div id="message" class="message"></div>
+<div id="purchase" class="purchase">
+  <div class="row"><span class="label">Produto</span><span class="value" id="product"></span></div>
+  <div class="row"><span class="label">Status</span><span class="value">✅ Pagamento aprovado</span></div>
+  <div class="row"><span class="label">Data</span><span class="value" id="paidAt"></span></div>
+  <a class="download" href="/api/download">Acessar meu produto</a>
+  <button class="btn secondary" id="logout" type="button">Sair</button>
+</div>
+<a class="btn secondary" href="/">Voltar ao site</a>
+<div class="note">Seu acesso é vinculado ao pedido aprovado. Não compartilhe seus dados de acesso.</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+$('whatsapp').addEventListener('input',e=>{let n=e.target.value.replace(/\D/g,'').slice(0,11);if(n.length<=2)e.target.value=n?'('+n:'';else if(n.length<=7)e.target.value=`(${n.slice(0,2)}) ${n.slice(2)}`;else e.target.value=`(${n.slice(0,2)}) ${n.slice(2,7)}-${n.slice(7)}`});
+function showPurchase(d){$('loginForm').style.display='none';$('intro').textContent='Seu acesso está ativo. Você pode voltar ao site e retornar a esta página quando precisar.';$('product').textContent=d.purchase.product==='megahitsbrasil_15gb'?'+15 GB de músicas':d.purchase.product;$('paidAt').textContent=d.purchase.paid_at?new Date(d.purchase.paid_at).toLocaleString('pt-BR'):'Confirmado';$('purchase').classList.add('show');$('message').textContent=''}
+async function load(){try{const r=await fetch('/api/my-purchase',{cache:'no-store'});const d=await r.json();if(r.ok&&d.authenticated)showPurchase(d)}catch(e){}}
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();$('message').textContent='';$('loginBtn').disabled=true;$('loginBtn').textContent='Verificando...';try{const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:$('email').value,whatsapp:$('whatsapp').value})});const d=await r.json();if(!r.ok)throw new Error(d.error||'Não foi possível acessar.');const me=await fetch('/api/my-purchase',{cache:'no-store'});showPurchase(await me.json())}catch(err){$('message').textContent=err.message}finally{$('loginBtn').disabled=false;$('loginBtn').textContent='Acessar minha compra'}});
+$('logout').addEventListener('click',async()=>{await fetch('/api/logout',{method:'POST'});location.reload()});load();
+</script>
+</body></html>

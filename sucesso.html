@@ -18,6 +18,7 @@
 <div class="info"><strong id="statusTitle">Confirmando seu pagamento...</strong><p id="statusText">Aguarde alguns segundos. Você não precisa fazer outro pagamento.</p></div>
 <a id="downloadBtn" class="btn hidden" href="#">Liberar meu acesso</a>
 <a class="btn whatsapp" href="https://wa.me/5516997434009?text=Ol%C3%A1!%20Fiz%20uma%20compra%20no%20MegaHitsBrasil%20e%20preciso%20de%20ajuda." target="_blank" rel="noopener">Falar com suporte</a>
+<a class="btn secondary" href="/minha-compra.html">🔐 Minha compra / recuperar acesso</a>
 <a class="btn secondary" href="/">Voltar ao site</a>
 <div id="loading" class="loading">Verificando...</div>
 <small>MegaHitsBrasil © 2026 • Pagamento processado pelo Stripe</small>
@@ -28,7 +29,7 @@ const title=document.getElementById('statusTitle'),text=document.getElementById(
 let attempts=0;
 async function check(){if(!sessionId){title.textContent='Sessão não encontrada';text.textContent='Volte ao site e tente iniciar o pagamento novamente.';loading.classList.add('hidden');return}
 try{const r=await fetch('/api/session-status?session_id='+encodeURIComponent(sessionId),{cache:'no-store'});const d=await r.json();
- if(r.ok&&d.paid){title.textContent='Seu acesso está liberado';text.textContent='Pagamento confirmado. Clique abaixo para acessar o conteúdo.';btn.href='/api/download?session_id='+encodeURIComponent(sessionId);btn.classList.remove('hidden');loading.classList.add('hidden');return}
+ if(r.ok&&d.paid){title.textContent='Seu acesso está liberado';text.textContent='Pagamento confirmado. Seu acesso foi registrado. Clique abaixo para acessar agora ou use “Minha compra” quando voltar ao site.';btn.href='/api/download?session_id='+encodeURIComponent(sessionId);btn.classList.remove('hidden');loading.classList.add('hidden');return}
  title.textContent='Pagamento ainda sendo confirmado';text.textContent='O Stripe ainda não retornou a confirmação. Estamos verificando automaticamente.';loading.textContent='Tentativa '+(attempts+1)+' de 10...';
 }catch(e){text.textContent='Não foi possível consultar a confirmação agora. Tentaremos novamente.'}
 attempts++;if(attempts<10)setTimeout(check,2000);else{loading.textContent='Se o pagamento já foi aprovado, aguarde um pouco e atualize esta página.'}}

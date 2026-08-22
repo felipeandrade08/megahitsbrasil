@@ -1,32 +1,68 @@
-MEGAHITSBRASIL — VERSÃO PROFISSIONAL
+MEGAHITSBRASIL — V3 PROFISSIONAL
 
-Alterações:
-- Landing page reorganizada para conversão.
-- Logo preparada para ficar sem o fundo quadrado original.
-- Cabeçalho, oferta, confiança, conteúdo, FAQ e rodapé redesenhados.
-- CTA mais claro e repetido em pontos estratégicos.
-- Checkout Stripe continua somente com cartão.
-- Página sucesso atualizada para confirmar o pagamento automaticamente.
-- Nova API /api/download valida o pagamento no Stripe antes de redirecionar para o conteúdo.
+OBJETIVO DA V3
+- Manter o Stripe e a entrega automática existentes.
+- Adicionar banco PostgreSQL no Railway para registrar pedidos de forma persistente.
+- Permitir que o cliente feche o site e recupere a compra depois em /minha-compra.html.
+- Criar sessão segura por cookie HttpOnly após validação de e-mail + WhatsApp usados na compra.
+- Manter /api/download validando pedido pago antes da entrega.
 
-ENTREGA AUTOMÁTICA:
-No Vercel, além de STRIPE_SECRET_KEY e STRIPE_WEBHOOK_SECRET, crie:
+ARQUITETURA
+Cliente -> Vercel -> Stripe Checkout -> Webhook -> PostgreSQL Railway
+                                           |
+                                           +-> pedido PAID
 
-PRODUCT_DOWNLOAD_URL = URL FINAL DO SEU CONTEÚDO
+Cliente pode voltar depois -> /minha-compra.html -> e-mail + WhatsApp -> cookie seguro -> /api/download
 
-Exemplo:
-PRODUCT_DOWNLOAD_URL=https://seu-servidor-ou-provedor.com/seu-arquivo-ou-link
+RAILWAY — CONFIGURAÇÃO
+1. Crie um projeto no Railway.
+2. Adicione um serviço PostgreSQL (Postgres).
+3. O Railway fornecerá DATABASE_URL nas variáveis do serviço/conexão.
+4. Na Vercel, abra o projeto MegaHitsBrasil > Settings > Environment Variables.
+5. Adicione DATABASE_URL com o valor fornecido pelo Railway.
+6. O banco cria a tabela purchases automaticamente na primeira chamada de qualquer API.
 
-O cliente só consegue passar por /api/download se a sessão do Stripe estiver com payment_status=paid.
+VARIÁVEIS DA VERCEL
+STRIPE_SECRET_KEY=chave LIVE do Stripe
+STRIPE_WEBHOOK_SECRET=segredo do webhook LIVE
+PRODUCT_DOWNLOAD_URL=URL final do conteúdo
+DATABASE_URL=URL PostgreSQL do Railway
+ACCESS_TOKEN_SECRET=uma senha aleatória longa, usada para assinar sessões de acesso
 
-WEBHOOK:
+NÃO COLOQUE essas variáveis no HTML ou JavaScript do navegador.
+
+WEBHOOK STRIPE
 Endpoint:
 https://megahitsbrasil.vercel.app/api/webhook
 
-Evento:
+Evento mínimo:
 checkout.session.completed
 
-O Stripe continua configurado somente para cartão nesta versão.
+A V3 também aceita:
+checkout.session.async_payment_succeeded
 
-IMPORTANTE:
-Não coloque STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET ou PRODUCT_DOWNLOAD_URL dentro do HTML/JavaScript do navegador.
+FLUXO DO PEDIDO
+1. /api/create-checkout cria o Checkout Stripe e grava um pedido PENDING no Railway.
+2. Stripe confirma o pagamento.
+3. /api/webhook muda o pedido para PAID.
+4. /api/session-status também sincroniza PAID quando a página de sucesso consulta o Stripe.
+5. /minha-compra.html permite recuperar o pedido aprovado.
+6. /api/download valida o pedido e libera PRODUCT_DOWNLOAD_URL.
+
+IMPORTANTE SOBRE A ENTREGA
+PRODUCT_DOWNLOAD_URL ainda aponta para o conteúdo final. Se esse endereço for um link público (ex.: Drive), quem obtiver o endereço final poderá compartilhá-lo. A V3 protege a entrada e a validação, mas não transforma um arquivo público em arquivo privado.
+
+Para uma V4, recomenda-se usar armazenamento com URLs assinadas/temporárias para que cada download tenha validade limitada.
+
+IMPORTANTE SOBRE O LOGIN
+A V3 usa e-mail + WhatsApp informados na compra para recuperar o pedido, sem exigir outro provedor de e-mail. Isso é simples de operar, mas a versão mais forte seria V4 com código OTP enviado por e-mail.
+
+TESTE OBRIGATÓRIO
+- Faça uma compra de teste no ambiente apropriado.
+- Confirme que o pedido aparece como PAID no Railway.
+- Abra /minha-compra.html.
+- Informe o mesmo e-mail e WhatsApp da compra.
+- Confirme que o botão "Acessar meu produto" funciona.
+- Feche o site, abra novamente e repita o acesso.
+
+VERSÃO: 3.0.0
