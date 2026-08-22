@@ -14,7 +14,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
   --bg:#07060b;
   --bg2:#0c0a12;
@@ -23,14 +22,13 @@
   --line:rgba(255,255,255,.09);
   --text:#fbfaff;
   --muted:#aaa6b4;
-
   --pink:#ff1b9b;
   --purple:#7c43ff;
   --cyan:#25d7ff;
   --green:#25d366;
-
-  --shadow:0 25px 80px rgba(0,0,0,.42);
-  --max:1120px;
+  --yellow:#ffd166;
+  --max:1100px;
+  --shadow:0 30px 90px rgba(0,0,0,.45);
 }
 
 *{
@@ -63,33 +61,44 @@ input{
   font:inherit;
 }
 
-/* =========================
-   HEADER
-========================= */
+button{
+  cursor:pointer;
+}
+
+.wrap{
+  width:min(var(--max),calc(100% - 34px));
+  margin:auto;
+}
+
+/* HEADER */
 
 .header{
   position:sticky;
   top:0;
   z-index:50;
-  background:rgba(7,6,11,.82);
+  background:rgba(7,6,11,.84);
   backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line);
 }
 
 .nav{
-  width:min(var(--max),calc(100% - 30px));
-  height:72px;
-  margin:auto;
-
+  height:76px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:20px;
 }
 
-.logo{
-  width:175px;
-  height:55px;
+.brand{
+  display:flex;
+  align-items:center;
+  width:190px;
+  height:58px;
+}
+
+.brand img{
+  width:100%;
+  height:100%;
   object-fit:contain;
   object-position:left center;
 }
@@ -100,107 +109,134 @@ input{
   gap:10px;
 }
 
-.nav-btn{
-  min-height:40px;
-  padding:0 14px;
+.nav-home{
+  min-height:42px;
+  padding:0 15px;
   border-radius:10px;
-
   display:inline-flex;
   align-items:center;
   justify-content:center;
-
-  font-size:.75rem;
-  font-weight:800;
-
+  color:#bdb8c7;
+  font-size:.76rem;
+  font-weight:700;
   border:1px solid var(--line);
-  background:rgba(255,255,255,.04);
-  color:#fff;
-
-  cursor:pointer;
+  background:rgba(255,255,255,.035);
   transition:.2s;
 }
 
-.nav-btn:hover{
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.08);
+.nav-home:hover{
+  color:#fff;
+  transform:translateY(-1px);
+  border-color:rgba(255,255,255,.18);
 }
 
-.logout-nav{
-  color:#ff9b9b;
+/* PAGE */
+
+.page{
+  padding:55px 0 75px;
 }
 
-/* =========================
-   LOGIN
-========================= */
-
-.login-screen{
-  min-height:calc(100vh - 72px);
-
+.welcome{
   display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:30px 15px;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:25px;
+  margin-bottom:28px;
 }
+
+.welcome-left{
+  max-width:700px;
+}
+
+.eyebrow{
+  color:#ff78bd;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:1.6px;
+}
+
+.welcome h1{
+  font-size:clamp(2rem,4.5vw,3.4rem);
+  line-height:1;
+  letter-spacing:-.05em;
+  margin:9px 0 12px;
+}
+
+.welcome h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,#fff,var(--cyan),#b9a8ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.welcome p{
+  color:var(--muted);
+  font-size:.88rem;
+  line-height:1.7;
+}
+
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid rgba(37,211,102,.2);
+  background:rgba(37,211,102,.06);
+  color:#9ff5b8;
+  font-size:.68rem;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.status-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px rgba(37,211,102,.8);
+}
+
+/* LOGIN */
 
 .login-card{
-  width:min(520px,100%);
-
-  padding:38px 28px;
-
+  width:min(500px,100%);
+  margin:35px auto 0;
+  padding:32px;
   border:1px solid var(--line);
-  border-radius:25px;
-
-  background:rgba(17,16,25,.94);
-
+  border-radius:24px;
+  background:
+    linear-gradient(145deg,rgba(124,67,255,.08),rgba(255,27,155,.04)),
+    var(--card);
   box-shadow:var(--shadow);
 }
 
 .login-icon{
-  width:64px;
-  height:64px;
-
+  width:62px;
+  height:62px;
   margin:0 auto 18px;
-
   display:grid;
   place-items:center;
-
   border-radius:18px;
-
-  background:linear-gradient(
-    135deg,
-    var(--pink),
-    var(--purple)
-  );
-
-  font-size:1.6rem;
-
-  box-shadow:
-    0 12px 35px rgba(255,27,155,.2);
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  font-size:1.5rem;
+  box-shadow:0 15px 35px rgba(124,67,255,.2);
 }
 
-.login-card h1{
+.login-card h2{
   text-align:center;
-
-  font-size:2rem;
-
-  letter-spacing:-.045em;
-
-  margin-bottom:8px;
+  font-size:1.55rem;
+  letter-spacing:-.035em;
 }
 
-.login-card>p{
+.login-card > p{
   text-align:center;
-
   color:var(--muted);
-
-  font-size:.82rem;
-
+  font-size:.78rem;
   line-height:1.6;
-}
-
-.form{
-  margin-top:25px;
+  margin:7px auto 23px;
+  max-width:380px;
 }
 
 .field{
@@ -209,56 +245,40 @@ input{
 
 .field label{
   display:block;
-
-  font-size:.74rem;
-  font-weight:700;
-
-  color:#aaa6b4;
-
-  margin-bottom:7px;
+  font-size:.72rem;
+  font-weight:800;
+  margin:0 0 7px 2px;
 }
 
 .field input{
   width:100%;
   height:50px;
-
   border-radius:11px;
-
   border:1px solid var(--line);
-
   background:#08070c;
-
   color:#fff;
-
   padding:0 14px;
-
   outline:none;
+  font-size:.84rem;
+}
+
+.field input::placeholder{
+  color:#5f5a67;
 }
 
 .field input:focus{
   border-color:var(--purple);
-
-  box-shadow:
-    0 0 0 3px rgba(124,67,255,.1);
+  box-shadow:0 0 0 3px rgba(124,67,255,.08);
 }
 
 .btn{
   width:100%;
   min-height:51px;
-
   border:0;
   border-radius:12px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
   color:#fff;
-
   font-weight:900;
-
-  cursor:pointer;
-
+  font-size:.82rem;
   transition:.2s;
 }
 
@@ -267,32 +287,24 @@ input{
 }
 
 .primary{
-  background:
-    linear-gradient(
-      135deg,
-      var(--pink),
-      var(--purple)
-    );
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  box-shadow:0 14px 32px rgba(255,27,155,.15);
+}
 
-  box-shadow:
-    0 14px 32px rgba(255,27,155,.18);
+.secondary{
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
 }
 
 .message{
   min-height:20px;
-
   margin-top:13px;
-
   text-align:center;
-
   color:#ff9f9f;
-
-  font-size:.76rem;
+  font-size:.72rem;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
+/* DASHBOARD */
 
 .dashboard{
   display:none;
@@ -302,1068 +314,667 @@ input{
   display:block;
 }
 
-.container{
-  width:min(var(--max),calc(100% - 30px));
-  margin:auto;
-}
-
-.dashboard-main{
-  padding:55px 0 80px;
-}
-
-/* =========================
-   WELCOME
-========================= */
-
-.welcome{
+.dashboard-top{
   display:flex;
   justify-content:space-between;
-  align-items:flex-end;
-
-  gap:25px;
-
-  margin-bottom:28px;
-}
-
-.welcome small{
-  color:#ff78bd;
-
-  font-size:.68rem;
-  font-weight:900;
-
-  letter-spacing:1.6px;
-}
-
-.welcome h1{
-  margin-top:7px;
-
-  font-size:clamp(2rem,4vw,3.1rem);
-
-  line-height:1.04;
-
-  letter-spacing:-.05em;
-}
-
-.welcome p{
-  margin-top:9px;
-
-  color:var(--muted);
-
-  font-size:.82rem;
-}
-
-.status-badge{
-  padding:9px 13px;
-
-  border-radius:999px;
-
-  background:rgba(37,211,102,.09);
-
-  border:1px solid rgba(37,211,102,.22);
-
-  color:#9dffc0;
-
-  font-size:.7rem;
-
-  font-weight:900;
-
-  white-space:nowrap;
-}
-
-/* =========================
-   GRID
-========================= */
-
-.grid{
-  display:grid;
-
-  grid-template-columns:
-    1.35fr
-    .65fr;
-
-  gap:18px;
-}
-
-/* =========================
-   PRODUCT
-========================= */
-
-.product-card{
-  position:relative;
-
-  padding:28px;
-
-  border-radius:22px;
-
-  overflow:hidden;
-
-  border:1px solid rgba(255,27,155,.2);
-
-  background:
-    radial-gradient(
-      500px 220px at 10% 0%,
-      rgba(255,27,155,.1),
-      transparent 70%
-    ),
-    radial-gradient(
-      500px 220px at 100% 100%,
-      rgba(124,67,255,.1),
-      transparent 70%
-    ),
-    var(--card);
-
-  box-shadow:var(--shadow);
-}
-
-.product-top{
-  display:flex;
-  align-items:flex-start;
-
-  justify-content:space-between;
-
+  align-items:center;
   gap:15px;
-}
-
-.product-label{
-  color:#ff78bd;
-
-  font-size:.66rem;
-
-  font-weight:900;
-
-  letter-spacing:1.5px;
-}
-
-.product-card h2{
-  margin-top:5px;
-
-  font-size:1.55rem;
-
-  letter-spacing:-.04em;
-}
-
-.product-card p{
-  margin-top:7px;
-
-  color:var(--muted);
-
-  font-size:.77rem;
-}
-
-.product-icon{
-  width:55px;
-  height:55px;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:15px;
-
-  background:rgba(255,255,255,.06);
-
-  border:1px solid var(--line);
-
-  font-size:1.4rem;
-}
-
-.product-info{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:9px;
-
-  margin:23px 0;
-}
-
-.info{
-  padding:13px;
-
-  border-radius:12px;
-
-  background:rgba(255,255,255,.025);
-
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.info span{
-  display:block;
-
-  color:#85808e;
-
-  font-size:.63rem;
-
-  margin-bottom:4px;
-}
-
-.info strong{
-  font-size:.76rem;
-}
-
-.download-btn{
-  min-height:55px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:9px;
-
-  border-radius:12px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--green),
-      #159447
-    );
-
-  color:#fff;
-
-  font-size:.86rem;
-
-  font-weight:900;
-
-  box-shadow:
-    0 12px 30px rgba(37,211,102,.13);
-
-  transition:.2s;
-}
-
-.download-btn:hover{
-  transform:translateY(-2px);
-}
-
-/* =========================
-   UPDATES
-========================= */
-
-.updates{
-  padding:25px;
-
-  border-radius:22px;
-
-  border:1px solid var(--line);
-
-  background:var(--card);
-
-  box-shadow:var(--shadow);
-}
-
-.card-title{
-  display:flex;
-
-  align-items:center;
-
-  gap:9px;
-
-  font-size:.92rem;
-
-  font-weight:900;
-
   margin-bottom:18px;
 }
 
-.card-title-icon{
-  width:31px;
-  height:31px;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:9px;
-
-  background:rgba(37,215,255,.08);
-
-  color:var(--cyan);
+.dashboard-title h2{
+  font-size:1.45rem;
+  letter-spacing:-.035em;
 }
 
-.update{
-  padding:15px;
-
-  border-radius:14px;
-
-  background:rgba(255,255,255,.025);
-
-  border:1px solid rgba(255,255,255,.06);
-
-  margin-bottom:10px;
-}
-
-.update:last-child{
-  margin-bottom:0;
-}
-
-.update-top{
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:10px;
-}
-
-.update strong{
-  font-size:.75rem;
-}
-
-.update-date{
-  color:#77717f;
-
-  font-size:.61rem;
-}
-
-.update p{
+.dashboard-title p{
   color:var(--muted);
-
-  font-size:.68rem;
-
-  line-height:1.5;
-
-  margin-top:5px;
+  font-size:.74rem;
+  margin-top:4px;
 }
 
-/* =========================
-   WHATSAPP GROUP
-========================= */
-
-.group-card{
-  margin-top:18px;
-
-  padding:25px;
-
-  border-radius:22px;
-
-  border:1px solid rgba(37,211,102,.2);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(37,211,102,.07),
-      rgba(255,255,255,.02)
-    );
-
-  box-shadow:var(--shadow);
-}
-
-.group-content{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:20px;
-}
-
-.group-icon{
-  width:54px;
-  height:54px;
-
-  flex:0 0 54px;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:15px;
-
-  background:var(--green);
-
-  font-size:1.5rem;
-}
-
-.group-text{
-  flex:1;
-}
-
-.group-text h3{
-  font-size:.98rem;
-}
-
-.group-text p{
-  margin-top:5px;
-
-  color:var(--muted);
-
+.logout{
+  width:auto;
+  min-height:40px;
+  padding:0 14px;
   font-size:.7rem;
 }
 
-.group-btn{
-  min-height:46px;
+/* CARDS */
 
-  padding:0 17px;
-
-  border-radius:10px;
-
-  background:var(--green);
-
-  color:#fff;
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:.72rem;
-
-  font-weight:900;
-
-  white-space:nowrap;
-
-  transition:.2s;
-}
-
-.group-btn:hover{
-  transform:translateY(-2px);
-}
-
-/* =========================
-   LOWER GRID
-========================= */
-
-.lower-grid{
+.grid{
   display:grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap:18px;
-
-  margin-top:18px;
+  grid-template-columns:1.15fr .85fr;
+  gap:15px;
 }
 
 .card{
-  padding:25px;
-
-  border-radius:22px;
-
+  padding:23px;
   border:1px solid var(--line);
-
-  background:var(--card);
+  border-radius:20px;
+  background:rgba(255,255,255,.025);
 }
 
-/* =========================
-   ACCOUNT
-========================= */
+.card h3{
+  font-size:.92rem;
+  margin-bottom:6px;
+}
 
-.account-row{
+.card-description{
+  color:var(--muted);
+  font-size:.72rem;
+  line-height:1.6;
+}
+
+.product-card{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(350px 180px at 0% 0%,rgba(124,67,255,.12),transparent 70%),
+    var(--card);
+}
+
+.product-header{
   display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:20px;
+}
 
+.product-icon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  font-size:1.2rem;
+}
+
+.product-info strong{
+  display:block;
+  font-size:.92rem;
+}
+
+.product-info span{
+  color:#85808e;
+  font-size:.68rem;
+}
+
+.product-status{
+  display:inline-flex;
+  margin-top:7px;
+  padding:5px 8px;
+  border-radius:7px;
+  background:rgba(37,211,102,.08);
+  color:#9ff5b8;
+  font-size:.61rem;
+  font-weight:900;
+}
+
+.info-list{
+  display:grid;
+  gap:0;
+}
+
+.info-row{
+  display:flex;
   justify-content:space-between;
-
   gap:15px;
-
-  padding:13px 0;
-
-  border-bottom:1px solid rgba(255,255,255,.06);
-
-  font-size:.75rem;
+  padding:11px 0;
+  border-top:1px solid rgba(255,255,255,.06);
+  font-size:.72rem;
 }
 
-.account-row:last-child{
-  border-bottom:0;
-}
-
-.account-label{
+.info-label{
   color:#85808e;
 }
 
-.account-value{
-  font-weight:700;
-
+.info-value{
+  font-weight:800;
   text-align:right;
-
-  word-break:break-word;
 }
 
-/* =========================
-   SUPPORT
-========================= */
+/* UPDATE */
 
-.support-text{
-  color:var(--muted);
-
-  font-size:.75rem;
-
-  line-height:1.6;
-
-  margin-bottom:17px;
+.update-card{
+  background:
+    linear-gradient(145deg,rgba(255,27,155,.08),rgba(124,67,255,.08)),
+    var(--card);
+  border-color:rgba(255,27,155,.18);
 }
 
-.support-btn{
-  min-height:47px;
+.update-icon{
+  width:46px;
+  height:46px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,27,155,.1);
+  font-size:1.2rem;
+  margin-bottom:15px;
+}
 
+.update-price{
+  margin:16px 0 17px;
+}
+
+.update-price strong{
+  display:block;
+  font-size:2rem;
+  letter-spacing:-.05em;
+}
+
+.update-price span{
+  color:#85808e;
+  font-size:.64rem;
+}
+
+.update-button{
+  margin-top:4px;
+}
+
+/* ACTIONS */
+
+.actions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:15px;
+}
+
+.action-card{
+  min-height:155px;
   display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
 
+.action-icon{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:rgba(124,67,255,.1);
+  font-size:1.1rem;
+}
+
+.action-card h3{
+  margin-top:15px;
+}
+
+.action-card p{
+  color:var(--muted);
+  font-size:.69rem;
+  line-height:1.5;
+  margin-top:3px;
+}
+
+.action-button{
+  display:flex;
   align-items:center;
-
   justify-content:center;
-
-  border-radius:11px;
-
-  background:rgba(37,211,102,.09);
-
-  border:1px solid rgba(37,211,102,.2);
-
-  color:#b9ffd0;
-
-  font-size:.75rem;
-
+  min-height:39px;
+  margin-top:15px;
+  border-radius:9px;
+  font-size:.68rem;
   font-weight:900;
-
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
   transition:.2s;
 }
 
-.support-btn:hover{
-  background:rgba(37,211,102,.15);
+.action-button:hover{
+  transform:translateY(-1px);
+  border-color:rgba(255,255,255,.2);
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* WHATSAPP */
+
+.whatsapp-card{
+  margin-top:15px;
+  padding:25px;
+  border-radius:20px;
+  border:1px solid rgba(37,211,102,.18);
+  background:
+    linear-gradient(145deg,rgba(37,211,102,.08),rgba(37,211,102,.025)),
+    var(--card);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.whatsapp-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.whatsapp-icon{
+  width:50px;
+  height:50px;
+  flex:0 0 50px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(37,211,102,.12);
+  color:var(--green);
+  font-size:1.3rem;
+}
+
+.whatsapp-card h3{
+  font-size:.9rem;
+  margin-bottom:3px;
+}
+
+.whatsapp-card p{
+  color:var(--muted);
+  font-size:.7rem;
+  line-height:1.5;
+}
+
+.whatsapp-button{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:45px;
+  padding:0 18px;
+  border-radius:10px;
+  background:var(--green);
+  color:#041109;
+  font-size:.7rem;
+  font-weight:900;
+  transition:.2s;
+}
+
+.whatsapp-button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(37,211,102,.16);
+}
+
+/* HISTORY */
+
+.history{
+  margin-top:15px;
+}
+
+.history-list{
+  margin-top:14px;
+}
+
+.history-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:13px 0;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.history-info strong{
+  display:block;
+  font-size:.73rem;
+}
+
+.history-info span{
+  color:#77717f;
+  font-size:.62rem;
+}
+
+.history-status{
+  padding:5px 8px;
+  border-radius:7px;
+  font-size:.58rem;
+  font-weight:900;
+}
+
+.history-status.active{
+  color:#9ff5b8;
+  background:rgba(37,211,102,.08);
+}
+
+.history-status.pending{
+  color:#ffe09a;
+  background:rgba(255,209,102,.08);
+}
+
+/* FOOTER */
 
 .footer{
-  padding:25px 0;
-
+  margin-top:30px;
+  padding:25px 0 35px;
   border-top:1px solid var(--line);
-
-  color:#66616d;
-
-  font-size:.65rem;
-
-  text-align:center;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.footer-content{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  color:#66616d;
+  font-size:.64rem;
+}
 
-@media(max-width:800px){
+.footer-content a{
+  color:#88838f;
+}
+
+.footer-content a:hover{
+  color:#fff;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
 
   .grid{
     grid-template-columns:1fr;
   }
 
-  .lower-grid{
+  .actions{
     grid-template-columns:1fr;
+  }
+
+  .action-card{
+    min-height:auto;
   }
 
   .welcome{
     align-items:flex-start;
-
     flex-direction:column;
   }
-
 }
 
 @media(max-width:600px){
 
+  .wrap{
+    width:calc(100% - 24px);
+  }
+
   .nav{
-    height:65px;
+    height:68px;
   }
 
-  .logo{
-    width:145px;
+  .brand{
+    width:150px;
+    height:52px;
   }
 
-  .nav-btn{
-    padding:0 10px;
-
-    font-size:.68rem;
+  .nav-home{
+    min-height:39px;
+    padding:0 11px;
+    font-size:.66rem;
   }
 
-  .dashboard-main{
-    padding:35px 0 70px;
+  .page{
+    padding:38px 0 60px;
   }
 
   .welcome h1{
-    font-size:2rem;
+    font-size:2.15rem;
   }
 
-  .product-card,
-  .updates,
-  .group-card,
+  .login-card{
+    padding:24px 19px;
+    border-radius:20px;
+  }
+
   .card{
     padding:20px;
   }
 
-  .product-info{
-    grid-template-columns:1fr;
-  }
-
-  .group-content{
+  .dashboard-top{
     align-items:flex-start;
-
     flex-direction:column;
   }
 
-  .group-btn{
+  .logout{
     width:100%;
   }
 
-  .status-badge{
-    white-space:normal;
+  .whatsapp-card{
+    align-items:flex-start;
+    flex-direction:column;
+    padding:20px;
   }
 
-}
+  .whatsapp-button{
+    width:100%;
+  }
 
+  .footer{
+    margin-top:15px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="header">
+  <div class="wrap nav">
 
-  <div class="nav">
-
-    <a href="/" aria-label="MegaHitsBrasil">
-      <img
-        class="logo"
-        src="/logo-megahitsbrasil.png"
-        alt="MegaHitsBrasil"
-      >
+    <a class="brand" href="/" aria-label="MegaHitsBrasil">
+      <img src="/logo-megahitsbrasil.png" alt="MegaHitsBrasil">
     </a>
 
     <div class="nav-right">
-
-      <a class="nav-btn" href="/">
+      <a class="nav-home" href="/">
         ← Voltar ao site
       </a>
-
-      <button
-        class="nav-btn logout-nav"
-        id="navLogout"
-        type="button"
-        style="display:none"
-      >
-        Sair
-      </button>
-
     </div>
 
   </div>
-
 </header>
 
 
-<!-- =========================
-     LOGIN
-========================= -->
+<main class="page">
 
-<section class="login-screen" id="loginScreen">
+<div class="wrap">
 
-  <div class="login-card">
+  <!-- CABEÇALHO -->
 
-    <div class="login-icon">
-      🔐
+  <div class="welcome">
+
+    <div class="welcome-left">
+
+      <span class="eyebrow">MEGAHITSBRASIL</span>
+
+      <h1>
+        Área do <em>Cliente</em>
+      </h1>
+
+      <p>
+        Acesse seu conteúdo, acompanhe sua compra e fique por dentro
+        das novidades e atualizações do MegaHitsBrasil.
+      </p>
+
     </div>
 
-    <h1>Área do Cliente</h1>
-
-    <p>
-      Acesse sua conta usando o mesmo
-      <strong>e-mail e WhatsApp</strong>
-      informados durante a compra.
-    </p>
-
-    <form id="loginForm" class="form">
-
-      <div class="field">
-
-        <label for="email">
-          E-mail da compra
-        </label>
-
-        <input
-          id="email"
-          type="email"
-          autocomplete="email"
-          placeholder="seu@email.com"
-          required
-        >
-
-      </div>
-
-
-      <div class="field">
-
-        <label for="whatsapp">
-          WhatsApp da compra
-        </label>
-
-        <input
-          id="whatsapp"
-          type="tel"
-          autocomplete="tel"
-          placeholder="(16) 99999-9999"
-          required
-        >
-
-      </div>
-
-
-      <button
-        class="btn primary"
-        id="loginBtn"
-        type="submit"
-      >
-        🔐 Entrar na minha conta
-      </button>
-
-    </form>
-
-    <div
-      id="message"
-      class="message"
-    ></div>
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      Área segura
+    </div>
 
   </div>
 
-</section>
 
+  <!-- LOGIN -->
 
-<!-- =========================
-     DASHBOARD
-========================= -->
+  <div id="loginArea">
 
-<section
-  class="dashboard"
-  id="dashboard"
->
+    <div class="login-card">
 
-  <main class="dashboard-main">
+      <div class="login-icon">
+        🔐
+      </div>
 
-    <div class="container">
+      <h2>
+        Acesse sua conta
+      </h2>
 
+      <p>
+        Utilize o mesmo e-mail e WhatsApp informados durante sua compra
+        para acessar sua Área do Cliente.
+      </p>
 
-      <!-- WELCOME -->
+      <form id="loginForm">
 
-      <div class="welcome">
+        <div class="field">
 
-        <div>
+          <label for="email">
+            E-mail da compra
+          </label>
 
-          <small>
-            ÁREA DO CLIENTE
-          </small>
-
-          <h1>
-            Olá, <span id="customerName">cliente</span>! 👋
-          </h1>
-
-          <p>
-            Seja bem-vindo à sua área exclusiva
-            MegaHitsBrasil.
-          </p>
+          <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            placeholder="seu@email.com"
+            required
+          >
 
         </div>
 
-        <div class="status-badge">
-          ● ACESSO ATIVO
+
+        <div class="field">
+
+          <label for="whatsapp">
+            WhatsApp da compra
+          </label>
+
+          <input
+            id="whatsapp"
+            type="tel"
+            autocomplete="tel"
+            placeholder="(16) 99999-9999"
+            required
+          >
+
         </div>
+
+
+        <button
+          class="btn primary"
+          id="loginBtn"
+          type="submit"
+        >
+          🔐 Entrar na Área do Cliente
+        </button>
+
+      </form>
+
+      <div id="message" class="message"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- DASHBOARD -->
+
+  <div id="dashboard" class="dashboard">
+
+    <div class="dashboard-top">
+
+      <div class="dashboard-title">
+
+        <h2>
+          Olá! 👋
+        </h2>
+
+        <p>
+          Bem-vindo à sua Área do Cliente MegaHitsBrasil.
+        </p>
 
       </div>
 
+      <button
+        class="btn secondary logout"
+        id="logout"
+        type="button"
+      >
+        Sair da conta
+      </button>
 
-      <!-- PRINCIPAL -->
-
-      <div class="grid">
+    </div>
 
 
-        <!-- PRODUTO -->
+    <!-- PRODUTO + ATUALIZAÇÃO -->
 
-        <div class="product-card">
+    <div class="grid">
 
-          <div class="product-top">
+      <!-- PRODUTO -->
 
-            <div>
+      <div class="card product-card">
 
-              <div class="product-label">
-                SEU PRODUTO
-              </div>
+        <div class="product-header">
 
-              <h2 id="product">
-                +15 GB de músicas
-              </h2>
-
-              <p>
-                Seu pacote MegaHitsBrasil
-                está disponível.
-              </p>
-
-            </div>
-
-            <div class="product-icon">
-              🎵
-            </div>
-
+          <div class="product-icon">
+            🎵
           </div>
-
 
           <div class="product-info">
 
-            <div class="info">
+            <strong id="product">
+              MegaHitsBrasil +15 GB
+            </strong>
 
-              <span>
-                STATUS
-              </span>
+            <span>
+              Seu produto
+            </span>
 
-              <strong>
-                ✅ Pagamento aprovado
-              </strong>
-
+            <div class="product-status">
+              ✓ PAGAMENTO APROVADO
             </div>
-
-
-            <div class="info">
-
-              <span>
-                DATA DA COMPRA
-              </span>
-
-              <strong id="paidAt">
-                Confirmado
-              </strong>
-
-            </div>
-
-
-            <div class="info">
-
-              <span>
-                ACESSO
-              </span>
-
-              <strong>
-                🔓 Liberado
-              </strong>
-
-            </div>
-
-          </div>
-
-
-          <a
-            class="download-btn"
-            href="/api/download"
-          >
-            🎵 Acessar Meu Conteúdo
-          </a>
-
-        </div>
-
-
-        <!-- ATUALIZAÇÕES -->
-
-        <div class="updates">
-
-          <div class="card-title">
-
-            <div class="card-title-icon">
-              ⚡
-            </div>
-
-            Últimas atualizações
-
-          </div>
-
-
-          <div class="update">
-
-            <div class="update-top">
-
-              <strong>
-                🆕 Grupo de atualizações
-              </strong>
-
-              <span class="update-date">
-                AGORA
-              </span>
-
-            </div>
-
-            <p>
-              Entre no grupo oficial para receber
-              avisos quando novos conteúdos forem
-              adicionados ao MegaHitsBrasil.
-            </p>
-
-          </div>
-
-
-          <div class="update">
-
-            <div class="update-top">
-
-              <strong>
-                🎵 Seu acesso está ativo
-              </strong>
-
-              <span class="update-date">
-                ✓
-              </span>
-
-            </div>
-
-            <p>
-              Você já pode acessar seu pacote
-              através do botão acima.
-            </p>
-
-          </div>
-
-
-          <div class="update">
-
-            <div class="update-top">
-
-              <strong>
-                💬 Suporte
-              </strong>
-
-              <span class="update-date">
-                ONLINE
-              </span>
-
-            </div>
-
-            <p>
-              Caso tenha qualquer problema,
-              nossa equipe está disponível pelo
-              WhatsApp.
-            </p>
 
           </div>
 
         </div>
 
-      </div>
 
+        <div class="info-list">
 
-      <!-- GRUPO -->
+          <div class="info-row">
 
-      <div class="group-card">
-
-        <div class="group-content">
-
-          <div class="group-icon">
-            📲
-          </div>
-
-          <div class="group-text">
-
-            <h3>
-              Grupo Oficial de Atualizações MegaHits
-            </h3>
-
-            <p>
-              Receba avisos sobre novos conteúdos,
-              atualizações e novidades do MegaHitsBrasil
-              diretamente no WhatsApp.
-            </p>
-
-          </div>
-
-          <a
-            class="group-btn"
-            href="https://chat.whatsapp.com/HvMXsbgwSnYCQq4KwqH7ad?mode=gi_t"
-            target="_blank"
-            rel="noopener"
-          >
-            📲 Entrar no Grupo
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- INFORMAÇÕES -->
-
-      <div class="lower-grid">
-
-
-        <!-- CONTA -->
-
-        <div class="card">
-
-          <div class="card-title">
-
-            <div class="card-title-icon">
-              👤
-            </div>
-
-            Minha conta
-
-          </div>
-
-
-          <div class="account-row">
-
-            <span class="account-label">
-              E-mail
-            </span>
-
-            <span
-              class="account-value"
-              id="accountEmail"
-            >
-              -
-            </span>
-
-          </div>
-
-
-          <div class="account-row">
-
-            <span class="account-label">
-              WhatsApp
-            </span>
-
-            <span
-              class="account-value"
-              id="accountWhatsapp"
-            >
-              -
-            </span>
-
-          </div>
-
-
-          <div class="account-row">
-
-            <span class="account-label">
-              Produto
-            </span>
-
-            <span
-              class="account-value"
-              id="accountProduct"
-            >
-              +15 GB
-            </span>
-
-          </div>
-
-
-          <div class="account-row">
-
-            <span class="account-label">
+            <span class="info-label">
               Status
             </span>
 
+            <span class="info-value">
+              ✅ Ativo
+            </span>
+
+          </div>
+
+
+          <div class="info-row">
+
+            <span class="info-label">
+              Data da compra
+            </span>
+
             <span
-              class="account-value"
-              style="color:#9dffc0"
+              class="info-value"
+              id="paidAt"
             >
-              Ativo
+              —
+            </span>
+
+          </div>
+
+
+          <div class="info-row">
+
+            <span class="info-label">
+              Tipo de acesso
+            </span>
+
+            <span class="info-value">
+              Compra única
             </span>
 
           </div>
@@ -1371,39 +982,265 @@ input{
         </div>
 
 
-        <!-- SUPORTE -->
+        <a
+          class="btn primary"
+          href="/api/download"
+          style="display:flex;align-items:center;justify-content:center;margin-top:18px;"
+        >
+          📦 Acessar meu conteúdo
+        </a>
 
-        <div class="card">
+      </div>
 
-          <div class="card-title">
 
-            <div class="card-title-icon">
-              💬
-            </div>
+      <!-- ATUALIZAÇÃO -->
 
-            Precisa de ajuda?
+      <div class="card update-card">
+
+        <div class="update-icon">
+          🚀
+        </div>
+
+        <h3>
+          Atualizações MegaHits
+        </h3>
+
+        <p class="card-description">
+          Novos conteúdos são adicionados periodicamente.
+          Acompanhe as novidades pelo grupo oficial.
+        </p>
+
+        <div class="update-price">
+
+          <strong>
+            Atualizações
+          </strong>
+
+          <span>
+            Confira as novidades disponíveis
+          </span>
+
+        </div>
+
+        <a
+          class="btn primary update-button"
+          href="https://chat.whatsapp.com/HvMXsbgwSnYCQq4KwqH7ad?mode=gi_t"
+          target="_blank"
+          rel="noopener"
+          style="display:flex;align-items:center;justify-content:center;"
+        >
+          📢 Entrar no Grupo de Atualizações
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- AÇÕES -->
+
+    <div class="actions">
+
+      <div class="card action-card">
+
+        <div>
+
+          <div class="action-icon">
+            📦
+          </div>
+
+          <h3>
+            Meu conteúdo
+          </h3>
+
+          <p>
+            Acesse o pacote adquirido e seus arquivos.
+          </p>
+
+        </div>
+
+        <a
+          class="action-button"
+          href="/api/download"
+        >
+          Acessar conteúdo →
+        </a>
+
+      </div>
+
+
+      <div class="card action-card">
+
+        <div>
+
+          <div class="action-icon">
+            📢
+          </div>
+
+          <h3>
+            Grupo de atualizações
+          </h3>
+
+          <p>
+            Receba avisos quando novos conteúdos forem publicados.
+          </p>
+
+        </div>
+
+        <a
+          class="action-button"
+          href="https://chat.whatsapp.com/HvMXsbgwSnYCQq4KwqH7ad?mode=gi_t"
+          target="_blank"
+          rel="noopener"
+        >
+          Entrar no WhatsApp →
+        </a>
+
+      </div>
+
+
+      <div class="card action-card">
+
+        <div>
+
+          <div class="action-icon">
+            💬
+          </div>
+
+          <h3>
+            Suporte
+          </h3>
+
+          <p>
+            Precisa de ajuda? Fale diretamente com nossa equipe.
+          </p>
+
+        </div>
+
+        <a
+          class="action-button"
+          href="https://wa.me/5516997434009?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20minha%20compra%20MegaHitsBrasil."
+          target="_blank"
+          rel="noopener"
+        >
+          Falar com suporte →
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- WHATSAPP -->
+
+    <div class="whatsapp-card">
+
+      <div class="whatsapp-left">
+
+        <div class="whatsapp-icon">
+          💬
+        </div>
+
+        <div>
+
+          <h3>
+            Fique por dentro das atualizações
+          </h3>
+
+          <p>
+            Entre no grupo oficial do MegaHitsBrasil para receber
+            avisos sobre novos conteúdos e atualizações.
+          </p>
+
+        </div>
+
+      </div>
+
+      <a
+        class="whatsapp-button"
+        href="https://chat.whatsapp.com/HvMXsbgwSnYCQq4KwqH7ad?mode=gi_t"
+        target="_blank"
+        rel="noopener"
+      >
+        Entrar no grupo
+      </a>
+
+    </div>
+
+
+    <!-- HISTÓRICO -->
+
+    <div class="card history">
+
+      <h3>
+        📋 Histórico da sua conta
+      </h3>
+
+      <p class="card-description">
+        Informações relacionadas ao seu acesso.
+      </p>
+
+      <div class="history-list">
+
+        <div class="history-item">
+
+          <div class="history-info">
+
+            <strong>
+              Pacote MegaHitsBrasil +15 GB
+            </strong>
+
+            <span id="historyDate">
+              Compra confirmada
+            </span>
 
           </div>
 
-          <p class="support-text">
+          <span class="history-status active">
+            ✓ ATIVO
+          </span>
 
-            Está com dificuldade para acessar
-            seu conteúdo ou encontrou algum
-            problema com seu pedido?
+        </div>
 
-            Nossa equipe pode ajudar você.
 
-          </p>
+        <div class="history-item">
 
-          <a
-            class="support-btn"
-            id="supportBtn"
-            href="#"
-            target="_blank"
-            rel="noopener"
-          >
-            💬 Falar com suporte pelo WhatsApp
-          </a>
+          <div class="history-info">
+
+            <strong>
+              Acesso ao conteúdo
+            </strong>
+
+            <span>
+              Disponível para sua conta
+            </span>
+
+          </div>
+
+          <span class="history-status active">
+            LIBERADO
+          </span>
+
+        </div>
+
+
+        <div class="history-item">
+
+          <div class="history-info">
+
+            <strong>
+              Grupo de Atualizações
+            </strong>
+
+            <span>
+              WhatsApp oficial MegaHitsBrasil
+            </span>
+
+          </div>
+
+          <span class="history-status active">
+            DISPONÍVEL
+          </span>
 
         </div>
 
@@ -1411,222 +1248,160 @@ input{
 
     </div>
 
-  </main>
+  </div>
+
+</div>
+
+</main>
 
 
-  <footer class="footer">
+<footer class="footer">
 
-    <div class="container">
+  <div class="wrap footer-content">
 
-      MegaHitsBrasil © 2026
-      • Área do Cliente
+    <span>
+      © 2026 MegaHitsBrasil. Todos os direitos reservados.
+    </span>
 
-    </div>
+    <span>
+      <a href="/">
+        Voltar ao site
+      </a>
+    </span>
 
-  </footer>
+  </div>
 
-</section>
+</footer>
 
 
 <script>
 
-/* =========================
-   CONFIGURAÇÕES
-========================= */
-
-const OWNER = '5516997434009';
-
-const GROUP =
-'https://chat.whatsapp.com/HvMXsbgwSnYCQq4KwqH7ad?mode=gi_t';
+const $ = id => document.getElementById(id);
 
 
 /* =========================
-   HELPERS
+   MÁSCARA WHATSAPP
 ========================= */
 
-const $ = id =>
-  document.getElementById(id);
+$('whatsapp').addEventListener('input', e => {
+
+  let n = e.target.value
+    .replace(/\D/g,'')
+    .slice(0,11);
+
+  if(n.length <= 2){
+
+    e.target.value = n ? '(' + n : '';
+
+  }else if(n.length <= 7){
+
+    e.target.value =
+      `(${n.slice(0,2)}) ${n.slice(2)}`;
+
+  }else{
+
+    e.target.value =
+      `(${n.slice(0,2)}) ${n.slice(2,7)}-${n.slice(7)}`;
+
+  }
+
+});
 
 
 /* =========================
-   WHATSAPP MASK
+   MOSTRAR DASHBOARD
 ========================= */
 
-$('whatsapp').addEventListener(
-  'input',
-  e => {
+function showDashboard(d){
 
-    let n =
-      e.target.value
-        .replace(/\D/g,'')
-        .slice(0,11);
+  $('loginArea').style.display = 'none';
 
-    if(n.length <= 2){
+  $('dashboard').classList.add('show');
 
-      e.target.value =
-        n ? '(' + n : '';
+  if(
+    d &&
+    d.purchase &&
+    d.purchase.product
+  ){
 
-    }else if(n.length <= 7){
+    if(
+      d.purchase.product === 'megahitsbrasil_15gb'
+    ){
 
-      e.target.value =
-        `(${n.slice(0,2)}) ${n.slice(2)}`;
+      $('product').textContent =
+        'MegaHitsBrasil +15 GB';
 
     }else{
 
-      e.target.value =
-        `(${n.slice(0,2)}) ${n.slice(2,7)}-${n.slice(7)}`;
+      $('product').textContent =
+        d.purchase.product;
 
     }
 
   }
-);
 
 
-/* =========================
-   CUSTOMER NAME
-========================= */
+  if(
+    d &&
+    d.purchase &&
+    d.purchase.paid_at
+  ){
 
-function getNameFromEmail(email){
+    const date =
+      new Date(d.purchase.paid_at)
+      .toLocaleString('pt-BR');
 
-  if(!email) return 'cliente';
+    $('paidAt').textContent = date;
 
-  const name =
-    email
-      .split('@')[0]
-      .replace(/[._-]+/g,' ')
-      .trim();
+    $('historyDate').textContent =
+      'Compra confirmada em ' + date;
 
-  if(!name) return 'cliente';
+  }else{
 
-  return name
-    .split(' ')
-    .slice(0,2)
-    .map(
-      word =>
-        word.charAt(0).toUpperCase() +
-        word.slice(1)
-    )
-    .join(' ');
+    $('paidAt').textContent =
+      'Confirmado';
+
+  }
+
+  $('message').textContent = '';
 
 }
 
 
 /* =========================
-   FORMAT DATE
+   CARREGAR SESSÃO
 ========================= */
 
-function formatDate(date){
-
-  if(!date)
-    return 'Confirmado';
+async function load(){
 
   try{
 
-    return new Date(date)
-      .toLocaleString(
-        'pt-BR',
+    const r =
+      await fetch(
+        '/api/my-purchase',
         {
-          dateStyle:'short',
-          timeStyle:'short'
+          cache:'no-store'
         }
       );
 
-  }catch{
+    const d = await r.json();
 
-    return 'Confirmado';
+    if(
+      r.ok &&
+      d.authenticated
+    ){
 
-  }
+      showDashboard(d);
 
-}
+    }
 
+  }catch(e){
 
-/* =========================
-   SHOW DASHBOARD
-========================= */
-
-function showDashboard(data){
-
-  if(
-    !data ||
-    !data.purchase
-  ){
-
-    return;
-
-  }
-
-  const purchase =
-    data.purchase;
-
-  const email =
-    data.email ||
-    data.customer?.email ||
-    '';
-
-  const whatsapp =
-    data.whatsapp ||
-    data.customer?.whatsapp ||
-    '';
-
-  const product =
-    purchase.product ===
-    'megahitsbrasil_15gb'
-      ? '+15 GB de músicas'
-      : purchase.product || '+15 GB de músicas';
-
-
-  /* esconder login */
-
-  $('loginScreen')
-    .style.display = 'none';
-
-
-  /* mostrar painel */
-
-  $('dashboard')
-    .classList.add('show');
-
-
-  $('navLogout')
-    .style.display = 'inline-flex';
-
-
-  /* informações */
-
-  $('customerName')
-    .textContent =
-      getNameFromEmail(email);
-
-  $('product')
-    .textContent =
-      product;
-
-  $('paidAt')
-    .textContent =
-      formatDate(purchase.paid_at);
-
-  $('accountEmail')
-    .textContent =
-      email || '-';
-
-  $('accountWhatsapp')
-    .textContent =
-      whatsapp || '-';
-
-  $('accountProduct')
-    .textContent =
-      product;
-
-
-  /* suporte */
-
-  const message =
-    encodeURIComponent(
-      `Olá! Preciso de suporte com minha compra MegaHitsBrasil.\n\nE-mail: ${email}\nWhatsApp: ${whatsapp}`
+    console.log(
+      'Nenhuma sessão ativa.'
     );
 
-  $('supportBtn').href =
-    `https://wa.me/${OWNER}?text=${message}`;
+  }
 
 }
 
@@ -1635,36 +1410,32 @@ function showDashboard(data){
    LOGIN
 ========================= */
 
-$('loginForm')
-.addEventListener(
+$('loginForm').addEventListener(
   'submit',
   async e => {
 
     e.preventDefault();
 
-    $('message')
-      .textContent = '';
+    $('message').textContent = '';
 
-    const btn =
+    const loginBtn =
       $('loginBtn');
 
-    btn.disabled = true;
+    loginBtn.disabled = true;
 
-    btn.textContent =
+    loginBtn.textContent =
       'Verificando acesso...';
 
 
     try{
 
       const email =
-        $('email')
-          .value
-          .trim();
+        $('email').value.trim();
 
       const whatsapp =
         $('whatsapp')
-          .value
-          .replace(/\D/g,'');
+        .value
+        .replace(/\D/g,'');
 
 
       if(!email){
@@ -1675,28 +1446,25 @@ $('loginForm')
 
       }
 
+
       if(whatsapp.length < 10){
 
         throw new Error(
-          'Informe um WhatsApp válido.'
+          'Informe um WhatsApp válido com DDD.'
         );
 
       }
 
 
-      /* login */
-
-      const response =
+      const r =
         await fetch(
           '/api/login',
           {
             method:'POST',
-
             headers:{
               'Content-Type':
                 'application/json'
             },
-
             body:JSON.stringify({
               email,
               whatsapp
@@ -1705,21 +1473,19 @@ $('loginForm')
         );
 
 
-      const data =
-        await response.json();
+      const d =
+        await r.json();
 
 
-      if(!response.ok){
+      if(!r.ok){
 
         throw new Error(
-          data.error ||
+          d.error ||
           'Não foi possível acessar sua conta.'
         );
 
       }
 
-
-      /* recuperar compra */
 
       const me =
         await fetch(
@@ -1736,41 +1502,33 @@ $('loginForm')
 
       if(
         !me.ok ||
-        !purchase.purchase
+        !purchase.authenticated
       ){
 
         throw new Error(
-          'Compra não encontrada.'
+          'Não foi possível carregar sua compra.'
         );
 
       }
 
 
-      /* mostrar painel */
-
-      showDashboard({
-
-        ...purchase,
-
-        email,
-        whatsapp
-
-      });
+      showDashboard(
+        purchase
+      );
 
 
-    }catch(error){
+    }catch(err){
 
-      $('message')
-        .textContent =
-          error.message ||
-          'Erro ao acessar sua conta.';
+      $('message').textContent =
+        err.message ||
+        'Erro ao acessar sua conta.';
 
     }finally{
 
-      btn.disabled = false;
+      loginBtn.disabled = false;
 
-      btn.textContent =
-        '🔐 Entrar na minha conta';
+      loginBtn.textContent =
+        '🔐 Entrar na Área do Cliente';
 
     }
 
@@ -1782,77 +1540,36 @@ $('loginForm')
    LOGOUT
 ========================= */
 
-async function logout(){
+$('logout').addEventListener(
+  'click',
+  async () => {
 
-  try{
+    try{
 
-    await fetch(
-      '/api/logout',
-      {
-        method:'POST'
-      }
-    );
-
-  }catch{}
-
-  location.reload();
-
-}
-
-$('navLogout')
-  .addEventListener(
-    'click',
-    logout
-  );
-
-
-/* =========================
-   CHECK SESSION
-========================= */
-
-async function loadSession(){
-
-  try{
-
-    const response =
       await fetch(
-        '/api/my-purchase',
+        '/api/logout',
         {
-          cache:'no-store'
+          method:'POST'
         }
       );
 
+    }catch(e){
 
-    const data =
-      await response.json();
-
-
-    if(
-      response.ok &&
-      data.authenticated &&
-      data.purchase
-    ){
-
-      showDashboard(data);
+      console.log(e);
 
     }
 
-  }catch(error){
-
-    console.log(
-      'Sessão não encontrada.'
-    );
+    location.reload();
 
   }
-
-}
+);
 
 
 /* =========================
-   INIT
+   INICIALIZAÇÃO
 ========================= */
 
-loadSession();
+load();
 
 </script>
 
