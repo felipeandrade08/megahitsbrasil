@@ -35,6 +35,8 @@ a{text-decoration:none;color:inherit}button,input{font:inherit}
 .navcta,.btn{border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:.2s}
 .navcta{min-height:44px;padding:0 17px;border-radius:11px;background:#fff;color:#09070d;font-weight:800;font-size:.82rem}
 .navcta:hover,.btn:hover{transform:translateY(-2px)}
+.access-nav{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:0 15px;color:#fff;min-height:42px;border-radius:10px;font-size:.76rem;font-weight:800}
+@media(max-width:900px){.access-nav{display:none}}
 .hero{padding:76px 0 70px}
 .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:center}
 .kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid rgba(255,27,155,.25);background:rgba(255,27,155,.07);border-radius:999px;color:#ff9bcf;font-size:.7rem;font-weight:800;letter-spacing:.8px}
@@ -84,7 +86,7 @@ h1 em{font-style:normal;background:linear-gradient(100deg,#fff,var(--cyan),#b9a8
 .payment-options{display:grid;gap:10px;margin-top:18px}.payment-option{width:100%;padding:16px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.025);color:#fff;cursor:pointer;text-align:left;transition:.2s}.payment-option:hover{border-color:rgba(255,27,155,.42);transform:translateY(-1px)}.payment-option strong{display:block;font-size:.86rem;margin-bottom:4px}.payment-option span{display:block;color:var(--muted);font-size:.7rem}.tag{display:inline-block!important;width:max-content;margin-top:8px;padding:4px 7px;border-radius:7px;background:rgba(255,27,155,.1);color:#ff83bf!important;font-size:.61rem!important;font-weight:800}
 .manual-pix{display:none;margin-top:18px}.manual-pix.show{display:block}.pix{border:1px solid var(--line);border-radius:16px;padding:17px;text-align:center;background:#08070c}.qr{width:200px;height:200px;background:#fff;padding:8px;border-radius:12px;margin:14px auto}.qr img{width:100%;height:100%;object-fit:contain}.pix-code{margin:11px 0;padding:10px;border-radius:9px;background:#130f1a;color:#cfc9d6;font-size:.66rem;word-break:break-all;text-align:left}.copy{width:100%;background:var(--cyan);color:#041015;margin-top:9px}.wa{width:100%;background:var(--green);color:#fff;margin-top:8px}.status{display:none;margin-top:9px;border:1px solid rgba(37,211,102,.25);background:rgba(37,211,102,.06);padding:9px;border-radius:9px;color:#b8ffd0;font-size:.7rem;text-align:center}.status.show{display:block}.stripe-note{margin-top:15px;padding:11px 13px;border:1px solid var(--line);border-radius:11px;color:#9e98a6;font-size:.68rem;text-align:center;background:rgba(255,255,255,.02)}.fine{font-size:.64rem;color:#716c78;text-align:center;margin-top:12px}
 @media(max-width:900px){.hero-grid,.content-grid,.offer,.security{grid-template-columns:1fr}.hero-grid{gap:38px}.visual{max-width:720px;margin:auto}.navlinks{display:none}.trust{grid-template-columns:repeat(2,1fr)}.trust-item:nth-child(2){border-right:0}.trust-item:nth-child(3){border-top:1px solid var(--line)}.steps{grid-template-columns:1fr}.section{padding:70px 0}.footer-grid{grid-template-columns:1fr 1fr}.mobile-cta{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:55;padding:7px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(12,10,16,.92);backdrop-filter:blur(14px);box-shadow:0 15px 45px rgba(0,0,0,.4)}.mobile-cta .btn{flex:1;min-height:45px}.whatsapp{bottom:76px}}
-@media(max-width:560px){.wrap{width:calc(100% - 24px)}.nav{height:68px}.brand{width:150px;height:52px}.navcta{padding:0 12px;font-size:.7rem}.hero{padding:50px 0 58px}h1{font-size:clamp(2.3rem,12.5vw,3.45rem)}.hero-copy{font-size:.92rem}.hero-actions .btn{width:100%}.visual-label{left:10px;bottom:17px}.trust{grid-template-columns:1fr 1fr}.trust-item{padding:16px 10px}.trust-item strong{font-size:.68rem}.section{padding:58px 0}.section h2{font-size:2rem}.offer-card,.offer-side{padding:23px}.price{font-size:3.45rem}.footer-grid{grid-template-columns:1fr}.footer{padding-bottom:88px}.modal-box{padding:21px}.qr{width:180px;height:180px}.whatsapp{right:16px;bottom:82px;width:53px;height:53px}}
+@media(max-width:560px){.wrap{width:calc(100% - 24px)}.nav{height:68px}.brand{width:150px;height:52px}.navcta{padding:0 12px;font-size:.7rem}.hero{padding:50px 0 58px}h1{font-size:clamp(2.3rem,12.5vw,3.45rem)}.hero-copy{font-size:.92rem}.hero-actions .btn{width:100%}.access-link{width:100%;text-align:center;margin-top:10px;font-size:.75rem;color:#aaa6b4}.access-link:hover{color:#fff}.visual-label{left:10px;bottom:17px}.trust{grid-template-columns:1fr 1fr}.trust-item{padding:16px 10px}.trust-item strong{font-size:.68rem}.section{padding:58px 0}.section h2{font-size:2rem}.offer-card,.offer-side{padding:23px}.price{font-size:3.45rem}.footer-grid{grid-template-columns:1fr}.footer{padding-bottom:88px}.modal-box{padding:21px}.qr{width:180px;height:180px}.whatsapp{right:16px;bottom:82px;width:53px;height:53px}}
 </style>
 </head>
 <body>
@@ -94,7 +96,7 @@ h1 em{font-style:normal;background:linear-gradient(100deg,#fff,var(--cyan),#b9a8
     <nav class="navlinks" aria-label="Navegação">
       <a href="#conteudo">Conteúdo</a><a href="#oferta">Oferta</a><a href="#como">Como funciona</a><a href="#duvidas">Dúvidas</a>
     </nav>
-    <button class="navcta" onclick="openCheckout()">Quero os +15 GB</button>
+    <a class="navcta access-nav" href="/minha-compra.html">🔐 Acessar meu conteúdo</a><button class="navcta" onclick="openCheckout()">Quero os +15 GB</button>
   </div>
 </header>
 
@@ -108,6 +110,7 @@ h1 em{font-style:normal;background:linear-gradient(100deg,#fff,var(--cyan),#b9a8
       <div class="hero-actions">
         <button class="btn primary" onclick="openCheckout()">Quero os +15 GB agora</button>
         <a class="btn secondary" href="#conteudo">Ver o conteúdo</a>
+        <a class="access-link" href="/minha-compra.html">🔐 Já comprou? Acesse seu conteúdo</a>
       </div>
       <div class="hero-note">Cartão pelo Stripe • PIX manual • suporte pelo WhatsApp</div>
       <div class="mini-points"><span>+15 GB</span><span>Pastas organizadas</span><span>Pagamento único</span><span>Suporte direto</span></div>
@@ -210,7 +213,7 @@ h1 em{font-style:normal;background:linear-gradient(100deg,#fff,var(--cyan),#b9a8
       <div class="footer-brand"><img src="/logo-megahitsbrasil.png" alt="MegaHitsBrasil"><p>Pacotes digitais organizados, compra simples e atendimento direto pelo WhatsApp.</p></div>
       <div><h4>NAVEGAÇÃO</h4><ul><li><a href="#conteudo">Conteúdo</a></li><li><a href="#oferta">Oferta</a></li><li><a href="#como">Como funciona</a></li><li><a href="#duvidas">Dúvidas</a></li></ul></div>
       <div><h4>COMPRA</h4><ul><li><a href="#oferta">R$ 9,90 • pagamento único</a></li><li><a href="#oferta">Cartão pelo Stripe</a></li><li><a href="#oferta">PIX manual</a></li></ul></div>
-      <div><h4>SUPORTE</h4><ul><li><a href="https://wa.me/5516997434009" target="_blank" rel="noopener">(16) 99743-4009</a></li><li><span>Atendimento via WhatsApp</span></li><li><a href="/minha-compra.html">🔐 Minha compra / recuperar acesso</a></li></ul><button class="btn secondary" style="min-height:40px;padding:0 13px;margin-top:6px;font-size:.7rem" onclick="openCheckout()">Comprar agora</button></div>
+      <div><h4>SUPORTE</h4><ul><li><a href="https://wa.me/5516997434009" target="_blank" rel="noopener">(16) 99743-4009</a></li><li><span>Atendimento via WhatsApp</span></li><li><a href="/minha-compra.html">🔐 Acessar meu conteúdo / recuperar acesso</a></li></ul><button class="btn secondary" style="min-height:40px;padding:0 13px;margin-top:6px;font-size:.7rem" onclick="openCheckout()">Comprar agora</button></div>
     </div>
     <div class="footer-bottom"><span>© 2026 MegaHitsBrasil. Todos os direitos reservados.</span><span>Pagamento com cartão processado pelo Stripe.</span></div>
   </div>
