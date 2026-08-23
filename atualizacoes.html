@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atualizações mensais — MegaHitsBrasil</title>
+<meta name="description" content="Compre atualizações mensais do MegaHitsBrasil por R$ 4,90 cada.">
+<style>
+:root{--bg:#07060b;--card:#111019;--line:#292530;--text:#fff;--muted:#aaa6b4;--pink:#ff1b9b;--purple:#7c43ff;--green:#25d366}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:radial-gradient(700px 450px at 10% 0%,#24113d55,transparent),var(--bg);color:var(--text)}a{text-decoration:none;color:inherit}.wrap{width:min(1050px,calc(100% - 28px));margin:auto}.header{border-bottom:1px solid var(--line);background:#07060bdd;backdrop-filter:blur(15px)}.nav{min-height:72px;display:flex;justify-content:space-between;align-items:center}.logo{width:170px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:45px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:#17151e;color:#fff;font-weight:800;cursor:pointer}.page{padding:55px 0 80px}.ey{font-size:11px;letter-spacing:1.8px;font-weight:900;color:#ff78bd}.hero h1{font-size:clamp(2.1rem,6vw,4rem);line-height:1;letter-spacing:-.05em;margin:10px 0}.hero p{color:var(--muted);max-width:700px}.notice{margin:24px 0;padding:18px;border:1px solid rgba(255,209,102,.18);background:rgba(255,209,102,.045);border-radius:16px;color:#ded8e4}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:30px}.card{background:linear-gradient(145deg,rgba(124,67,255,.06),rgba(255,27,155,.04)),var(--card);border:1px solid var(--line);border-radius:19px;padding:22px;display:flex;flex-direction:column;min-height:245px}.badge{display:inline-block;width:max-content;padding:5px 8px;border-radius:999px;background:rgba(37,211,102,.08);color:#81f8a1;font-size:10px;font-weight:900}.card h2{font-size:1.2rem;margin:15px 0 7px}.card p{color:var(--muted);font-size:.82rem;line-height:1.6}.price{font-size:2.2rem;font-weight:900;margin-top:auto}.price small{font-size:.7rem;color:#88818e;font-weight:600}.buy{margin-top:14px;background:linear-gradient(135deg,var(--pink),var(--purple));border:0}.loading,.empty{padding:30px;color:var(--muted);text-align:center}.footer{padding:30px 0;border-top:1px solid var(--line);color:#6f6a76;font-size:.72rem}@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){#email,#whatsapp{width:100%!important}.grid{grid-template-columns:1fr}.nav .btn{padding:0 10px;font-size:.72rem}}
+</style>
+</head>
+<body>
+<header class="header"><div class="wrap nav"><a href="/"><img class="logo" src="/logo-megahitsbrasil.png" alt="MegaHitsBrasil"></a><a class="btn" href="/minha-compra.html">🔐 Minha compra</a></div></header>
+<main class="page"><div class="wrap">
+<section class="hero"><div class="ey">MEGAHITSBRASIL • CONTEÚDO NOVO</div><h1>Atualizações mensais</h1><p>Todo mês você pode adquirir somente as músicas novas daquele período. Cada atualização custa <strong>R$ 4,90</strong> e é uma compra independente.</p></section>
+<div class="notice">💡 <strong>Importante:</strong> comprar uma atualização não libera automaticamente os meses seguintes. Cada mês possui conteúdo próprio e uma taxa adicional de R$ 4,90.</div>
+<div style="padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);margin-bottom:24px">
+  <strong>Seus dados para o pagamento</strong>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+    <input id="email" type="email" placeholder="E-mail usado na compra" style="width:100%;background:#0d0c12;color:#fff;border:1px solid var(--line);border-radius:10px;padding:12px">
+    <input id="whatsapp" type="tel" placeholder="WhatsApp com DDD" style="width:100%;background:#0d0c12;color:#fff;border:1px solid var(--line);border-radius:10px;padding:12px">
+  </div>
+  <small style="display:block;color:var(--muted);margin-top:8px">Use os mesmos dados da sua compra principal para que a atualização apareça automaticamente na sua Área do Cliente.</small>
+</div>
+<section id="updates" class="grid"><div class="loading">Carregando atualizações...</div></section>
+</div></main>
+<footer class="footer"><div class="wrap">© 2026 MegaHitsBrasil • Atualizações mensais</div></footer>
+<script>
+const box=document.getElementById('updates');
+function money(v){return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format((Number(v)||0)/100)}
+function card(u){
+ const el=document.createElement('article');el.className='card';
+ el.innerHTML=`<span class="badge">ATUALIZAÇÃO DISPONÍVEL</span><h2>${esc(u.title)}</h2><p>${esc(u.description||'Conteúdo exclusivo referente a este mês.')}</p><div class="price">${money(u.price)} <small>por esta atualização</small></div><button class="btn buy" data-id="${u.id}">Comprar atualização</button>`;
+ return el;
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+async function load(){
+ try{const r=await fetch('/api/updates-public',{cache:'no-store'}),d=await r.json();if(!r.ok)throw Error(d.error||'Erro');
+ if(!d.updates?.length){box.innerHTML='<div class="empty">Nenhuma atualização publicada no momento.</div>';return}
+ box.innerHTML='';d.updates.forEach(u=>box.appendChild(card(u)));
+ }catch(e){box.innerHTML='<div class="empty">Não foi possível carregar as atualizações.</div>'}
+}
+box.addEventListener('click',async e=>{
+ const b=e.target.closest('[data-id]');if(!b)return;
+ const email=document.getElementById('email').value.trim();
+ const whatsapp=document.getElementById('whatsapp').value.replace(/\D/g,'');
+ if(!email){alert('Informe o e-mail usado na compra.');return}
+ if(whatsapp.length<10){alert('Informe um WhatsApp válido com DDD.');return}
+ b.disabled=true;b.textContent='Abrindo pagamento...';
+ try{const r=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,whatsapp,updateId:Number(b.dataset.id)})});const d=await r.json();if(!r.ok)throw Error(d.error||'Não foi possível iniciar o pagamento.');location.href=d.url}catch(e){alert(e.message);b.disabled=false;b.textContent='Comprar atualização'}}
+);
+load();
+</script>
+</body></html>

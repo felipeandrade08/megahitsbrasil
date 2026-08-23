@@ -749,6 +749,14 @@ button{
     margin-top:15px;
   }
 }
+
+/* ATUALIZAÇÕES MENSAIS */
+.monthly-section{margin-top:15px;padding:25px;border:1px solid rgba(124,67,255,.18);border-radius:20px;background:linear-gradient(145deg,rgba(124,67,255,.07),rgba(255,27,155,.025)),var(--card)}
+.monthly-head{display:flex;justify-content:space-between;gap:15px;align-items:end;margin-bottom:16px}
+.monthly-head h3{font-size:1rem}.monthly-head p{color:var(--muted);font-size:.7rem;margin-top:4px}.monthly-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.monthly-item{padding:15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}.monthly-item strong{display:block;font-size:.75rem}.monthly-item span{display:block;color:#88818e;font-size:.63rem;margin:4px 0 12px}.monthly-item .monthly-status{display:inline-flex;padding:5px 8px;border-radius:7px;background:rgba(37,211,102,.08);color:#8ef5ab;font-size:.58rem;font-weight:900}.monthly-item .monthly-buy{display:inline-flex;width:100%;justify-content:center;min-height:39px;align-items:center;border-radius:9px;background:linear-gradient(135deg,var(--pink),var(--purple));font-size:.66rem;font-weight:900}.monthly-empty{padding:15px;border:1px dashed var(--line);border-radius:12px;color:#77717f;font-size:.7rem}
+.mega-help{margin-top:15px;padding:25px;border:1px solid rgba(37,211,102,.16);border-radius:20px;background:linear-gradient(145deg,rgba(37,211,102,.06),rgba(37,211,102,.015)),var(--card)}
+.mega-help h3{font-size:1rem}.mega-help>p{color:var(--muted);font-size:.72rem;line-height:1.6}.mega-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}.mega-step{padding:15px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.02)}.mega-step b{display:block;font-size:.72rem;margin-bottom:5px}.mega-step span{display:block;color:#89838f;font-size:.64rem;line-height:1.5}.mega-links{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.mega-links a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 13px;border-radius:9px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:.64rem;font-weight:900}.monthly-buy.disabled{background:rgba(255,255,255,.05);color:#8b8691;pointer-events:none}
+@media(max-width:850px){.monthly-list,.mega-steps{grid-template-columns:1fr}.monthly-head{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 
@@ -1131,6 +1139,38 @@ button{
     </div>
 
 
+
+<!-- ATUALIZAÇÕES MENSAIS -->
+<div class="monthly-section">
+  <div class="monthly-head">
+    <div>
+      <h3>🔄 Atualizações mensais</h3>
+      <p>Cada mês é vendido separadamente por R$ 4,90. Você recebe somente o conteúdo daquele mês.</p>
+    </div>
+    <a class="action-button" href="/atualizacoes.html">Ver atualizações →</a>
+  </div>
+  <div id="monthlyList" class="monthly-list">
+    <div class="monthly-empty">Carregando atualizações...</div>
+  </div>
+</div>
+
+<!-- COMO USAR O MEGA -->
+<div class="mega-help">
+  <h3>📱 Como acessar e baixar pelo MEGA</h3>
+  <p>O MegaHitsBrasil usa a plataforma MEGA para entregar as pastas. No celular, recomendamos instalar o aplicativo oficial do MEGA antes de abrir os links.</p>
+  <div class="mega-steps">
+    <div class="mega-step"><b>🤖 Android</b><span>Abra a Google Play, procure por “MEGA”, instale o aplicativo oficial e depois abra o link do seu conteúdo.</span></div>
+    <div class="mega-step"><b>🍎 iPhone</b><span>Abra a App Store, procure por “MEGA”, instale o aplicativo oficial e depois abra o link do seu conteúdo.</span></div>
+    <div class="mega-step"><b>💻 Computador</b><span>Você pode abrir o link pelo navegador. Para arquivos grandes, o aplicativo MEGA para computador também pode ajudar.</span></div>
+  </div>
+  <div class="mega-links">
+    <a href="https://mega.io/" target="_blank" rel="noopener">🌐 Conhecer o MEGA</a>
+    <a href="https://play.google.com/store/apps/details?id=mega.privacy.android.app" target="_blank" rel="noopener">📱 Android</a>
+    <a href="https://apps.apple.com/app/mega/id706857885" target="_blank" rel="noopener">🍎 iPhone</a>
+    <a href="https://mega.io/desktop" target="_blank" rel="noopener">💻 MEGA Desktop</a>
+  </div>
+</div>
+
     <!-- WHATSAPP -->
 
     <div class="whatsapp-card">
@@ -1364,9 +1404,31 @@ function showDashboard(d){
   }
 
   $('message').textContent = '';
+  loadMonthlyUpdates(d.updates || []);
 
 }
 
+
+
+async function loadMonthlyUpdates(purchased){
+  const box=$('monthlyList');
+  try{
+    const r=await fetch('/api/updates-public',{cache:'no-store'});
+    const d=await r.json();
+    if(!r.ok) throw Error(d.error||'Erro');
+    const bought=new Map((purchased||[]).map(x=>[Number(x.updateId),x]));
+    if(!d.updates?.length){box.innerHTML='<div class="monthly-empty">Nenhuma atualização publicada no momento.</div>';return;}
+    box.innerHTML=d.updates.map(u=>{
+      const own=bought.get(Number(u.id));
+      if(own){
+        return `<div class="monthly-item"><strong>${esc(u.title)}</strong><span>Conteúdo deste mês • ${moneyMonthly(u.price)}</span><span class="monthly-status">✓ COMPRADA</span><a class="monthly-buy" style="margin-top:10px" href="/api/download?update_id=${encodeURIComponent(u.id)}">📥 Acessar no MEGA</a></div>`;
+      }
+      return `<div class="monthly-item"><strong>${esc(u.title)}</strong><span>${esc(u.description||'Conteúdo exclusivo deste mês.')} • ${moneyMonthly(u.price)}</span><a class="monthly-buy" href="/atualizacoes.html">Comprar por ${moneyMonthly(u.price)} →</a></div>`;
+    }).join('');
+  }catch(e){box.innerHTML='<div class="monthly-empty">Não foi possível carregar as atualizações agora.</div>'}
+}
+function moneyMonthly(v){return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format((Number(v)||0)/100)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 
 /* =========================
    CARREGAR SESSÃO
