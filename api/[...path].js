@@ -1,3 +1,5 @@
+module.exports.config = { api: { bodyParser: false, sizeLimit: '5mb' } };
+
 // Single Vercel Serverless Function for the entire /api/* surface.
 
 const handlers = {
@@ -10,7 +12,8 @@ const handlers = {
   'my-purchase': require('../lib/handlers/my-purchase'),
   'session-status': require('../lib/handlers/session-status'),
   'upload-proof': require('../lib/handlers/upload-proof'),
-  webhook: require('../lib/handlers/webhook')
+  webhook: require('../lib/handlers/webhook'),
+  'updates-public': require('../lib/handlers/updates-public')
 };
 
 function getRoute(req) {
